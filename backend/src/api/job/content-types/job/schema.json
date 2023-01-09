@@ -1,0 +1,115 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::company.company"
+    },
+    "job_title": {
+      "type": "string",
+      "required": true,
+      "unique": false
+    },
+    "jaf": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files"
+      ]
+    },
+    "approval_status": {
+      "type": "enumeration",
+      "enum": [
+        "approved",
+        "pending",
+        "rejected"
+      ],
+      "required": true,
+      "default": "pending"
+    },
+    "job_status": {
+      "type": "enumeration",
+      "enum": [
+        "open",
+        "ongoing",
+        "results_declared",
+        "abandoned"
+      ]
+    },
+    "last_date": {
+      "required": false,
+      "type": "datetime"
+    },
+    "classification": {
+      "type": "enumeration",
+      "enum": [
+        "A1",
+        "A2",
+        "X",
+        "none"
+      ],
+      "required": true
+    },
+    "min_X_marks": {
+      "type": "decimal",
+      "min": 0,
+      "max": 100,
+      "default": 0
+    },
+    "min_XII_marks": {
+      "type": "decimal",
+      "default": 0,
+      "min": 0,
+      "max": 100
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "Internship",
+        "FTE"
+      ],
+      "required": true
+    },
+    "start_date": {
+      "type": "datetime"
+    },
+    "min_cpi": {
+      "type": "decimal",
+      "required": true,
+      "min": 0
+    },
+    "only_for_pwd": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "only_for_ews": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "eligible_courses": {
+      "type": "string",
+      "required": true
+    },
+    "only_for_female": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    }
+  }
+}
