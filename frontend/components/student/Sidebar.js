@@ -30,14 +30,14 @@ const navigation = [
     icon: UserIcon,
   },
   {
+    name: 'Reset Password',
+    href: '/student/reset-password',
+    icon: ShieldCheckIcon,
+  },
+  {
     name: 'All Jobs',
     href: '/student/all-jobs',
     icon: ClipboardListIcon,
-  },
-  {
-    name: 'Jobs Applied',
-    href: '/student/jobs-applied',
-    icon: ClipboardCheckIcon,
   },
   {
     name: 'Eligible Jobs',
@@ -45,14 +45,14 @@ const navigation = [
     icon: BriefcaseIcon,
   },
   {
+    name: 'Jobs Applied',
+    href: '/student/jobs-applied',
+    icon: ClipboardCheckIcon,
+  },
+  {
     name: 'Resume & Transcript',
     href: '/student/resume',
     icon: DocumentTextIcon,
-  },
-  {
-    name: 'Reset Password',
-    href: '/student/reset-password',
-    icon: ShieldCheckIcon,
   },
 ]
 
@@ -152,7 +152,7 @@ export default function Sidebar({ heading = '', children }) {
                     className={classNames(
                       false
                         ? 'bg-gray-900 text-white'
-                        : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                        : 'text-gray-300 hover:bg-stone-700 hover:text-white',
                       'group flex items-center px-2 py-2 text-base font-medium rounded-md cursor-pointer'
                     )}
                   >
@@ -169,7 +169,7 @@ export default function Sidebar({ heading = '', children }) {
                   </a>
                 </nav>
               </div>
-              <div className='flex-shrink-0 flex bg-gray-700 p-4'>
+              <div className='flex-shrink-0 flex bg-stone-700 p-4'>
                 <a href='#' className='flex-shrink-0 group block'>
                   <div className='flex items-center'>
                     <div>
@@ -201,7 +201,7 @@ export default function Sidebar({ heading = '', children }) {
       {/* Static sidebar for desktop */}
       <div className='hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 md:right-0 '>
         {/* Sidebar component, swap this element with another sidebar if you like */}
-        <div className='flex-1 flex flex-col min-h-0 bg-gray-800'>
+        <div className='flex-1 flex flex-col min-h-0 bg-stone-800'>
           <div className='flex-1 flex flex-col pt-5 pb-4 overflow-y-auto'>
             <div className='flex items-center flex-shrink-0 px-4'>
               <Image
@@ -282,11 +282,11 @@ export default function Sidebar({ heading = '', children }) {
           </div>
         </div>
       </div>
-      <div className='flex flex-col flex-1'>
+      <div className='md-pr-64 flex flex-col flex-1'>
         <div className='sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-100'>
           <button
             type='button'
-            className='-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500'
+            className='-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-yellow-500'
             onClick={() => setSidebarOpen(true)}
           >
             <span className='sr-only'>Open sidebar</span>
@@ -295,12 +295,12 @@ export default function Sidebar({ heading = '', children }) {
         </div>
         <main className='flex-1'>
           <div className=''>
-            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+            <div className='max-w-5xl mx-auto px-4 sm:px-6 lg:px-8'>
               <h1 className='text-2xl font-semibold text-gray-900'>
                 {heading}
               </h1>
             </div>
-            <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>
+            <div className='max-w-5xl mx-auto px-4 sm:px-6 md:px-8'>
               {children}
             </div>
           </div>
