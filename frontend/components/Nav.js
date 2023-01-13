@@ -48,7 +48,7 @@ export default function Nav() {
     <div>
       <Slideover open={open} setOpen={setOpen} />
       <div className='hidden sm:block'>
-        <div className='border-b border-gray-200 px-4'>
+        <div className='border-b border-gray-200 px-4 backdrop-blur'>
           <nav className='-mb-px flex space-x-8' aria-label='Tabs'>
             {tabs.map((tab) => (
               <a
