@@ -48,7 +48,7 @@
     "personal_email_id": {
       "type": "email",
       "unique": true,
-      "required": true
+      "required": false
     },
     "resume": {
       "type": "media",
@@ -69,7 +69,7 @@
     },
     "date_of_birth": {
       "type": "date",
-      "required": true
+      "required": false
     },
     "X_marks": {
       "type": "decimal",
@@ -81,15 +81,15 @@
     },
     "rank": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "categoryRank": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "admission_year": {
       "type": "string",
-      "required": true
+      "required": false
     },
     "approved": {
       "type": "enumeration",
@@ -138,7 +138,7 @@
     },
     "address": {
       "type": "text",
-      "required": true
+      "required": false
     },
     "user_relation": {
       "type": "relation",
