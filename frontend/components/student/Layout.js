@@ -23,7 +23,7 @@ export default function Layout({
         <main className='flex-grow'>
           <Sidebar heading={heading}>{children}</Sidebar>
           <ToastContainer
-            position='top-right'
+            position='top-left'
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}

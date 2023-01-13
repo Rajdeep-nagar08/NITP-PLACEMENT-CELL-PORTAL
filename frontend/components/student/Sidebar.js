@@ -120,7 +120,7 @@ export default function Sidebar({ heading = '', children }) {
                     width={100}
                     height={40}
                     alt='Unirchitect'
-                    src='/images/iitp.svg'
+                    src='/images/logo.png'
                   />
                 </div>
                 <nav className='mt-5 px-2 space-y-1'>
@@ -199,16 +199,16 @@ export default function Sidebar({ heading = '', children }) {
       </Transition.Root>
 
       {/* Static sidebar for desktop */}
-      <div className='hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0'>
+      <div className='hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 md:right-0 '>
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className='flex-1 flex flex-col min-h-0 bg-gray-800'>
           <div className='flex-1 flex flex-col pt-5 pb-4 overflow-y-auto'>
             <div className='flex items-center flex-shrink-0 px-4'>
               <Image
-                width={180}
+                width={100}
                 height={100}
-                alt='IIT Patna'
-                src='/images/iitp.svg'
+                alt='NIT Patna'
+                src='/images/logo.png'
               />
             </div>
             <nav className='mt-5 flex-1 px-2 space-y-1'>
@@ -282,7 +282,7 @@ export default function Sidebar({ heading = '', children }) {
           </div>
         </div>
       </div>
-      <div className='md:pl-64 flex flex-col flex-1'>
+      <div className='flex flex-col flex-1'>
         <div className='sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-100'>
           <button
             type='button'
@@ -294,7 +294,7 @@ export default function Sidebar({ heading = '', children }) {
           </button>
         </div>
         <main className='flex-1'>
-          <div className='py-6'>
+          <div className=''>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
               <h1 className='text-2xl font-semibold text-gray-900'>
                 {heading}
