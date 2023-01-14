@@ -101,7 +101,9 @@ export const AuthProvider = ({ children }) => {
         router.push('admin/home')
       } else if (data.role === 'coordinator') {
         router.push('coordinator/home')
-      } else {
+      } else if(data.role=='company'){
+        router.push('company/add')
+      }else {
         toast.error(data.error)
       }
     } else {
