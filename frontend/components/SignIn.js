@@ -32,36 +32,64 @@ export default function SignIn() {
   return (
     <div className="bg-[url('/images/bg.jpg')] bg-cover bg-no-repeat ">
       <Nav />
-      <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8 ">
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="backdrop-blur py-8 px-4 shadow sm:rounded-lg sm:px-10 g-blur-md">
-            <div className="sm:mx-auto sm:w-full sm:max-w-md">
-              <div className="mx-auto text-center ">
-                <Image
-                  className="mx-auto"
-                  width={100}
-                  height={100}
-                  alt="NIT Patna"
-                  src="/images/logo.png"
-                />
-              </div>
 
-              <h2 className="mt-6 text-center text-2xl font-extrabold font-serif text-white">
-                Training and Placement Cell
-              </h2>
-              <h2 className="text-center font-extrabold text-3xl uppercase text-black">
-                NIT Patna
-              </h2>
-              <p className="mt-2 text-center text-sm text-stone-100 ">
-                Login Or{" "}
+      <div className="min-h-full flex flex-row sm:px-6 lg:px-8 m-5">
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
+          <div className="sm:mx-auto sm:w-full sm:max-w-md backdrop-blur rounded-md p-7 mt-5 h-[35rem]">
+            <div className=" text-center ">
+              <Image
+                className="mx-auto"
+                width={100}
+                height={100}
+                alt="NIT Patna"
+                src="/images/logo.png"
+              />
+            </div>
+
+            <h2 className="mt-6 text-center text-3xl font-extrabold font-serif text-white">
+              Training and Placement Cell
+            </h2>
+            <h2 className="text-center font-extrabold text-3xl uppercase text-black my-5">
+              NIT Patna
+            </h2>
+            <p className="m-3 text-white font-serif">
+              The Training and Placement cell of NIT PATNA forms an integral
+              part in shaping the careers of the students of the institute. It
+              organizes and coordinates campus placement program to fulfill its
+              commitment of a job to every aspirant. Not only that it also
+              encourages and works towards the continuing education for the
+              college employees.
+            </p>
+          </div>
+        </div>
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md h-screen ">
+          <div className="backdrop-blur py-8 mt-5 shadow sm:rounded-lg sm:px-10 g-blur-md h-[35rem] p-7">
+            <div>
+              <p className="mt-2 text-center text-3xl font-bold font-sans pb-7 text-black ">
+              Login 
+                {/* Login Or{" "}
                 <Link href="/account/studentRegistration">
                   <a className="font-medium text-yellow-500 hover:text-orange-500 font-bold">
                     New Student Registration
                   </a>
-                </Link>
+                </Link> */}
               </p>
+              <label
+                for="options"
+                className="block text-sm font-medium text-slate-700 py-2"
+              >
+                Account Type
+              </label>
+              <select
+                name="options"
+                className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm mb-3"
+              >
+                <option value="Admin">Admin</option>
+                <option value="Company">Company</option>
+                <option value="Student">Student</option>
+                <option value="Coordinator">Coordinator</option>
+              </select>
             </div>
-
             <form
               className="space-y-6"
               action="#"
@@ -71,7 +99,7 @@ export default function SignIn() {
               <div>
                 <label
                   htmlFor="username"
-                  className="block text-sm font-medium text-gray-300"
+                  className="block text-sm font-medium text-slate-700"
                 >
                   Username
                 </label>
@@ -92,7 +120,7 @@ export default function SignIn() {
               <div>
                 <label
                   htmlFor="password"
-                  className="block text-sm font-medium text-gray-300"
+                  className="block text-sm font-medium text-slate-800"
                 >
                   Password
                 </label>
@@ -150,8 +178,17 @@ export default function SignIn() {
                 </button>
               </div>
             </form>
-          </div>
+            <p className="p-3 text-white">
+
+            Or{" "}
+                  <Link href="/account/studentRegistration">
+                    <a className="font-medium text-yellow-500 hover:text-orange-500 font-bold">
+                      New Registration
+                    </a>
+                  </Link> 
+            </p>
         </div>
+          </div>
       </div>
     </div>
   );
