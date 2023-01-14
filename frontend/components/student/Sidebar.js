@@ -29,21 +29,27 @@ const navigation = [
     href: '/student/profile',
     icon: UserIcon,
   },
-  {
-    name: 'All Jobs',
-    href: '/student/all-jobs',
-    icon: ClipboardListIcon,
-  },
-  {
-    name: 'Jobs Applied',
-    href: '/student/jobs-applied',
-    icon: ClipboardCheckIcon,
-  },
+
+  // Hiding 'All Jobs' options for student
+
+  // {
+  //   name: 'All Jobs',
+  //   href: '/student/all-jobs',
+  //   icon: ClipboardListIcon,
+  // },
+
   {
     name: 'Eligible Jobs',
     href: '/student/eligible-jobs',
     icon: BriefcaseIcon,
   },
+
+  {
+    name: 'Jobs Applied',
+    href: '/student/jobs-applied',
+    icon: ClipboardCheckIcon,
+  },
+
   {
     name: 'Resume & Transcript',
     href: '/student/resume',

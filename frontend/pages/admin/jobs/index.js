@@ -1,16 +1,43 @@
+
 import Layout from '@/components/admin/Layout'
 import { AgGridReact } from 'ag-grid-react'
-import { toast } from 'react-toastify'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
-import { useEffect, useState } from 'react'
+import { useCallback, useRef, useState, useEffect } from 'react'
 import { parseCookies } from '@/helpers/index'
 import axios from 'axios'
 import { API_URL } from '@/config/index'
 import Link from 'next/link'
 
+import Xyz from '@/components/admin/jobs/StudentApplied'
 export default function Jobs({ token }) {
   const [rowData, setRowData] = useState([])
+
+
+///////////////////////////////////////////////////
+
+const gridRef = useRef()
+
+  const onBtExport = useCallback(() => {
+    // See comment in pages/admin/students/index.js for logic behind this
+
+    const selected_and_visible_node = gridRef.current.api.getSelectedNodes().findIndex(node => node.displayed);
+   
+    console.log(selected_and_visible_node)
+
+    if (selected_and_visible_node == -1) {
+      // If nothing is selected, export ALL
+      gridRef.current.api.exportDataAsCsv()
+    } else {
+      // Else, export selected
+      gridRef.current.api.exportDataAsCsv({
+        onlySelected: true,
+      })
+    }
+  }, [])
+
+  /////////////////////
+
 
   const [columnDefs] = useState([
     {
@@ -98,6 +125,9 @@ export default function Jobs({ token }) {
 
   return (
     <Layout>
+      <Xyz>
+        hello
+      </Xyz>
       <div className='flex-1'>
         <div className='border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8'>
           <div className='flex-1 min-w-0'>
@@ -112,6 +142,17 @@ export default function Jobs({ token }) {
             >
               Deactivate
             </button>
+
+            <button
+              type='button'
+              onClick={onBtExport}
+              className='order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 sm:ml-3'
+            >
+              Export
+            </button>
+
+
+
             <Link href={`/admin/jobs/add`}>
               <button
                 type='button'

@@ -171,6 +171,7 @@ export default function StudentApplied({ token = '', id = '' }) {
      */
 
     // visible selected rows
+
     const selectedRows = gridRef.current.api
       .getSelectedNodes()
       .filter((node) => node.displayed)

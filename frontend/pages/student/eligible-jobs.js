@@ -79,6 +79,8 @@ export default function EligibleJobs({ token = '' }) {
         let err_msg = 'Something Went Wrong'
         try {
           const data = await res.json();
+
+
 	  /* In case of error, from backend we should receive this structure:
 	   *
 	   * {
@@ -95,6 +97,8 @@ export default function EligibleJobs({ token = '' }) {
 	   *   }
 	   * }
 	   * */
+
+
 	  if(data.error && Array.isArray(data.error.details)) {
 	    const err_detail = data.error.details[0];
 	    if (err_detail && Array.isArray(err_detail.messages)) {

@@ -9,6 +9,10 @@ import axios from 'axios'
 import { API_URL } from '@/config/index'
 import Link from 'next/link'
 
+
+import Xyz from '@/components/admin/jobs/StudentApplied'
+
+
 export default function Jobs({ token }) {
   const [rowData, setRowData] = useState([])
 
@@ -100,7 +104,14 @@ export default function Jobs({ token }) {
   }, [])
 
   return (
+   
     <Layout>
+
+    <Xyz>
+      Hello
+    </Xyz>
+
+
       <div className='flex-1'>
         <div className='border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8'>
           <div className='flex-1 min-w-0'>

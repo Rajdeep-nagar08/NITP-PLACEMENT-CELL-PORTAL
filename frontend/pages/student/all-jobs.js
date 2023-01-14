@@ -27,7 +27,7 @@ export default function AllJobs({ token = '' }) {
       })
   }, [])
 
-  const [jobs, setJobs] = useState([])
+   const [jobs, setJobs] = useState([])
 
   useEffect(() => {
     fetch(`${API_URL}/api/student/alljobs`, {
@@ -73,6 +73,7 @@ export default function AllJobs({ token = '' }) {
       filter: 'agTextColumnFilter',
     },
   ])
+
   if (!approved) {
     return (
       <Layout>

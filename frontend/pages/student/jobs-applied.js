@@ -70,6 +70,14 @@ export default function JobsApplied({ token = '' }) {
       field: 'job.job_status',
       filter: 'agTextColumnFilter',
     },
+
+    ////////////////////// Adding extra Info
+
+    {
+      headerName: 'Other Info',
+      field: 'job.other_info',
+      filter: 'agTextColumnFilter',
+    },
     {
       headerName: 'JAF',
       field: 'job.jaf.url',
