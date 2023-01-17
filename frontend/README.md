@@ -1,4 +1,4 @@
-![Logo](https://upload.wikimedia.org/wikipedia/en/5/52/Indian_Institute_of_Technology%2C_Patna.svg)
+![Logo](https://drive.google.com/file/d/1YPRpaRAgYMC-t4nIZBnNwe4HEQAJYVZ1/view?usp=sharing)
 
 # IIT Patna | Centre for Career Development - Portal
 
@@ -13,9 +13,6 @@ Install with npm
   npm install
 ```
 
-Please install backend server as well
-https://github.com/ankit0696/placement-portal-backend
-
 ## Used By
 
 This portal is used by the following companies:
@@ -23,6 +20,7 @@ This portal is used by the following companies:
 - Students
 - Placement Co-ordinators
 - Admin
+- Companies
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
