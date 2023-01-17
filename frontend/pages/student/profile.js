@@ -8,7 +8,7 @@ import { parseCookies } from '@/helpers/index'
 
 export default function profile({ data = '', statusCode = '', token = '' }) {
   return (
-    <Layout heading='Profile'>
+    <Layout heading='Profile' >
       {statusCode === 204 ? (
         <StudentRegistration token={token} />
       ) : (

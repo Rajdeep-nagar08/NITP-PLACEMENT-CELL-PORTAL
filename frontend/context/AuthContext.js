@@ -78,7 +78,7 @@ export const AuthProvider = ({ children }) => {
 
 
   //login user
-  const login = async ({ username: identifier, password }) => {
+  const login = async ({ username: identifier, password, role }) => {
     const res = await fetch(`${NEXT_URL}/api/login`, {
       method: 'POST',
       headers: {
@@ -87,6 +87,7 @@ export const AuthProvider = ({ children }) => {
       body: JSON.stringify({
         identifier,
         password,
+        role,
       }),
     })
     const data = await res.json()
@@ -95,13 +96,13 @@ export const AuthProvider = ({ children }) => {
     if (res.ok) {
       setUser(data.user)
       setRole(data.role)
-      if (data.role === 'student') {   // student=>public
+      if (role === 'student') {   // student=>public
         router.push('student/profile')
-      } else if (data.role === 'admin') {
+      } else if (role === 'admin') {
         router.push('admin/home')
-      } else if (data.role === 'coordinator') {
+      } else if (role === 'coordinator') {
         router.push('coordinator/home')
-      } else if(data.role=='company'){
+      } else if(role=='company'){
         router.push('company/add')
       }else {
         toast.error(data.error)

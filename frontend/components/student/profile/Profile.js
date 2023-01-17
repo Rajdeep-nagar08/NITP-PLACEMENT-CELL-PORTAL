@@ -213,7 +213,7 @@ export default function Profile({ student, token }) {
                     <div className='flex text-sm text-gray-600'>
                       <label
                         htmlFor='profile_pic'
-                        className='relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500'
+                        className='relative cursor-pointer bg-white rounded-md font-medium text-orange-600 hover:text-orange-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-orange-500'
                       >
                         <span>Upload a file</span>
                         <input
@@ -236,7 +236,7 @@ export default function Profile({ student, token }) {
                 </div>
                 <button
                   type='submit'
-                  className='inline-flex items-center px-3.5 py-2 mt-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  className='inline-flex items-center px-3.5 py-2 mt-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
                 >
                   Update
                 </button>
@@ -492,7 +492,7 @@ export default function Profile({ student, token }) {
                 {editCpi ? (
                   <button
                     type='submit'
-                    className='inline-flex items-center px-3.5 py-2 mt-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                    className='inline-flex items-center px-3.5 py-2 mt-2 border border-transparent text-sm leading-4 font-medium rounded-full shadow-sm text-white bg-orange-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
                   >
                     Edit SPI/CPI
                   </button>
@@ -554,7 +554,7 @@ export default function Profile({ student, token }) {
                           href={`${API_URL}${student.resume.url}`}
                           target='_blank'
                           rel='noreferrer'
-                          className='font-medium text-indigo-600 hover:text-indigo-500 px-2'
+                          className='font-medium text-orange-600 hover:text-orange-500 px-2'
                         >
                           Download
                         </a>
@@ -562,14 +562,14 @@ export default function Profile({ student, token }) {
                           href={student.resume_link}
                           target='_blank'
                           rel='noreferrer'
-                          className='font-medium text-indigo-600 hover:text-indigo-500'
+                          className='font-medium text-orange-600 hover:text-orange-500'
                         >
                           Resume Link
                         </a>
                       </div>
                     ) : (
                       <Link href='/student/resume'>
-                        <a className='font-medium text-indigo-600 hover:text-indigo-500'>
+                        <a className='font-medium text-orange-600 hover:text-orange-500'>
                           Upload
                         </a>
                       </Link>

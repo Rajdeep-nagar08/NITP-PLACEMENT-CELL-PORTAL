@@ -120,10 +120,10 @@ export default function StudentRegistration({ token = '' }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className='space-y-6 mt-4'>
-        <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
-          <div className='md:grid md:grid-cols-3 md:gap-6'>
-            <div className='md:col-span-1'>
+      <div className='space-y-6 mt-4 grid justify-items-center'>
+        <div className='bg-white shadow-lg px-4 py-5 sm:rounded-lg sm:p-6 lg:w-1/2'>
+          <div className=' md:gap-6'>
+            <div className='md:col-span-1 py-5'>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
                 Personal Information
               </h3>
@@ -149,7 +149,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='name'
                     autoComplete='name'
                     required
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -167,7 +167,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='roll'
                     autoComplete='roll'
                     required
-                    className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-green-300 rounded-md'
+                    className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-green-300 rounded-sm'
                   />
                 </div>
 
@@ -186,7 +186,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='personal_email_id'
                     autoComplete='email'
                     required
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -207,7 +207,7 @@ export default function StudentRegistration({ token = '' }) {
                     autoComplete='email'
                     placeholder='Ex: 1234xx21@iitp.ac.in'
                     required
-                    className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-green-300 rounded-md'
+                    className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-green-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -225,7 +225,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='mobile_number_1'
                     id='mobile_number_1'
                     autoComplete='tel-national'
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -243,7 +243,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='mobile_number_2'
                     autoComplete='tel-national'
                     required
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -260,7 +260,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='gender'
                     autoComplete='gender'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
                   >
                     <option value=''>Select</option>
                     <option value='female'>female</option>
@@ -282,7 +282,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='category'
                     autoComplete='category'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
                   >
                     <option value=''>Select</option>
                     <option value='general'>General</option>
@@ -307,7 +307,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='pwd'
                     autoComplete='pwd'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
                   >
                     <option value={false}>No</option>
                     <option value={true}>Yes</option>
@@ -328,7 +328,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='date_of_birth'
                     autoComplete='date_of_birth'
                     required
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
 
@@ -347,7 +347,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='address'
                     autoComplete='address'
                     required
-                    className='shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md'
+                    className='shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
               </div>
@@ -355,9 +355,9 @@ export default function StudentRegistration({ token = '' }) {
           </div>
         </div>
 
-        <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
-          <div className='md:grid md:grid-cols-3 md:gap-6'>
-            <div className='md:col-span-1'>
+        <div className='bg-white shadow-xl px-4 py-5 sm:rounded-lg sm:p-6 lg:w-1/2'>
+          <div className=''>
+            <div className='py-5'>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
                 Academic Details
               </h3>
@@ -382,7 +382,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='rank'
                     id='rank'
                     autoComplete='rank'
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -399,7 +399,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='categoryRank'
                     id='categoryRank'
                     autoComplete='categoryRank'
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
 
@@ -417,7 +417,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='registered_for'
                     autoComplete='registered_for'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
                   >
                     <option value=''>Select</option>
                     <option value='Internship'>Internship</option>
@@ -438,7 +438,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='program'
                     autoComplete='program'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
                   >
                     <option value=''>Select</option>
                     {programs.map((program) => (
@@ -463,7 +463,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='course'
                     autoComplete='course'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
                   >
                     <option value=''>Select Course</option>
                     {courses.map((course) => (
@@ -492,7 +492,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='cpi'
                     id='cpi'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
 
@@ -501,7 +501,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='spi_1'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    SPI-1 (Current, leave blank if not applicable)
+                    SPI-1 
                   </label>
                   <input
                     value={values.spi_1}
@@ -514,7 +514,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_1'
                     id='spi_1'
                     autoComplete='spi_1'
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
 
@@ -523,7 +523,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='spi_2'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    SPI-2 (Current, leave blank if not applicable)
+                    SPI-2
                   </label>
                   <input
                     value={values.spi_2}
@@ -536,7 +536,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_2'
                     id='spi_2'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
 
@@ -545,7 +545,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='spi_3'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    SPI-3 (Current, leave blank if not applicable)
+                    SPI-3 
                   </label>
                   <input
                     value={values.spi_3}
@@ -558,7 +558,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_3'
                     id='spi_3'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -566,7 +566,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='spi_4'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    SPI-4 (Current, leave blank if not applicable)
+                    SPI-4
                   </label>
                   <input
                     value={values.spi_4}
@@ -579,7 +579,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_4'
                     id='spi_4'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -587,7 +587,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='spi_5'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    SPI-5 (Current, leave blank if not applicable)
+                    SPI-5
                   </label>
                   <input
                     value={values.spi_5}
@@ -600,7 +600,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_5'
                     id='spi_5'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -608,7 +608,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='spi_6'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    SPI-6 (Current, leave blank if not applicable)
+                    SPI-6
                   </label>
                   <input
                     value={values.spi_6}
@@ -621,7 +621,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_6'
                     id='spi_6'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -629,7 +629,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='spi_7'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    SPI-7 (Current, leave blank if not applicable)
+                    SPI-7
                   </label>
                   <input
                     value={values.spi_7}
@@ -642,7 +642,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_7'
                     id='spi_7'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -650,7 +650,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='spi_8'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    SPI-8 (Current, leave blank if not applicable)
+                    SPI-8 
                   </label>
                   <input
                     value={values.spi_8}
@@ -663,7 +663,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_8'
                     id='spi_8'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
 
@@ -686,7 +686,7 @@ export default function StudentRegistration({ token = '' }) {
                     autoComplete=''
                     placeholder='In percentage Ex: 88.5'
                     required
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -708,10 +708,11 @@ export default function StudentRegistration({ token = '' }) {
                     placeholder='In percentage Ex: 88.5'
                     autoComplete=''
                     required
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
-                <div className='col-span-6 sm:col-span-2'>
+
+                <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='bachelor_marks'
                     className='block text-sm font-medium text-gray-700'
@@ -729,10 +730,10 @@ export default function StudentRegistration({ token = '' }) {
                     step='.01'
                     placeholder='Ex: 8.86'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
-                <div className='col-span-6 sm:col-span-2'>
+                <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='master_marks'
                     className='block text-sm font-medium text-gray-700'
@@ -751,10 +752,10 @@ export default function StudentRegistration({ token = '' }) {
                     step='.01'
                     placeholder='Ex: 8.86'
                     autoComplete=''
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
-                <div className='col-span-6 sm:col-span-2'>
+                <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='admission_year'
                     className='block text-sm font-medium text-gray-700'
@@ -772,7 +773,7 @@ export default function StudentRegistration({ token = '' }) {
                     autoComplete='admission_year'
                     placeholder='Ex: 2022'
                     required
-                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
                   />
                 </div>
               </div>
@@ -783,7 +784,7 @@ export default function StudentRegistration({ token = '' }) {
         <div className='flex justify-end'>
           <button
             type='submit'
-            className='ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            className='ml-3 inline-flex justify-center py-2 px-3 border border-transparent shadow-lg shadow-yellow-500/80 hover:shadow-yellow-600/50 text-sm font-medium rounded-xl text-white bg-yellow-500 hover:bg-yellow-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
           >
             Submit for approval
           </button>

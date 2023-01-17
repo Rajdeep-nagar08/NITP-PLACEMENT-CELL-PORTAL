@@ -18,7 +18,7 @@ export default function Layout({
         <meta name='keywords' content={keywords} />
         <meta name='description' content={description} />
       </Head>
-      <div className='overflow-hidden'>
+      <div className='overflow-hidden '>
         {/*  Page content */}
         <main className='flex-grow'>
           <Sidebar heading={heading}>{children}</Sidebar>

@@ -6,7 +6,9 @@ import Nav from "@/components/Nav";
 import { BaseGridSerializingSession } from "ag-grid-community";
 
 export default function SignIn() {
+
   const notificationMethods = [
+    { id: "company", title: "Company"},
     { id: "student", title: "Student" },
     { id: "coordinator", title: "Coordinator" },
     { id: "admin", title: "Admin" },
@@ -14,6 +16,7 @@ export default function SignIn() {
   const { login, error } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [role, setRole] = useState("");
   // Initialize a boolean state
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -26,14 +29,14 @@ export default function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login({ username, password });
+    login({ username, password, role});
   };
 
   return (
     <div className="bg-[url('/images/bg.jpg')] bg-cover bg-no-repeat ">
       <Nav />
 
-      <div className="min-h-full flex flex-row sm:px-6 lg:px-8 m-5">
+      <div className="min-h-full flex md:flex-row cm:flex-col sm:px-6 lg:px-8 m-5">
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
           <div className="sm:mx-auto sm:w-full sm:max-w-md backdrop-blur rounded-md p-7 mt-5 h-[35rem]">
             <div className=" text-center ">
@@ -81,13 +84,16 @@ export default function SignIn() {
                 Account Type
               </label>
               <select
+                htmlFor="role"
                 name="options"
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm mb-3"
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
               >
-                <option value="Admin">Admin</option>
-                <option value="Company">Company</option>
-                <option value="Student">Student</option>
-                <option value="Coordinator">Coordinator</option>
+                <option value="admin">Admin</option>
+                <option value="company">Company</option>
+                <option value="student">Student</option>
+                <option value="coordinator">Coordinator</option>
               </select>
             </div>
             <form
@@ -106,7 +112,7 @@ export default function SignIn() {
                 <div className="mt-1">
                   <input
                     value={username}
-                    onChange={(e) => setUsername(e.target.value.toLowerCase())}
+                    onChange={(e) => setUsername(e.target.value)}
                     id="username"
                     name="username"
                     type="text"
@@ -182,7 +188,7 @@ export default function SignIn() {
 
             Or{" "}
                   <Link href="/account/studentRegistration">
-                    <a className="font-medium text-yellow-500 hover:text-orange-500 font-bold">
+                    <a className=" text-yellow-500 hover:text-orange-500 font-bold">
                       New Registration
                     </a>
                   </Link> 
