@@ -1,4 +1,4 @@
-![Logo](https://github.com/Rajdeep-nagar08/NITP-PLACEMENT-CELL/blob/master/frontend/public/images/logo.png)
+![Logo](https://github.com/Rajdeep-nagar08/NITP-PLACEMENT-CELL/blob/master/frontend/public/images/logo.png?raw=true)
 
 # NIT Patna | Training and placement cell - Portal
 
