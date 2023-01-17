@@ -1,6 +1,6 @@
 ![Logo](https://drive.google.com/file/d/1YPRpaRAgYMC-t4nIZBnNwe4HEQAJYVZ1/view?usp=sharing)
 
-# IIT Patna | Centre for Career Development - Portal
+# NIT Patna | Training and placement cell - Portal
 
 This web app is a portal for students to register themselves for the placement and apply for different job profiles.
 
