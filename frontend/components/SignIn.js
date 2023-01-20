@@ -16,7 +16,7 @@ export default function SignIn() {
   const { login, error } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("admin");
   // Initialize a boolean state
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -78,14 +78,13 @@ export default function SignIn() {
                 </Link> */}
               </p>
               <label
-                for="options"
+                htmlFor="role"
                 className="block text-sm font-medium text-slate-700 py-2"
               >
                 Account Type
               </label>
               <select
-                htmlFor="role"
-                name="options"
+                name="role"
                 className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-300 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm mb-3"
                 value={role}
                 onChange={(e) => setRole(e.target.value)}

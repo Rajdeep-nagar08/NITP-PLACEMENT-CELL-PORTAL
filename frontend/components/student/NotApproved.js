@@ -10,7 +10,7 @@ export default function NotApproved() {
       <div className='mt-4 h-screen'>
         <Link href='/student/profile'>
           <a className='block text-sm font-medium text-gray-700'>
-            <button className='bg-yellow-400 rounded-xl shadow-lg hover:bg-yellow-700 shadow-yellow-500/80 text-white font-bold py-2 px-4'>
+            <button className='bg-yellow-400 rounded-xl shadow-lg hover:bg-yellow-500 shadow-yellow-500/80 text-white font-bold py-2 px-4'>
               Go to profile
             </button>
           </a>
