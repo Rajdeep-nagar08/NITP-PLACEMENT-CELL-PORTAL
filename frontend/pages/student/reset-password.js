@@ -40,7 +40,7 @@ export default function ResetPasswordStudent({ token = '' }) {
         <div className='space-y-6 mt-4 h-screen grid place-items-center'>
           <div className='bg-white shadow-lg px-4 py-5 sm:rounded-lg sm:p-6 lg:w-1/2'>
             <div className=''>
-              <div className='py-4'>
+              <div className=''>
                 <h3 className='text-lg font-medium leading-6 text-gray-900'>
                   Enter Details
                 </h3>

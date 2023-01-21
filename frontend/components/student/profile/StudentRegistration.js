@@ -149,7 +149,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='name'
                     autoComplete='name'
                     required
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -167,7 +167,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='roll'
                     autoComplete='roll'
                     required
-                    className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-green-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-green-500 '
                   />
                 </div>
 
@@ -186,7 +186,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='personal_email_id'
                     autoComplete='email'
                     required
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -207,7 +207,7 @@ export default function StudentRegistration({ token = '' }) {
                     autoComplete='email'
                     placeholder='Ex: 1234xx21@iitp.ac.in'
                     required
-                    className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-green-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-green-500 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -225,7 +225,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='mobile_number_1'
                     id='mobile_number_1'
                     autoComplete='tel-national'
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -243,7 +243,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='mobile_number_2'
                     autoComplete='tel-national'
                     required
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -260,7 +260,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='gender'
                     autoComplete='gender'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   >
                     <option value=''>Select</option>
                     <option value='female'>female</option>
@@ -282,7 +282,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='category'
                     autoComplete='category'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   >
                     <option value=''>Select</option>
                     <option value='general'>General</option>
@@ -307,7 +307,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='pwd'
                     autoComplete='pwd'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   >
                     <option value={false}>No</option>
                     <option value={true}>Yes</option>
@@ -328,11 +328,11 @@ export default function StudentRegistration({ token = '' }) {
                     id='date_of_birth'
                     autoComplete='date_of_birth'
                     required
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
 
-                <div className='col-span-6 sm:col-span-3'>
+                <div className='col-span-6 sm:col-span-6'>
                   <label
                     htmlFor='address'
                     className='block text-sm font-medium text-gray-700'
@@ -347,7 +347,7 @@ export default function StudentRegistration({ token = '' }) {
                     id='address'
                     autoComplete='address'
                     required
-                    className='shadow-sm focus:ring-orange-500 focus:border-orange-500 block w-full sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
               </div>
@@ -382,7 +382,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='rank'
                     id='rank'
                     autoComplete='rank'
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -399,7 +399,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='categoryRank'
                     id='categoryRank'
                     autoComplete='categoryRank'
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
 
@@ -417,7 +417,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='registered_for'
                     autoComplete='registered_for'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   >
                     <option value=''>Select</option>
                     <option value='Internship'>Internship</option>
@@ -438,7 +438,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='program'
                     autoComplete='program'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   >
                     <option value=''>Select</option>
                     {programs.map((program) => (
@@ -463,7 +463,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='course'
                     autoComplete='course'
                     required
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-sm shadow-sm focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   >
                     <option value=''>Select Course</option>
                     {courses.map((course) => (
@@ -472,6 +472,50 @@ export default function StudentRegistration({ token = '' }) {
                       </option>
                     ))}
                   </select>
+                </div>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='X_marks'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    X Marks
+                  </label>
+                  <input
+                    value={values.X_marks}
+                    onChange={handleInputChange}
+                    type='number'
+                    name='X_marks'
+                    id='X_marks'
+                    min={33}
+                    max={100}
+                    step='.01'
+                    autoComplete=''
+                    placeholder='In percentage Ex: 88.5'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='XII_marks'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    XII Marks
+                  </label>
+                  <input
+                    value={values.XII_marks}
+                    onChange={handleInputChange}
+                    type='number'
+                    name='XII_marks'
+                    id='XII_marks'
+                    min={33}
+                    max={100}
+                    step='.01'
+                    placeholder='In percentage Ex: 88.5'
+                    autoComplete=''
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
                   <label
@@ -492,7 +536,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='cpi'
                     id='cpi'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
 
@@ -514,7 +558,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_1'
                     id='spi_1'
                     autoComplete='spi_1'
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
 
@@ -536,7 +580,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_2'
                     id='spi_2'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
 
@@ -558,7 +602,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_3'
                     id='spi_3'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -579,7 +623,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_4'
                     id='spi_4'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -600,7 +644,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_5'
                     id='spi_5'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -621,7 +665,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_6'
                     id='spi_6'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -642,7 +686,7 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_7'
                     id='spi_7'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-2'>
@@ -663,54 +707,11 @@ export default function StudentRegistration({ token = '' }) {
                     name='spi_8'
                     id='spi_8'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
 
-                <div className='col-span-6 sm:col-span-2'>
-                  <label
-                    htmlFor='X_marks'
-                    className='block text-sm font-medium text-gray-700'
-                  >
-                    X Marks
-                  </label>
-                  <input
-                    value={values.X_marks}
-                    onChange={handleInputChange}
-                    type='number'
-                    name='X_marks'
-                    id='X_marks'
-                    min={33}
-                    max={100}
-                    step='.01'
-                    autoComplete=''
-                    placeholder='In percentage Ex: 88.5'
-                    required
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
-                  />
-                </div>
-                <div className='col-span-6 sm:col-span-2'>
-                  <label
-                    htmlFor='XII_marks'
-                    className='block text-sm font-medium text-gray-700'
-                  >
-                    XII Marks
-                  </label>
-                  <input
-                    value={values.XII_marks}
-                    onChange={handleInputChange}
-                    type='number'
-                    name='XII_marks'
-                    id='XII_marks'
-                    min={33}
-                    max={100}
-                    step='.01'
-                    placeholder='In percentage Ex: 88.5'
-                    autoComplete=''
-                    required
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
-                  />
-                </div>
+                
 
                 <div className='col-span-6 sm:col-span-3'>
                   <label
@@ -730,7 +731,7 @@ export default function StudentRegistration({ token = '' }) {
                     step='.01'
                     placeholder='Ex: 8.86'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -752,7 +753,7 @@ export default function StudentRegistration({ token = '' }) {
                     step='.01'
                     placeholder='Ex: 8.86'
                     autoComplete=''
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>
@@ -773,7 +774,7 @@ export default function StudentRegistration({ token = '' }) {
                     autoComplete='admission_year'
                     placeholder='Ex: 2022'
                     required
-                    className='mt-1 focus:ring-orange-500 focus:border-orange-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-sm'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
               </div>
