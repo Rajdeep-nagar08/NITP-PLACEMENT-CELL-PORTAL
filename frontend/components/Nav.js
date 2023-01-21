@@ -37,7 +37,7 @@ export default function Nav() {
       setTpcGuidelines(data.attributes.tpc_guidelines.data.attributes.url)
     } catch (err) {
       //toast.error('Error fetching TPC Guidelines')
-      console.log(err)
+     // console.log(err)
     }
   }
   useEffect(() => {

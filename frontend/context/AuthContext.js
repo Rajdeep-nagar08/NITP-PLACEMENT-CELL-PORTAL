@@ -95,6 +95,14 @@ export const AuthProvider = ({ children }) => {
 
     if (res.ok) {
       setUser(data.user)
+
+      if(data.role!=role){
+
+
+        toast.error("Invalid Account Type");
+      }
+      else{
+
       setRole(data.role)
       if (role === 'student') {   // student=>public
         router.push('student/profile')
@@ -107,10 +115,13 @@ export const AuthProvider = ({ children }) => {
       }else {
         toast.error(data.error)
       }
-    } else {
+    } 
+  }
+  else {
       toast.error(data.error)
     }
-  }
+  
+}
 
   //logout user
   const logout = async (user) => {

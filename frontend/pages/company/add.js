@@ -11,7 +11,6 @@ export default function index({ token = '' }) {
   ]
   return (
     <div>
-      {/* <Breadcrumbs pages={pages} /> */}
       <AddJob token={token} />
     </div>
   )

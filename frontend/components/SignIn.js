@@ -13,10 +13,11 @@ export default function SignIn() {
     { id: "coordinator", title: "Coordinator" },
     { id: "admin", title: "Admin" },
   ];
+
   const { login, error } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
+  const [role, setRole] = useState("admin");
   // Initialize a boolean state
   const [passwordShown, setPasswordShown] = useState(false);
 
@@ -191,7 +192,7 @@ export default function SignIn() {
                     <a className=" text-yellow-500 hover:text-orange-500 font-bold">
                       New Registration
                     </a>
-                  </Link> 
+                  </Link>
             </p>
         </div>
           </div>

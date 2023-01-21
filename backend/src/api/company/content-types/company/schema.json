@@ -21,17 +21,20 @@
       "displayName": "Contact Details",
       "type": "component",
       "repeatable": false,
-      "component": "company.contact-details"
+      "component": "company.contact-details",
+      "required": false
     },
     "contact2": {
       "type": "component",
       "repeatable": false,
-      "component": "company.contact-details"
+      "component": "company.contact-details",
+      "required": false
     },
     "contact3": {
       "type": "component",
       "repeatable": false,
-      "component": "company.contact-details"
+      "component": "company.contact-details",
+      "required": false
     },
     "company_address": {
       "type": "text"

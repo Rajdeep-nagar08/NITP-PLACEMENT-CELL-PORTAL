@@ -1,6 +1,7 @@
 import Breadcrumbs from '@/components/coordinator/Breadcrumbs'
 import EditCompany from '@/components/coordinator/companies/EditCompany'
 import JobsInCompany from '@/components/coordinator/companies/JobsInCompany'
+
 import Layout from '@/components/coordinator/Layout'
 import { API_URL } from '@/config/index'
 import { parseCookies } from '@/helpers/index'
