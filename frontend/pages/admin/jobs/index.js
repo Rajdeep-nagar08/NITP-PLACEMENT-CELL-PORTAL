@@ -8,6 +8,7 @@ import { parseCookies } from '@/helpers/index'
 import axios from 'axios'
 import { API_URL } from '@/config/index'
 import Link from 'next/link'
+
 export default function Jobs({ token }) {
   const [rowData, setRowData] = useState([])
 
@@ -17,6 +18,7 @@ export default function Jobs({ token }) {
 const gridRef = useRef()
 
   const onBtExport = useCallback(() => {
+
     // See comment in pages/admin/students/index.js for logic behind this
 
     const selected_and_visible_node = gridRef.current.api.getSelectedNodes().findIndex(node => node.displayed);
@@ -45,25 +47,17 @@ const gridRef = useRef()
     {
       headerName: 'Company',
       field: 'attributes.company.data.attributes.company_name',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link
-              href={`/admin/jobs/${params.data.attributes.company.data.id}`}
-            >
-              {params.value}
-            </Link>
-          </div>
-        )
-      },
-    },
-    {
-      headerName: 'Approval Status',
-      field: 'attributes.approval_status',
-    },
-    {
-      headerName: 'Category',
-      field: 'attributes.category',
+      // cellRenderer: function (params) {
+      //   return (
+      //     <div>
+      //       <Link
+      //         href={`/admin/jobs/${params.data.attributes.company.data.id}`}
+      //       >
+      //         {params.value}
+      //       </Link>
+      //     </div>
+      //   )
+      // },
     },
     {
       headerName: 'Job Title',
@@ -75,6 +69,14 @@ const gridRef = useRef()
           </div>
         )
       },
+    },
+    {
+      headerName: 'Approval Status',
+      field: 'attributes.approval_status',
+    },
+    {
+      headerName: 'Category',
+      field: 'attributes.category',
     },
     {
       headerName: 'Classification',
@@ -101,6 +103,22 @@ const gridRef = useRef()
           </div>
         )
       },
+    },
+    {
+      headerName: 'POC 1 Name',
+      field: 'attributes.POC1.name',
+    },
+    {
+      headerName: 'POC 1 Mobile No',
+      field: 'attributes.POC1.mobile_no',
+    },
+    {
+      headerName: 'POC 2 Name',
+      field: 'attributes.POC2.name',
+    },
+    {
+      headerName: 'POC 2 Mobile No',
+      field: 'attributes.POC2.mobile_no',
     },
   ])
 
@@ -139,14 +157,14 @@ const gridRef = useRef()
             >
               Deactivate
             </button> */}
-
+{/* 
             <button
               type='button'
               onClick={onBtExport}
               className='order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 sm:ml-3'
             >
               Export
-            </button>
+            </button> */}
 
 
 

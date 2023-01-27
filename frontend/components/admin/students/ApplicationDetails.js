@@ -12,13 +12,18 @@ export default function ApplicationDetails({ applications = '' }) {
       filter: 'agTextColumnFilter',
     },
     {
-      headerName: 'Job Title',
+      headerName: 'Job',
       field: 'attributes.job.data.attributes.job_title',
       filter: 'agTextColumnFilter',
     },
     {
       headerName: 'Classification',
       field: 'attributes.job.data.attributes.classification',
+      filter: 'agTextColumnFilter',
+    },
+    {
+      headerName: 'Category',
+      field: 'attributes.job.data.attributes.category',
       filter: 'agTextColumnFilter',
     },
     {

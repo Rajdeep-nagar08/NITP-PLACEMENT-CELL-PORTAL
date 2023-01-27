@@ -1,6 +1,6 @@
 //import Breadcrumbs from '@/components/company/Breadcrumbs'
 import AddJob from '@/components/company/AddJob'
-//import Layout from '@/components/company/Layout'
+import Layout from '@/components/company/Layout'
 import { parseCookies } from '@/helpers/index'
 import React from 'react'
 
@@ -10,9 +10,9 @@ export default function index({ token = '' }) {
     { name: `Add Job`, href: '#', current: true },
   ]
   return (
-    <div>
+    <Layout>
       <AddJob token={token} />
-    </div>
+    </Layout>
   )
 }
 

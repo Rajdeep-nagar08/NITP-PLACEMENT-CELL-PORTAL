@@ -95,20 +95,12 @@ export const AuthProvider = ({ children }) => {
 
     if (res.ok) {
       setUser(data.user)
-<<<<<<< HEAD
 
       if(data.role!=role){
-
-
         toast.error("Invalid Account Type");
       }
       else{
 
-=======
-      if (data.role != role )
-        toast.error("Entered incorrect data!!")
-      else{
->>>>>>> 2cdff965bef32344f086e6ad660a3a7d5d9a6f52
       setRole(data.role)
       if (role === 'student') {   // student=>public
         router.push('student/profile')
@@ -121,14 +113,9 @@ export const AuthProvider = ({ children }) => {
       }else {
         toast.error(data.error)
       }
-<<<<<<< HEAD
     } 
   }
   else {
-=======
-    }
-    } else {
->>>>>>> 2cdff965bef32344f086e6ad660a3a7d5d9a6f52
       toast.error(data.error)
     }
   

@@ -210,6 +210,7 @@ export default function EditCompany({ token = '', company = '' }) {
                     id='mobile_no'
                     autoComplete='tel-national'
                     className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+
                   />
                 </div>
                 <div className='col-span-6 sm:col-span-3'>

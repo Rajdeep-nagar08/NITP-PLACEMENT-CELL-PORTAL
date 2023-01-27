@@ -82,6 +82,22 @@ export default function Jobs({ token }) {
         )
       },
     },
+    {
+      headerName: 'POC 1 Name',
+      field: 'attributes.POC1.name',
+    },
+    {
+      headerName: 'POC 1 Mobile No',
+      field: 'attributes.POC1.mobile_no',
+    },
+    {
+      headerName: 'POC 2 Name',
+      field: 'attributes.POC2.name',
+    },
+    {
+      headerName: 'POC 2 Mobile No',
+      field: 'attributes.POC2.mobile_no',
+    },
   ])
 
   useEffect(() => {

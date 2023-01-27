@@ -110,6 +110,16 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "POC1": {
+      "type": "component",
+      "repeatable": false,
+      "component": "company.contact-details"
+    },
+    "POC2": {
+      "type": "component",
+      "repeatable": false,
+      "component": "company.contact-details"
     }
   }
 }

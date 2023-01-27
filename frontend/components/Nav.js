@@ -29,20 +29,23 @@ export default function Nav() {
     window.open(API_URL + tpcGuidelines, '_blank', 'noopener,noreferrer')
   }
 
-  const fetchSettings = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/api/setting?populate=*`)
-      const data = res.data.data
-      console.log(res)
-      setTpcGuidelines(data.attributes.tpc_guidelines.data.attributes.url)
-    } catch (err) {
-      //toast.error('Error fetching TPC Guidelines')
-     // console.log(err)
-    }
-  }
-  useEffect(() => {
-    fetchSettings()
-  }, [])
+  //api showing error that's why commented
+
+  // const fetchSettings = async () => {
+  //   try {
+  //     const res = await axios.get(`${API_URL}/api/setting?populate=*`)
+  //     const data = res.data.data
+  //     console.log(res)
+  //     setTpcGuidelines(data.attributes.tpc_guidelines.data.attributes.url)
+  //   } catch (err) {
+  //     //toast.error('Error fetching TPC Guidelines')
+  //    // console.log(err)
+  //   }
+  // }
+  // useEffect(() => {
+  //   fetchSettings()
+  // }, [])
+
 
   return (
     <div>

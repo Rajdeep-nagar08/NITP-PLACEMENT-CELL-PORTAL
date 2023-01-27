@@ -14,21 +14,16 @@ export default function AddJob({ token = '' }) {
     min_cpi: 0,
     start_date: undefined,
     last_date: undefined,
-    only_for_female: false,
     only_for_pwd: false,
     only_for_ews: false,
+    only_for_female: false,
     company: '',
-    approval_status: 'pending',
+    approval_status: 'approved',
   })
+
   const [eligibleCourses, setEligibleCourses] = useState(new Set())
   const [programs, setPrograms] = useState([])
-
-  const handleDateChange = (e) => {
-    let { name, value } = e.target
-    value = moment(value).utcOffset('+0530', true)
-    console.log(value)
-    setValues({ ...values, [name]: value === '' ? undefined : value })
-  }
+  const [jaf, setJaf] = useState('')
 
   useEffect(() => {
     programs.map((program) => {
@@ -37,6 +32,20 @@ export default function AddJob({ token = '' }) {
       })
     })
   }, [programs])
+
+  const handleFileChange = (e) => {
+    const file = e.target.files[0]
+    setJaf(file)
+  }
+
+  const handleDateChange = (e) => {
+    let { name, value } = e.target
+    // value = moment(value).local().format('yyyy-MM-DDThh:mm:ss.SSS')
+    value = moment(value).utcOffset('+0530', true)
+    console.log(value)
+    setValues({ ...values, [name]: value === '' ? undefined : value })
+  }
+
   const handleCheckboxChange = (e) => {
     const { id } = e.target
     if (e.target.checked) {
@@ -50,6 +59,12 @@ export default function AddJob({ token = '' }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    values['eligible_courses'] = Array.from(eligibleCourses).toString()
+    const formData = new FormData()
+    formData.append('data', JSON.stringify(values))
+    if (jaf && jaf !== '') {
+      formData.append('files.jaf', jaf, jaf.name)
+    }
 
     // Validation
     // const hasEmptyFields = Object.values(values).some((element) => {
@@ -61,26 +76,24 @@ export default function AddJob({ token = '' }) {
       return
     }
 
-    values['eligible_courses'] = Array.from(eligibleCourses).toString()
-    console.log(values.eligible_courses)
     if (confirm('Are you sure to add job?')) {
-      const res = await fetch(`${API_URL}/api/job/register`, {
+      const res = await fetch(`${API_URL}/api/jobs`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
-        body: JSON.stringify(values),
+        body: formData,
       })
 
+      console.log(JSON.stringify({ data: values }))
       if (!res.ok) {
         if (res.status === 403 || res.status === 401) {
           toast.error('No token included')
           return
         }
-        const profile = await res.json()
-        console.log(profile)
-        toast.error('Error: ' + profile.error.details.errors[0].message)
+        const err = await res.json()
+        console.log(err)
+        toast.error('Error: ' + err.error.details.errors[0].message)
       } else {
         toast.success('Job Added Successfully')
       }
@@ -171,6 +184,24 @@ export default function AddJob({ token = '' }) {
                     className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                   />
                 </div>
+                {/* Add field to upload JAF */}
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='jaf'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    JAF
+                  </label>
+                  <input
+                    value={values.jaf}
+                    onChange={handleFileChange}
+                    type='file'
+                    name='jaf'
+                    id='jaf'
+                    autoComplete='jaf'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
                 <div className='col-span-6 sm:col-span-2'>
                   <label
                     htmlFor='classification'
@@ -200,8 +231,8 @@ export default function AddJob({ token = '' }) {
                   </label>
                   <select
                     name='category'
-                    required
                     onChange={handleInputChange}
+                    required
                     className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                   >
                     <option value=''>Select</option>
@@ -218,8 +249,8 @@ export default function AddJob({ token = '' }) {
                     Job Status
                   </label>
                   <select
-                    required
                     name='job_status'
+                    required
                     onChange={handleInputChange}
                     className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                   >
@@ -332,7 +363,7 @@ export default function AddJob({ token = '' }) {
                     htmlFor='only_for_female'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    Only for Females
+                    Only for female
                   </label>
                   <select
                     name='only_for_female'

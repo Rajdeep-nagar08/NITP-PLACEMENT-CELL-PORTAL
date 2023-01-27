@@ -4,6 +4,8 @@ import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import { BaseGridSerializingSession } from "ag-grid-community";
+import axios from 'axios'
+import { API_URL } from "../config";
 
 export default function SignIn() {
 
@@ -13,6 +15,26 @@ export default function SignIn() {
     { id: "coordinator", title: "Coordinator" },
     { id: "admin", title: "Admin" },
   ];
+
+  ////////////////////
+
+  const temp = async () => {
+    try {
+      const res = await axios.get(`${'http://localhost:1337'}/api/admin/get-eligible-students`)
+      const data = res.data.data
+      console.log(res)
+      console.log("API WORKING")
+    } catch (err) {
+      console.log("API NOT WORKING")
+    //  console.log(error.data)
+    }
+  }
+  useEffect(() => {
+    temp()
+  }, [])
+
+  ////////////////////
+
 
   const { login, error } = useContext(AuthContext);
   const [username, setUsername] = useState("");

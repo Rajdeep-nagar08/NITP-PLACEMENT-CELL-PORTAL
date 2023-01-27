@@ -7,22 +7,27 @@ export default function Eligiblejobs({ jobs = '' }) {
   const [columnDefs] = useState([
     {
       headerName: 'Company',
-      field: 'attributes.company.data.attributes.company_name',
-      filter: 'agTextColumnFilter',
-    },
-    {
-      headerName: 'Job Status',
-      field: 'attributes.job_status',
+      field: 'company.company_name',
       filter: 'agTextColumnFilter',
     },
     {
       headerName: 'Job',
-      field: 'attributes.job_title',
+      field: 'job_title',
       filter: 'agTextColumnFilter',
     },
     {
-      headerName: 'Job Category',
-      field: 'attributes.classification',
+      headerName: 'Classification',
+      field: 'classification',
+      filter: 'agTextColumnFilter',
+    },
+    {
+      headerName: 'Category',
+      field: 'category',
+      filter: 'agTextColumnFilter',
+    },
+    {
+      headerName: 'Job Status',
+      field: 'job_status',
       filter: 'agTextColumnFilter',
     },
   ])
@@ -30,7 +35,8 @@ export default function Eligiblejobs({ jobs = '' }) {
     <div className='my-4'>
       <div className='pb-5 border-b border-gray-200'>
         <h3 className='text-lg leading-6 font-medium text-gray-900'>
-          Eligible Jobs, but Not Applied
+          {/* Eligible Jobs, but Not Applied */}
+          Eligible Jobs
         </h3>
       </div>
       <div className='ag-theme-alpine mt-4' style={{ height: 200 }}>

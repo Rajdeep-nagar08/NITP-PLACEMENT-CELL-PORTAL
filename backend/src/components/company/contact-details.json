@@ -2,7 +2,8 @@
   "collectionName": "components_company_contact_details",
   "info": {
     "displayName": "Contact Details",
-    "icon": "address-book"
+    "icon": "address-book",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -10,9 +11,6 @@
       "type": "string",
       "required": true,
       "unique": false
-    },
-    "designation": {
-      "type": "string"
     },
     "mail_id": {
       "type": "email"

@@ -32,8 +32,15 @@ module.exports = {
       config: {
         policies: []
       }
+    },
+    {
+      method: 'GET',
+      path: '/admin/get-eligible-students',
+      handler: 'job.get_eligible_students',
+      config: {
+        policies: []
+      }
     }
   ],
 };
 
-// ex: shiftwidth=2 expandtab:

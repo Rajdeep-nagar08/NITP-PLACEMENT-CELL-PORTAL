@@ -71,7 +71,7 @@ module.exports = {
         // cause some 500s initially, but will likely reduce silent eligibility
         // bugs in the long run
         const { id, X_marks, XII_marks, cpi, registered_for, course, placed_status, placed_status_updated, internship_status } = student;
-        if (!id || !X_marks || !XII_marks || !cpi || !registered_for || !course ) {
+        if (!id || !X_marks || !XII_marks || !cpi || !registered_for) {
             throw `Some mandatory parameters not passed, or are null: ${student, job}`;
         }
 
@@ -307,6 +307,8 @@ module.exports = {
      * @param {string/number} roll - Roll number of the student, whose applications are to be fetched 
      * @returns 
      */
+
+
     async helper_get_applications(roll) {
         const student_self = await strapi.db.query("api::student.student").findOne({
             where: {
@@ -333,6 +335,37 @@ module.exports = {
 
         return applied_jobs;
     },
+
+
+    
+	
+    // async helper_get_applications1(jobId) {
+    //     const job_self = await strapi.db.query("api::job.job").findOne({
+    //         where: {
+    //             jobId: jobId,
+    //         },
+    //         select: ["id", "approved"]
+    //     });
+    //     if (!job_self) {
+    //         return []; // "No job found"
+    //     }
+
+    //     const { id, approved } = job_self;
+
+    //     if (approved !== "approved") {
+    //         return []; // "Job not approved"
+    //     }
+
+    //     const applied_students = await strapi.db.query("api::application.application").findMany({
+    //         where: {
+    //             job: id,
+    //         },
+    //         populate: ["student", "job.company", "job.jaf"]
+    //     });
+
+    //     return applied_students;
+    // },
+
 };
 
 // ex: shiftwidth=4 expandtab:

@@ -18,8 +18,8 @@ export default function StudentProfilePage({
     { name: 'Students', href: '/admin/students', current: false },
     { name: `${student.attributes.name}`, href: '#', current: true },
   ]
-  const [applications, setApplications] = useState([])
-  const [eligibleJobs, setEligibleJobs] = useState([])
+  const [applications, setApplications] = useState(false)
+  const [eligibleJobs, setEligibleJobs] = useState(false)
 
   const query = qs.stringify(
     {
@@ -61,9 +61,13 @@ export default function StudentProfilePage({
     })
       .then((res) => res.json())
       .then((resp) => {
-        console.log(resp.data)
-        setEligibleJobs(resp.data)
+       console.log("eligible jobs=> ")
+       console.log(resp)
+        setEligibleJobs(resp)
+      //  console.log("fuck")
+     // console.log(resp.data)
       })
+      
       .catch((err) => {
         console.log(err)
       })

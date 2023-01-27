@@ -1,7 +1,7 @@
 import Breadcrumbs from '@/components/admin/Breadcrumbs'
 import AddJob from '@/components/admin/jobs/AddJob'
 import Layout from '@/components/admin/Layout'
-import AddComp from '@/components/admin/companies/AddCompany'
+//import AddComp from '@/components/admin/companies/AddCompany'
 import { parseCookies } from '@/helpers/index'
 import React from 'react'
 
@@ -14,9 +14,11 @@ export default function index({ token = '' }) {
     <Layout>
       <Breadcrumbs pages={pages} />
       <AddJob token={token} />
+
       {/* <AddComp>
         xyz
       </AddComp> */}
+
     </Layout>
   )
 }

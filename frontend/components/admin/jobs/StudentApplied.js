@@ -7,10 +7,16 @@ import { API_URL } from '@/config/index'
 import qs from 'qs'
 import Link from 'next/link'
 
-export default function StudentApplied({ token = '', id = '' }) {
+export default function StudentApplied({ token = '', id = ''}) {
+
+  console.log(token)
+
+  console.log(id)
+
   const [students, setStudents] = useState([])
   const gridRef = useRef()
   const onBtExport = useCallback(() => {
+
     // See comment in pages/admin/students/index.js for logic behind this
 
     const selected_and_visible_node = gridRef.current.api
@@ -235,6 +241,7 @@ export default function StudentApplied({ token = '', id = '' }) {
     }
   )
 
+
   const fetchData = async () => {
     const res = await fetch(`${API_URL}/api/applications?${query}`, {
       headers: {
@@ -243,12 +250,17 @@ export default function StudentApplied({ token = '', id = '' }) {
       },
     })
     const data = await res.json()
+
+    console.log("stud applied=>")
+    console.log(data.data)
     setStudents(data.data)
   }
 
   useEffect(() => {
     fetchData()
   }, [])
+
+//  console.log(data);
 
   const [columnDefs] = useState([
     {

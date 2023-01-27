@@ -31,16 +31,17 @@ export default function ResetPasswordStudent({ token = '' }) {
       toast.error('Password change failed')
     }
   }
+  
   const [old_pass, setOldPass] = useState('')
   const [new_pass, setNewPass] = useState('')
   const [confirm_pass, setConfirmPass] = useState('')
   return (
     <Layout heading='Reset Password'>
       <form onSubmit={handleSubmit}>
-        <div className='space-y-6 mt-4 h-screen grid place-items-center'>
-          <div className='bg-white shadow-lg px-4 py-5 sm:rounded-lg sm:p-6 lg:w-1/2'>
-            <div className=''>
-              <div className=''>
+        <div className='space-y-6 mt-4'>
+          <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
+            <div className='md:grid md:grid-cols-3 md:gap-6'>
+              <div className='md:col-span-1'>
                 <h3 className='text-lg font-medium leading-6 text-gray-900'>
                   Enter Details
                 </h3>
@@ -63,7 +64,7 @@ export default function ResetPasswordStudent({ token = '' }) {
                       id='old_pass'
                       autoComplete='password'
                       required
-                      className='mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300 '
+                      className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                     />
                   </div>
 
@@ -87,7 +88,7 @@ export default function ResetPasswordStudent({ token = '' }) {
                       pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
                       autoComplete=''
                       required
-                      className='mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full shadow-sm sm:text-sm border-gray-300'
+                      className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                     />
                   </div>
                   <div className='col-span-6 sm:col-span-3'>
@@ -106,20 +107,20 @@ export default function ResetPasswordStudent({ token = '' }) {
                       pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
                       autoComplete=''
                       required
-                      className='mt-1 focus:ring-yellow-500 focus:border-yellow-500 block w-full sm:text-sm border-gray-300 '
+                      className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                     />
                   </div>
                 </div>
               </div>
             </div>
-          <div className='m-5 grid'>
+          </div>
+          <div className='flex justify-end'>
             <button
               type='submit'
-              className='ml-3 inline-flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500  shadow-lg shadow-yellow-400/100 justify-self-end'
+              className='ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
             >
               Change Password
             </button>
-          </div>
           </div>
         </div>
       </form>

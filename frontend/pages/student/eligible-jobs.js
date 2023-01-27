@@ -45,6 +45,7 @@ export default function EligibleJobs({ token = '' }) {
       })
   }, [])
 
+  
   useEffect(() => {
     fetch(`${API_URL}/api/student/eligiblejobs`, {
       headers: {
@@ -53,12 +54,20 @@ export default function EligibleJobs({ token = '' }) {
     })
       .then((res) => res.json())
       .then((data) => {
+      //  console.log("eligible jobs=> ")
+        console.log(data)
         setJobs(data)
       })
       .catch((err) => {
         console.log(err)
       })
   }, [])
+
+  console.log(JSON.stringify({
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }));
 
   async function handleApply(id) {
     if (confirm('Are you sure to apply ?')) {
@@ -107,6 +116,7 @@ export default function EligibleJobs({ token = '' }) {
 	      }
 	    }
 	  }
+
 	} catch(_e) {}
         toast.error(err_msg)
       } else {

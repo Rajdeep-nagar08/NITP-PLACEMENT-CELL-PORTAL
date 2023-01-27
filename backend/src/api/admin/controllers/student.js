@@ -5,6 +5,7 @@ const path = require("path");
 const process = require("process");
 
 module.exports = {
+
     /**
      * @description Searches the jobs db to look for eligible jobs for given roll number
      *
@@ -19,8 +20,11 @@ module.exports = {
      * 
      * @returns Array of job objects, each object containing detail for one job
      */
+
     async get_eligible_jobs(ctx) {
         const { roll } = ctx.query;
+
+        console.log("done")
 
         if (!roll) {
             return ctx.badRequest(null, [{ messages: [{ id: "Missing roll number", received_roll: roll || null }] }]);
@@ -81,7 +85,10 @@ module.exports = {
 
         eligible_jobs = eligible_jobs.filter((_, index) => is_eligible[index]);
 
+        console.log("pp"+eligible_jobs)
+
         ctx.body = eligible_jobs;
+
     },
 
     /**
@@ -97,6 +104,7 @@ module.exports = {
      * 
      * @returns Array of applications, each object containing application for one job
      */
+
     async get_applied_jobs(ctx) {
         const { roll } = ctx.query;
 
@@ -117,6 +125,7 @@ module.exports = {
      *
      * @returns Zip of resumes of multiple students
      */
+
     async resume_zip(ctx) {
         const { rolls } = ctx.query;
 
@@ -147,7 +156,9 @@ module.exports = {
             }
 
             // Ignore if student has no resume
+
             if (student.resume) {
+
                 /**
                  * Working:
                  * 1. student.resume.url is something like "/uploads/Resume_15984.pdf"
@@ -161,6 +172,8 @@ module.exports = {
                  * 7. So, path to public folder is `${process.cwd()}/public`
                  * 8. Then, simply add the resume url, we will get the absolute path to resume file
                  */
+
+
                 const file_path = path.join(process.cwd(), "public", student.resume.url);
                 const buff = readFileSync(file_path);
                 // Name of the file is the roll number.pdf

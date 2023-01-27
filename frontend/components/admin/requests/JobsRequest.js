@@ -52,6 +52,7 @@ export default function JobRequest({ token = '' }) {
     }
     fetchData()
   }
+
   const fetchData = async () => {
     const res = await fetch(
       `${API_URL}/api/jobs?filters[approval_status][$eq]=pending&populate=*`,
