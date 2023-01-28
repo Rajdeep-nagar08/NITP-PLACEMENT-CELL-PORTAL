@@ -1,6 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { toast } from 'react-toastify'
 import { API_URL } from '@/config/index'
+import AuthContext from '@/context/AuthContext'
 import moment from 'moment'
 
 export default function AddJob({ token = '' }) {
@@ -20,7 +21,7 @@ export default function AddJob({ token = '' }) {
     company: '',
     approval_status: 'approved',
   })
-
+  const { user, logout } = useContext(AuthContext)
   const [eligibleCourses, setEligibleCourses] = useState(new Set())
   const [programs, setPrograms] = useState([])
   const [jaf, setJaf] = useState('')
