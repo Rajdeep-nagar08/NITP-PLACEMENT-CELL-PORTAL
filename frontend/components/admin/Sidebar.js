@@ -124,7 +124,7 @@ export default function Sidebar({ heading = '', children }) {
                     width={100}
                     height={40}
                     alt='Unirchitect'
-                    src='/images/iitp.svg'
+                    src='/images/logo.png'
                   />
                 </div>
                 <nav className='mt-5 px-2 space-y-1'>
@@ -211,8 +211,8 @@ export default function Sidebar({ heading = '', children }) {
               <Image
                 width={180}
                 height={100}
-                alt='IIT Patna'
-                src='/images/iitp.svg'
+                alt='NIT Patna'
+                src='/images/logo.png'
               />
             </div>
             <nav className='mt-5 flex-1 px-2 space-y-1'>

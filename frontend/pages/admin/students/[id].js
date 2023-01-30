@@ -76,7 +76,7 @@ export default function StudentProfilePage({
   return (
     <Layout>
       <Breadcrumbs pages={pages} />
-      <ApplicationDetails applications={applications} />
+      {/* <ApplicationDetails applications={applications} /> */}
       <Eligiblejobs jobs={eligibleJobs} />
       <StudentProfileEdit student={student} token={token} />
     </Layout>

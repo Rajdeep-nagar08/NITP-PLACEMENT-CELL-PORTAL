@@ -42,11 +42,11 @@ const navigation = [
     icon: BriefcaseIcon,
   },
 
-  {
-    name: 'Jobs Applied',
-    href: '/student/jobs-applied',
-    icon: ClipboardCheckIcon,
-  },
+  // {
+  //   name: 'Jobs Applied',
+  //   href: '/student/jobs-applied',
+  //   icon: ClipboardCheckIcon,
+  // },
 
   {
     name: 'Resume & Transcript',

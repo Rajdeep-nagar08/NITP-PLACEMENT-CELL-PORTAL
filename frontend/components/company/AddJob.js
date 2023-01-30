@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useContext } from 'react'
 import { toast } from 'react-toastify'
 import { API_URL } from '@/config/index'
 import moment from 'moment'
+import AuthContext from '@/context/AuthContext'
+
 
 export default function AddJob({ token = '' }) {
   const [values, setValues] = useState({
@@ -21,9 +23,11 @@ export default function AddJob({ token = '' }) {
     approval_status: 'approved',
   })
 
+
   const [eligibleCourses, setEligibleCourses] = useState(new Set())
   const [programs, setPrograms] = useState([])
   const [jaf, setJaf] = useState('')
+   const { user, logout } = useContext(AuthContext)
 
   useEffect(() => {
     programs.map((program) => {
@@ -85,6 +89,9 @@ export default function AddJob({ token = '' }) {
         body: formData,
       })
 
+      console.log("Boss")
+      console.log(res)
+
       console.log(JSON.stringify({ data: values }))
       if (!res.ok) {
         if (res.status === 403 || res.status === 401) {
@@ -136,16 +143,25 @@ export default function AddJob({ token = '' }) {
         <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
           <div className=''>
             <h3 className='text-lg font-medium leading-6 text-gray-900 mb-4'>
+            <p>
+                {user && user.email}
+              </p>
+              <p>
+                 {user && user.username}
+              </p>
               Job Details
+             
             </h3>
             {/* <p className='mt-1 text-sm text-gray-500'>
               Some other details of the job
             </p> */}
           </div>
+
+          
           <div className='md:grid md:grid-cols-3 md:gap-6'>
             <div className='mt-5 md:mt-0 md:col-span-3'>
               <div className='grid grid-cols-6 gap-6'>
-                <div className='col-span-6 sm:col-span-3'>
+                {/* <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='company_address'
                     className='block text-sm font-medium text-gray-700'
@@ -165,7 +181,9 @@ export default function AddJob({ token = '' }) {
                       </option>
                     ))}
                   </select>
-                </div>
+                </div> */}
+
+
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='job_title'

@@ -12,6 +12,7 @@ import Link from 'next/link'
 export default function Jobs({ token }) {
   const [rowData, setRowData] = useState([])
 
+
   const [columnDefs] = useState([
     {
       headerName: 'S.No.',
@@ -20,17 +21,25 @@ export default function Jobs({ token }) {
     {
       headerName: 'Company',
       field: 'attributes.company.data.attributes.company_name',
+      // cellRenderer: function (params) {
+      //   return (
+      //     <div>
+      //       <Link
+      //         href={`/admin/jobs/${params.data.attributes.company.data.id}`}
+      //       >
+      //         {params.value}
+      //       </Link>
+      //     </div>
+      //   )
+      // },
+    },
+    {
+      headerName: 'Job Title',
+      field: 'attributes.job_title',
       cellRenderer: function (params) {
         return (
           <div>
-            <Link
-
-            ///////////////////////////////
-
-              href={`/coordinator/jobs/${params.data.attributes.company.data.id}`}
-            >
-              {params.value}
-            </Link>
+            <Link href={`/coordinator/jobs/${params.data.id}`}>{params.value}</Link>
           </div>
         )
       },
@@ -42,19 +51,6 @@ export default function Jobs({ token }) {
     {
       headerName: 'Category',
       field: 'attributes.category',
-    },
-    {
-      headerName: 'Job Title',
-      field: 'attributes.job_title',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link href={`/coordinator/jobs/${params.data.id}`}>
-              {params.value}
-            </Link>
-          </div>
-        )
-      },
     },
     {
       headerName: 'Classification',
@@ -99,6 +95,7 @@ export default function Jobs({ token }) {
       field: 'attributes.POC2.mobile_no',
     },
   ])
+
 
   useEffect(() => {
     const config = {

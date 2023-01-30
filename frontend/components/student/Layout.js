@@ -5,7 +5,7 @@ import Header from '@/components/student/Header'
 import Sidebar from '@/components/student/Sidebar'
 
 export default function Layout({
-  title = 'IIT Patna Placement Portal',
+  title = 'NIT Patna Placement Portal',
   keywords = '',
   description = '',
   heading = '',

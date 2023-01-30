@@ -67,6 +67,7 @@ export default function Sidebar({ heading = '', children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
   const { user, logout } = useContext(AuthContext)
+  
 
   return (
     <div>
