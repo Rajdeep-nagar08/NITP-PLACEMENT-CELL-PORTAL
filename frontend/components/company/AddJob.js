@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react'
 import { toast } from 'react-toastify'
 import { API_URL } from '@/config/index'
+import AuthContext from '@/context/AuthContext'
 import moment from 'moment'
 import AuthContext from '@/context/AuthContext'
 
@@ -22,8 +23,12 @@ export default function AddJob({ token = '' }) {
     company: '',
     approval_status: 'approved',
   })
+<<<<<<< HEAD
 
 
+=======
+  const { user, logout } = useContext(AuthContext)
+>>>>>>> 1f829cd55407203e3dc9e88f5249d8b2d394bdd7
   const [eligibleCourses, setEligibleCourses] = useState(new Set())
   const [programs, setPrograms] = useState([])
   const [jaf, setJaf] = useState('')
@@ -475,6 +480,14 @@ export default function AddJob({ token = '' }) {
           >
             Add
           </button>
+          <button>
+            <a
+            onClick={() => logout()}
+            className='ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+                  >
+                    Logout
+                  </a>
+            </button>
         </div>
       </div>
     </form>
