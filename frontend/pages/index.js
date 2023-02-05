@@ -6,7 +6,7 @@ import { ToastContainer } from 'react-toastify'
 import SignIn from '@/components/SignIn'
 
 export default function Home({
-  title = 'IIT Patna Placement Portal',
+  title = 'Training and Placement Cell NIT Patna',
   keywords = '',
   description = '',
 }) {
