@@ -1,19 +1,17 @@
-import Image from 'next/image'
-import AuthContext from '@/context/AuthContext'
-import { useContext, useState, useEffect } from 'react'
+import { useState, useContext, useEffect } from 'react'
+import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
-
-import Link from 'next/link'
-import axios from 'axios'
 import { API_URL } from '@/config/index'
+import 'react-toastify/dist/ReactToastify.css'
+import AuthContext from '@/context/AuthContext'
 
-export default function AddCoordinatorComponent({ token = '' }) {
+
+export default function RegisterCompany({ token='' }) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
-  const [role, setRole] = useState('coordinator')
+  const [role, setRole] = useState('company')
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -42,14 +40,15 @@ export default function AddCoordinatorComponent({ token = '' }) {
       console.log(
         JSON.stringify({
           username,
-          email,
+           email,
           password,
           role,
         })
       )
 
       if (res.ok) {
-        toast.success('Coordinator added successfully!')
+        
+        toast.success('Company Registered successfully!')
       } else {
         toast.error('Something went wrong!')
       }
@@ -63,10 +62,10 @@ export default function AddCoordinatorComponent({ token = '' }) {
           <div className='md:grid md:grid-cols-3 md:gap-6'>
             <div className='md:col-span-1'>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Coordinator Details
+                Company Credentials
               </h3>
               <p className='mt-1 text-sm text-gray-500'>
-                Deatils about the coordinator
+               Enter Username and Password 
               </p>
             </div>
             <div className='mt-5 md:mt-0 md:col-span-2'>
@@ -85,11 +84,12 @@ export default function AddCoordinatorComponent({ token = '' }) {
                     name='username'
                     id='username'
                     autoComplete='username'
-                    placeholder='Username used to login'
+                    placeholder='Company Name'
                     required
                     className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                   />
                 </div>
+
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='email'
@@ -155,7 +155,7 @@ export default function AddCoordinatorComponent({ token = '' }) {
             type='submit'
             className='ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
           >
-            Add
+            Register Company
           </button>
         </div>
       </div>

@@ -16,26 +16,6 @@ export default function SignIn() {
     { id: "admin", title: "Admin" },
   ];
 
-  ////////////////////
-
-  const temp = async () => {
-    try {
-      const res = await axios.get(`${'http://localhost:1337'}/api/admin/get-eligible-students`)
-      const data = res.data.data
-      console.log(res)
-      console.log("API WORKING")
-    } catch (err) {
-      console.log("API NOT WORKING")
-    //  console.log(error.data)
-    }
-  }
-  useEffect(() => {
-    temp()
-  }, [])
-
-  ////////////////////
-
-
   const { login, error } = useContext(AuthContext);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

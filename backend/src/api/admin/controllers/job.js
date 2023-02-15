@@ -5,6 +5,33 @@ const path = require("path");
 const process = require("process");
 const student = require("./student");
 
+/*
+
+@rajdeep
+
+This code exports an object with two functions, get_eligible_students and get_applied_students.
+
+The get_eligible_students function is used to get the list of eligible students for a particular job. It takes in the context object ctx as an argument.
+
+It logs "Backend file working" to the console.
+It extracts the jobId from the query parameters in the context object.
+If the jobId is not present, it returns a bad request error with a message "Missing job id".
+It queries the database for the job with the specified jobId using the Strapi ORM.
+If the job is not found, it returns a not found error with the message "Job not found".
+If the job is found, it extracts its details such as job title, approval status, job status, etc. and saves them to variables.
+If the approval status of the job is not "approved", it returns a bad request error with the message "Job not approved yet".
+It queries the database for all students.
+If the students are not found, it returns an internal server error with the message "Could not get eligible students".
+It calls the helper_is_job_eligible function with each student and job as arguments.
+The helper_is_job_eligible function returns a boolean value indicating whether the student is eligible for the job or not.
+The eligible students are filtered using the boolean values returned by the helper_is_job_eligible function.
+The filtered list of eligible students is returned in the body of the context object.
+The get_applied_students function is commented out and not implemented in this code.
+
+
+*/
+
+
 module.exports = {
 	async get_eligible_students(ctx) {
 

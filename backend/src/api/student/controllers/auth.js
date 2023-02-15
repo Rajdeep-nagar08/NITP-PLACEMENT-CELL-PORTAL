@@ -13,6 +13,25 @@ const utils = require('@strapi/utils');
 const { sanitize } = utils;
 const { ApplicationError, ValidationError } = utils.errors;
 
+
+
+/*
+@rajdeep
+
+The code is a Node.js script for a Strapi (a headless CMS) plugin for user registration, 
+modified to add extra functionality for student registration. 
+It includes functionality to verify that the username (expected to be a roll number in this case) 
+follows a specific format, the password meets certain requirements, and the email address is valid.
+
+Once the parameters passed in the request body are validated, the role is set to "student" as 
+it's a public API. Then the corresponding role id is retrieved from the "plugin::users-permissions.role" 
+collection to be set for the newly registered user.
+ The new user is then saved in the "plugin::users-permissions.user" collection.
+
+Finally, a JSON web token (JWT) is generated and signed with the 
+payload (user data) and a secret, and returned in the response to the client.
+
+*/
 const emailRegExp =
   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 

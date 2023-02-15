@@ -34,7 +34,7 @@ export default function SignUpStudent() {
               className='mx-auto'
               width={100}
               height={100}
-              alt='IIT Patna'
+              alt='NIT Patna'
               src='/images/logo.svg'
             />
           </div>

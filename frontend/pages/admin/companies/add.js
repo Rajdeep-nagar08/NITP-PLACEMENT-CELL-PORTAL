@@ -1,5 +1,6 @@
 import Breadcrumbs from '@/components/admin/Breadcrumbs'
 import AddCompany from '@/components/admin/companies/AddCompany'
+import RegisterCompany from '@/components/admin/companies/RegisterCompany'
 import Layout from '@/components/admin/Layout'
 import { parseCookies } from '@/helpers/index'
 import React from 'react'
@@ -12,6 +13,7 @@ export default function index({ token = '' }) {
   return (
     <Layout>
       <Breadcrumbs pages={pages} />
+      <RegisterCompany token={token} />
       <AddCompany token={token} />
     </Layout>
   )

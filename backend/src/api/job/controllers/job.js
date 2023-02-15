@@ -32,6 +32,39 @@ module.exports = createCoreController("api::job.job", ({ strapi }) => ({
       return ctx.badRequest(null, [{ messages: [{ id: "Invalid parameters/Failed to parse" }] }]);
     }
 
+    /*
+
+    @rajdeep
+
+
+    This code exports a Strapi core controller for a job API endpoint. 
+    The controller handles the logic for two endpoints:
+
+register: A POST endpoint that allows a user with the coordinator role to add a new job. 
+The request body must contain the company data and possibly a file under the key jaf. 
+The job's approval status must initially be set to pending.
+
+upload_jaf: A PUT endpoint that allows a user with either the coordinator or admin
+ role to upload or update the JAF (Job Application Form) for a specific job. 
+ The endpoint requires a jobId query parameter and a FormData body with a single key jaf.
+
+The code first requires the @strapi/strapi module and uses its createCoreController
+ function to create a core controller. Then, it defines two async functions: register and upload_jaf.
+
+The register function first checks if the request body data is present. 
+If it's not, it returns a Bad Request error. Then, it verifies that the specified 
+company has been approved and the approval status is set to pending. 
+
+It also checks if the job's eligible_courses field is a comma-separated string of numbers representing course IDs.
+ Finally, it calls the this.create function to create the new job.
+
+The upload_jaf function checks if the request has a valid bearer token and verifies that the user has either
+ the coordinator or admin role. It then checks if the query parameters contain a jobId and if the 
+ request body contains a file under the key jaf. Finally, it updates the job's JAF by calling the 
+ strapi.query function with the provided job ID.
+
+    */
+
     // Check if company has been approved
     const company = await strapi.db.query("api::company.company").findOne({ id: data.company });
     if (!company) {

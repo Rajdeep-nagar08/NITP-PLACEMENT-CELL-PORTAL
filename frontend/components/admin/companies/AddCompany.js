@@ -1,7 +1,9 @@
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
 import { useRouter } from 'next/router'
 import { toast } from 'react-toastify'
 import { API_URL } from '@/config/index'
+import 'react-toastify/dist/ReactToastify.css'
+import AuthContext from '@/context/AuthContext'
 
 export default function AddCompany({ token = '' }) {
   const [values, setValues] = useState({
@@ -28,6 +30,7 @@ export default function AddCompany({ token = '' }) {
       mobile_no: '',
     },
   })
+
 
   const router = useRouter()
 
@@ -60,7 +63,7 @@ export default function AddCompany({ token = '' }) {
           toast.error(err.error.name + ': ' + err.error.message)
         }
         console.log('err', err)
-        toast.error('Something Went Wrong')
+        toast.error('Something Went True')
       } else {
         const profile = await res.json()
         toast.success('Company Added Successfully')
@@ -443,7 +446,7 @@ export default function AddCompany({ token = '' }) {
             type='submit'
             className='ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
           >
-            Add
+            Add Company Details
           </button>
         </div>
       </div>

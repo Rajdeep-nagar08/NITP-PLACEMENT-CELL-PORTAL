@@ -4,6 +4,40 @@ const { readFileSync } = require("fs");
 const path = require("path");
 const process = require("process");
 
+
+/*
+
+@rajdeep
+
+This code exports three asynchronous functions get_eligible_jobs, get_applied_jobs and download_selected_resumes 
+as part of a Strapi (a Node.js based CMS) API for the "Admin" role.
+
+get_eligible_jobs: This function is used to get the list of jobs that 
+are eligible for a student based on the student's roll number. 
+It takes the roll number from the URL query parameters and uses 
+it to find the corresponding student record from the student collection in the database. 
+If the student record is found, the function retrieves all job records from the
+ job collection in the database where the minimum requirements are met 
+ (minimum X_marks, XII_marks, cpi, and category). 
+ Then, it checks if the student has already applied and been selected for any of these jobs. 
+ If yes, those jobs are removed from the list of eligible jobs. Finally, 
+ the remaining eligible jobs are returned as the response.
+
+get_applied_jobs: This function returns a list of jobs that the student with the given roll number has applied to. 
+It takes the roll number from the URL query parameters, finds the corresponding student record, 
+and then retrieves all application records from the application collection in the database 
+where the student is the applicant and the application status is "selected".
+
+download_selected_resumes: This function returns a zip file containing the resumes of 
+the selected students for a particular job. It takes the job id from the URL query parameters, 
+finds the corresponding job record, and then retrieves all application records from the
+ application collection in the database where the student is selected for the job. 
+ The resumes of these students are then read from the file system, compressed into a zip file, 
+ and returned as the response.
+
+*/
+
+
 module.exports = {
 
     /**

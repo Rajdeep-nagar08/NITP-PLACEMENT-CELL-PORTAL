@@ -4,6 +4,30 @@
  *
  * Modified to take role of user to register
  */
+
+
+/*
+
+
+@rajdeep
+
+This is a code for a Strapi controller that overrides the default Strapi register function. 
+The purpose of this code is to add a custom validation for the user role while creating a user. 
+The code uses yup library to validate the user inputs and make sure that the email 
+and password fields are required and the email field is a valid email format. 
+If the user role is not provided or the role is admin, the code will throw a validation error.
+ If the provided role is not student or coordinator, the code will also throw a validation error. 
+ If the validation is successful, the code will check the role in the plugin::users-permissions.role 
+ collection and get its id. The code uses strapi.query() 
+ to interact with Strapi's data and strapi.getModel() to retrieve the 
+ schema of a specific model. The code then signs a JSON web token with 
+ the user information and issues it to the user.
+
+ 
+
+*/
+
+
 'use strict';
 
 const _ = require('lodash');

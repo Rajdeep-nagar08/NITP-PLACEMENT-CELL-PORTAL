@@ -1,0 +1,60 @@
+{
+  "kind": "collectionType",
+  "collectionName": "alumnis",
+  "info": {
+    "singularName": "alumni",
+    "pluralName": "alumnis",
+    "displayName": "Alumni",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "email",
+      "required": true
+    },
+    "contact_number": {
+      "type": "string",
+      "required": true
+    },
+    "country_of_residence": {
+      "type": "string"
+    },
+    "current_city": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "position_title": {
+      "type": "string"
+    },
+    "year_of_experience": {
+      "type": "decimal"
+    },
+    "graduation_year": {
+      "type": "string"
+    },
+    "profile_pic": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "achivements_experience": {
+      "type": "text"
+    }
+  }
+}

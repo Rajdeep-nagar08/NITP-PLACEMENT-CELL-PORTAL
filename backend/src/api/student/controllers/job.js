@@ -3,6 +3,28 @@
 const { helper_get_applications, helper_is_job_eligible } = require("./util");
 
 module.exports = {
+
+
+    /*
+
+    @rajdeep
+
+    This code exports two functions as an API in a Strapi 
+    (a Node.js headless CMS) application. The first function, 
+    get_eligible_jobs, retrieves a list of eligible jobs for a student
+     user based on various eligibility criteria such as their academic
+      records and approval status. The second function, get_all_jobs, 
+      retrieves a list of all jobs based on the category the student is
+       registered for. Both functions first verify if the user has
+        provided a valid bearer token, then retrieve the student's information 
+        from the database, and finally perform the relevant checks and return 
+        the results in the response body. The functions use Strapi's query API
+         to interact with the database and a helper function helper_is_job_eligible
+          from a separate utility file for some of the eligibility checks.
+
+    */
+
+
     /**
      * @description Searches the jobs db to look for eligible jobs for current student
      * 

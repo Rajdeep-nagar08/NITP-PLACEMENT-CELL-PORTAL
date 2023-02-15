@@ -4,6 +4,29 @@
  * A set of functions called "actions" for `role`
  */
 
+
+
+/*
+
+@rajdeep
+
+This code is a Strapi action for the "role" model. It exports a single function, get_role, 
+which is used to retrieve a user's role information.
+
+The function uses the Strapi framework to handle a RESTful API request and response. 
+When a request is made to this endpoint, the function is executed and returns the role information for a user in the response body.
+
+The function starts by checking if a JWT token is present in the request and if it is, 
+it retrieves the username from the token stored in ctx.state.user.username.
+
+Next, it queries the "plugin::users-permissions.user" collection in the database,
+ searching for the user with the specified username. It populates the "role" field, which is a relation, and selects the username and email fields to be returned in the response.
+
+The response body is set to the role information found for the user. If there is an error,
+ it sets the response body to the error.
+
+*/
+
 module.exports = {
   /**
    * Basic logic is:

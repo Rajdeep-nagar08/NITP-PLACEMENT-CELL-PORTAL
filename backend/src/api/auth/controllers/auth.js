@@ -14,6 +14,36 @@ module.exports = {
    *
    * @request_body: { old_pass: string, new_pass: string }
    */
+
+
+
+  /*
+
+  @rajdeep
+   
+  This code is for a Strapi application and exports an object with two functions, reset_password and get_userid.
+
+The reset_password function takes in a context ctx object from a Strapi 
+route and is used to reset a user's password. It first checks if the user is authorized by 
+checking the presence of a bearer token in the request header. If the token is not present, 
+it returns an unauthorized error. If the token is present, it checks that the request body 
+contains both an old_pass and a new_pass. If either of these is missing, it returns a bad request error. 
+It then checks that the new password does not contain more than three times the symbol '$'. 
+If the password passes this check, it retrieves the user's current hashed password from the 
+database and checks that the old_pass matches the hashed password. If the old_pass is incorrect, 
+it returns a forbidden error. If the old_pass is correct, it updates the user's password in the 
+database with the new password.
+
+The get_userid function is used to retrieve the id of a user based on the provided username. 
+It first checks if the user is authorized by checking the presence of a bearer token in the request header. 
+If the token is not present, it returns an unauthorized error. If the token is present, 
+it checks if the user has the admin role. If the user does not have the admin role, 
+it returns a forbidden error. If the user is authorized, it retrieves the user id 
+from the database based on the provided username and returns it in an object.
+
+*/
+
+
   reset_password: async (ctx) => {
     const user = ctx.state.user;
 

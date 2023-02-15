@@ -97,6 +97,9 @@ export const AuthProvider = ({ children }) => {
       setUser(data.user)
 
       if(data.role!=role){
+        console.log(data.role)
+        console.log(role)
+
         toast.error("Invalid Account Type");
       }
       else{

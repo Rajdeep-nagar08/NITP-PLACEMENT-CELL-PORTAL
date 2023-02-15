@@ -3,11 +3,13 @@ import { toast } from 'react-toastify'
 import { API_URL } from '@/config/index'
 import AuthContext from '@/context/AuthContext'
 import moment from 'moment'
-import AuthContext from '@/context/AuthContext'
+// import AuthContext from '@/context/AuthContext'
 
 
 export default function AddJob({ token = '' }) {
+   const { user, logout } = useContext(AuthContext)
   const [values, setValues] = useState({
+    company_name: user.username,
     job_title: '',
     job_status: '',
     classification: '',
@@ -20,19 +22,23 @@ export default function AddJob({ token = '' }) {
     only_for_pwd: false,
     only_for_ews: false,
     only_for_female: false,
-    company: '',
     approval_status: 'approved',
-  })
-<<<<<<< HEAD
 
+    POC1: {
+      name: '',
+      mail_id: '',
+      mobile_no: '',
+    },
+    POC2: {
+      name: '',
+      mail_id: '',
+      mobile_no: '',
+    },
+})
 
-=======
-  const { user, logout } = useContext(AuthContext)
->>>>>>> 1f829cd55407203e3dc9e88f5249d8b2d394bdd7
   const [eligibleCourses, setEligibleCourses] = useState(new Set())
   const [programs, setPrograms] = useState([])
   const [jaf, setJaf] = useState('')
-   const { user, logout } = useContext(AuthContext)
 
   useEffect(() => {
     programs.map((program) => {
@@ -66,26 +72,34 @@ export default function AddJob({ token = '' }) {
     }
   }
 
+
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     values['eligible_courses'] = Array.from(eligibleCourses).toString()
     const formData = new FormData()
+
     formData.append('data', JSON.stringify(values))
     if (jaf && jaf !== '') {
       formData.append('files.jaf', jaf, jaf.name)
     }
-
-    // Validation
+      console.log(FormData)
+      console.log(values);
+    // setFormData(values)
+    // //  console.log(user.username)
+    // console.log(formData)
     // const hasEmptyFields = Object.values(values).some((element) => {
     //   element === ''
 
     // })
+
     if (eligibleCourses.size === 0) {
       toast.error('Please select atleast one course')
       return
     }
 
     if (confirm('Are you sure to add job?')) {
+     // console.log("this is form data ", values)
       const res = await fetch(`${API_URL}/api/jobs`, {
         method: 'POST',
         headers: {
@@ -95,18 +109,22 @@ export default function AddJob({ token = '' }) {
       })
 
       console.log("Boss")
+
       console.log(res)
 
-      console.log(JSON.stringify({ data: values }))
       if (!res.ok) {
         if (res.status === 403 || res.status === 401) {
           toast.error('No token included')
           return
         }
         const err = await res.json()
-        console.log(err)
-        toast.error('Error: ' + err.error.details.errors[0].message)
+
+        console.log("Not showing")
+
+        // toast.error('Error: ' + err.error.details.errors[0].message)
+
       } else {
+        console.log("showing")
         toast.success('Job Added Successfully')
       }
     }
@@ -142,27 +160,30 @@ export default function AddJob({ token = '' }) {
       .catch((err) => console.log(err))
   }, [])
 
+
+
+
   return (
     <form onSubmit={handleSubmit}>
       <div className='space-y-6 mt-4'>
         <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
           <div className=''>
             <h3 className='text-lg font-medium leading-6 text-gray-900 mb-4'>
-            <p>
+              {/* <p>
                 {user && user.email}
-              </p>
+              </p> */}
               <p>
-                 {user && user.username}
+                {user && user.username}
               </p>
               Job Details
-             
+
             </h3>
             {/* <p className='mt-1 text-sm text-gray-500'>
               Some other details of the job
             </p> */}
           </div>
 
-          
+
           <div className='md:grid md:grid-cols-3 md:gap-6'>
             <div className='mt-5 md:mt-0 md:col-span-3'>
               <div className='grid grid-cols-6 gap-6'>
@@ -482,12 +503,12 @@ export default function AddJob({ token = '' }) {
           </button>
           <button>
             <a
-            onClick={() => logout()}
-            className='ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-                  >
-                    Logout
-                  </a>
-            </button>
+              onClick={() => logout()}
+              className='ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            >
+              Logout
+            </a>
+          </button>
         </div>
       </div>
     </form>

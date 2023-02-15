@@ -4,6 +4,31 @@
  *  company controller
  */
 
+
+/*
+
+@rajdeep
+
+This is a Node.js code written in the Strapi framework. 
+It defines a custom controller for the 'company' entity 
+that performs additional operations before saving a new company 
+record to the database. The code uses the Strapi factory function createCoreController
+ to create a new controller, and exports the resulting object.
+
+The custom controller has one method register which handles
+ the creation of a new company record. The method starts by checking
+  that the request body contains data, and returns a 'bad request' error 
+  if it does not. The method then sets the 'status' attribute to "pending" 
+  (since it's not yet approved) and calls the built-in create method to save the new record to the database.
+
+The register method provides a custom way to create company records that
+ ensures that the records are created with a 'status' of 'pending' and 
+ performs additional validation before saving to the database.
+
+
+*/
+
+
 const { createCoreController } = require('@strapi/strapi').factories;
 
 module.exports = createCoreController("api::company.company", ({ strapi }) => ({
