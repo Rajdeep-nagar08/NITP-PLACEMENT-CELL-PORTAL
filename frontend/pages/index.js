@@ -6,7 +6,11 @@ import { ToastContainer } from 'react-toastify'
 import SignIn from '@/components/SignIn'
 
 export default function Home({
+<<<<<<< HEAD
   title = 'NIT Patna Placement Portal',
+=======
+  title = 'Training and Placement Cell NIT Patna',
+>>>>>>> cc3b040cd301c737c72bcd5971638e7830678f74
   keywords = '',
   description = '',
 }) {

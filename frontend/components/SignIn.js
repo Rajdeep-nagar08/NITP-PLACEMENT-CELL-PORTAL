@@ -68,8 +68,8 @@ export default function SignIn() {
             </p>
           </div>
         </div>
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md h-screen ">
-          <div className="backdrop-blur py-8 mt-5 shadow sm:rounded-lg sm:px-10 g-blur-md h-[35rem] p-7">
+        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md h-screen backdrop-opacity-60 bg-white/30 ">
+          <div className="  py-8 mt-5 shadow sm:rounded-lg sm:px-10 g-blur-md h-[35rem] p-7">
             <div>
               <p className="mt-2 text-center text-3xl font-bold font-sans pb-7 text-black ">
               Login 
