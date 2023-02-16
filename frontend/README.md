@@ -4,15 +4,6 @@
 
 This web app is a portal for students to register themselves for the placement and apply for different job profiles.
 
-## Installation
-
-Install with npm
-
-```bash
-  cd iitp-placement-portal-frontend
-  npm install
-```
-
 ## Used By
 
 This portal is used by the following companies:
