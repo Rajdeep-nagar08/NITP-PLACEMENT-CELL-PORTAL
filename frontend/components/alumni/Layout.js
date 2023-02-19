@@ -1,14 +1,15 @@
-import Layout from '@/components/student/Layout'
-import Navbar from '@/components/student/Header'
 import Head from 'next/head'
-import Image from 'next/image'
 import { ToastContainer } from 'react-toastify'
-import SignIn from '@/components/SignIn'
+import Footer from '@/components/student/Footer'
+import Header from '@/components/student/Header'
+import Sidebar from '@/components/alumni/Sidebar'
 
-export default function Home({
-  title = 'Training and Placement Cell NIT Patna',
+export default function Layout({
+  title = 'NIT Patna Placement Portal',
   keywords = '',
   description = '',
+  heading = '',
+  children,
 }) {
   return (
     <>
@@ -17,11 +18,12 @@ export default function Home({
         <meta name='keywords' content={keywords} />
         <meta name='description' content={description} />
       </Head>
-      <div className='overflow-hidden'>
+      <div className='overflow-hidden '>
         {/*  Page content */}
         <main className='flex-grow'>
+          <Sidebar heading={heading}>{children}</Sidebar>
           <ToastContainer
-            position='top-right'
+            position='top-left'
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -31,7 +33,6 @@ export default function Home({
             draggable
             pauseOnHover
           />
-          <SignIn />
         </main>
         {/*  Site footer */}
       </div>

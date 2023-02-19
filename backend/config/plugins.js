@@ -14,8 +14,8 @@ module.exports = ({ env }) => ({
 
       },
       settings: {
-        defaultFrom: "no-reply@iitp.ac.in",
-        defaultReplyTo: "no-reply@iitp.ac.in",
+        defaultFrom: "no-reply@nitp.ac.in",
+        defaultReplyTo: "no-reply@nitp.ac.in",
       },
     },
   },

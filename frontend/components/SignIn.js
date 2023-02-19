@@ -14,6 +14,7 @@ export default function SignIn() {
     { id: "student", title: "Student" },
     { id: "coordinator", title: "Coordinator" },
     { id: "admin", title: "Admin" },
+    { id: "alumni", title: "Alumni"}
   ];
 
   const { login, error } = useContext(AuthContext);
@@ -96,6 +97,7 @@ export default function SignIn() {
                 <option value="company">Company</option>
                 <option value="student">Student</option>
                 <option value="coordinator">Coordinator</option>
+                <option value="alumni">Alumni</option>
               </select>
             </div>
             <form
