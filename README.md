@@ -15,7 +15,7 @@ Download (node-v16.15.0-x86.msi )
 
 
 
-Backend settings: -> npm run develop
+# Backend settings: -> npm run develop
 
 -> login to strapi’s administrative panel -
 
