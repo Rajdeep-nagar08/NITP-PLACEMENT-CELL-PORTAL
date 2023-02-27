@@ -12,3 +12,44 @@ https://nodejs.org/download/release/v16.15.0/
 
 Download (node-v16.15.0-x86.msi )
 
+
+
+
+Backend settings: -> npm run develop
+
+-> login to strapi’s administrative panel -
+
+go to settings options in left side bar. 
+
+-under USERS & PERMISSIONS PLUGIN in roles: 
+
+-add new role
+
+-Enter name - admin
+
+-in permission select all in all the actions. 
+
+-save it
+
+-add new role
+
+-Enter name - coordinator
+
+-give required permissions
+
+-save it
+
+-add new role
+
+-Enter name - student
+
+- give required permissions
+
+- save it
+
+-Enter name - company
+
+- give required permissions
+
+- save it
+
