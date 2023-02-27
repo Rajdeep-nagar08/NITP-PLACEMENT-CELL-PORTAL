@@ -27,17 +27,17 @@ go to settings options in left side bar.
 
 -Enter name - admin
 
--in permission select all in all the actions. 
+- give required permissions 
 
--save it
+- save it
 
 -add new role
 
 -Enter name - coordinator
 
--give required permissions
+- give required permissions
 
--save it
+- save it
 
 -add new role
 
@@ -46,6 +46,8 @@ go to settings options in left side bar.
 - give required permissions
 
 - save it
+
+-add new role
 
 -Enter name - company
 
