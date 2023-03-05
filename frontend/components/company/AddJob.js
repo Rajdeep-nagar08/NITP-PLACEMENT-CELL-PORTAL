@@ -7,9 +7,8 @@ import moment from 'moment'
 
 
 export default function AddJob({ token = '' }) {
-   const { user, logout } = useContext(AuthContext)
+
   const [values, setValues] = useState({
-    company_name: user.username,
     job_title: '',
     job_status: '',
     classification: '',
@@ -35,6 +34,8 @@ export default function AddJob({ token = '' }) {
       mobile_no: '',
     },
 })
+
+const { user, logout } = useContext(AuthContext)
 
   const [eligibleCourses, setEligibleCourses] = useState(new Set())
   const [programs, setPrograms] = useState([])
@@ -79,12 +80,19 @@ export default function AddJob({ token = '' }) {
     values['eligible_courses'] = Array.from(eligibleCourses).toString()
     const formData = new FormData()
 
-    formData.append('data', JSON.stringify(values))
+    // formData.append('data', JSON.stringify(values))
+    formData.append('data', JSON.stringify({ ...values, company_name: user.username }))
+
+
     if (jaf && jaf !== '') {
       formData.append('files.jaf', jaf, jaf.name)
     }
       console.log(FormData)
       console.log(values);
+
+      const companyName = user && user.username
+      values['company_name'] = companyName
+
     // setFormData(values)
     // //  console.log(user.username)
     // console.log(formData)
@@ -130,12 +138,21 @@ export default function AddJob({ token = '' }) {
     }
   }
 
+
+
+
+
+
   const handleInputChange = (e) => {
     const { name, value } = e.target
     setValues({ ...values, [name]: value })
   }
 
+
+
+  
   const [companies, setCompanies] = useState([])
+
   useEffect(() => {
     fetch(`${API_URL}/api/companies?filters[status][$eq]=approved&populate=*`, {
       headers: {
@@ -160,8 +177,8 @@ export default function AddJob({ token = '' }) {
       .catch((err) => console.log(err))
   }, [])
 
-
-
+  
+  
 
   return (
     <form onSubmit={handleSubmit}>
@@ -187,27 +204,39 @@ export default function AddJob({ token = '' }) {
           <div className='md:grid md:grid-cols-3 md:gap-6'>
             <div className='mt-5 md:mt-0 md:col-span-3'>
               <div className='grid grid-cols-6 gap-6'>
-                {/* <div className='col-span-6 sm:col-span-3'>
+
+
+                { <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='company_address'
                     className='block text-sm font-medium text-gray-700'
                   >
                     Company
                   </label>
-                  <select
-                    name='company'
-                    required
-                    onChange={handleInputChange}
-                    className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                  >
-                    <option value=''>Select Company</option>
-                    {companies.map((company) => (
-                      <option key={company.id} value={company.id}>
-                        {company.attributes.company_name}
-                      </option>
-                    ))}
-                  </select>
-                </div> */}
+
+<select
+  name='company'
+  required
+  onChange={handleInputChange}
+  className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+>
+  <option value=''>Select Company</option>
+  {companies
+    .filter((company) => company.attributes.company_name === (user && user.username))
+    .map((company) => (
+      <option key={company.id} value={company.id} >
+        {company.attributes.company_name}
+      </option>
+    ))}
+</select>
+
+
+
+
+
+
+
+                </div> }
 
 
                 <div className='col-span-6 sm:col-span-3'>
@@ -501,6 +530,7 @@ export default function AddJob({ token = '' }) {
           >
             Add
           </button>
+
           <button>
             <a
               onClick={() => logout()}

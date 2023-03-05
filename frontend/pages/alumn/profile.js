@@ -2,17 +2,17 @@ import Layout from '@/components/alumni/Layout'
 import { useContext } from 'react'
 import axios from 'axios'
 import { API_URL } from '@/config/index'
-import StudentRegistration from '@/components/alumni/profile/AlumniRegistration'
-import Profile from '@/components/alumni/profile/Profile'
+import AlumniRegistration from '@/components/alumni/profile/alumniRegistration'
+import Profile from '@/components/alumni/profile/profile'
 import { parseCookies } from '@/helpers/index'
 
 export default function profile({ data = '', statusCode = '', token = '' }) {
   return (
     <Layout heading='Profile' >
       {statusCode === 204 ? (
-        <StudentRegistration token={token} />
+        <AlumniRegistration token={token} />
       ) : (
-        <Profile alumni={data} token={token} />
+        <Profile alumn={data} token={token} />
       )}
     </Layout>  
   )
@@ -25,7 +25,7 @@ export async function getServerSideProps({ req }) {
     headers: { Authorization: `Bearer ${token}` },
   }
 
-  const res = await axios.get(`${API_URL}/api/alumni/me`, config)
+  const res = await axios.get(`${API_URL}/api/alumn/me`, config)
   return {
     props: { data: res.data, statusCode: res.status, token: token }, // will be passed to the page component as props
   }

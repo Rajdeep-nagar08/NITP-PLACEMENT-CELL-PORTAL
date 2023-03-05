@@ -7,6 +7,7 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 
 export default function ForgotPassword() {
+
   const [email, setEmail] = useState('')
 
   const handleSubmit = async (e) => {
@@ -21,6 +22,7 @@ export default function ForgotPassword() {
           email: email,
         }),
       })
+
       if (res.status === 200) {
         toast.success(
           'Password reset link has been sent to your email. Check spam folder if you do not see it in inbox.'

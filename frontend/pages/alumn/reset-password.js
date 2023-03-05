@@ -1,10 +1,10 @@
-import Layout from '@/components/student/Layout'
+import Layout from '@/components/alumni/Layout'
 import { API_URL } from '@/config/index'
 import { parseCookies } from '@/helpers/index'
 import { useState } from 'react'
 import { toast } from 'react-toastify'
 
-export default function ResetPasswordStudent({ token = '' }) {
+export default function ResetPasswordAlumni({ token = '' }) {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (new_pass !== confirm_pass) {

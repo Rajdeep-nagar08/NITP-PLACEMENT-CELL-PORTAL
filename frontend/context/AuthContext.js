@@ -4,6 +4,8 @@ import { API_URL, NEXT_URL } from '@/config/index'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
+// import { axios} from axios
+
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
@@ -17,22 +19,30 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   //register user
+
+
+
   const register = async (user) => {
-    //  const res = await fetch(`${API_URL}/api/student/register-student`, {
-    const res = await fetch(`${API_URL}/api/users`, {
+
+    user.role=role;
+    
+     const res = await fetch(`${API_URL}/api/student/register-student`, {
+   // const res = await fetch(`${API_URL}/api/users`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(user),
     })
-
+  
 
     if (res.ok) {
       const data = await res.json()
+
       setUser(data)
       setRole(data.role)
       toast.success('Registration Successful!')
+      // console.log("xxx",data.role)
       // redirect after 3 seconds
       setTimeout(() => {
         router.push('/')
@@ -75,8 +85,6 @@ export const AuthProvider = ({ children }) => {
   //   })
 
 
-
-
   //login user
   const login = async ({ username: identifier, password, role }) => {
     const res = await fetch(`${NEXT_URL}/api/login`, {
@@ -113,8 +121,8 @@ export const AuthProvider = ({ children }) => {
         router.push('coordinator/home')
       } else if(role=='company'){
         router.push('company/add')
-      } else if(role=='alumni'){
-        router.push('alumni/profile')
+      } else if(role=='alumn'){
+        router.push('alumn/profile')
       }
       else {
         toast.error(data.error)
@@ -124,7 +132,6 @@ export const AuthProvider = ({ children }) => {
   else {
       toast.error(data.error)
     }
-  
 }
 
   //logout user

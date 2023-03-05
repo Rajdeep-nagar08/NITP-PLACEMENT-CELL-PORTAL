@@ -2,7 +2,7 @@
  *
  * Reference for this: https://gist.github.com/bibekgupta3333/7c4d4ec259045d7089c36b5ae0c4e763#file-strapi_v4_user_register_override-js
  *
- * Modified to ensure username (ie. the roll number) of student matches given regex
+ * Modified to ensure username (ie. the roll number) of alumn matches given regex
  */
 'use strict';
 
@@ -19,11 +19,11 @@ const { ApplicationError, ValidationError } = utils.errors;
 @rajdeep
 
 The code is a Node.js script for a Strapi (a headless CMS) plugin for user registration, 
-modified to add extra functionality for student registration. 
+modified to add extra functionality for alumn registration. 
 It includes functionality to verify that the username (expected to be a roll number in this case) 
 follows a specific format, the password meets certain requirements, and the email address is valid.
 
-Once the parameters passed in the request body are validated, the role is set to "student" as 
+Once the parameters passed in the request body are validated, the role is set to "alumn" as 
 it's a public API. Then the corresponding role id is retrieved from the "plugin::users-permissions.role" 
 collection to be set for the newly registered user.
  The new user is then saved in the "plugin::users-permissions.user" collection.
@@ -33,12 +33,16 @@ payload (user data) and a secret, and returned in the response to the client.
 
 */
 
+
 // const emailRegExp =
 //   /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
+
 const emailRegExp = /.*/;
 
+
 // ie. Roll number regex as suggested by Mayank sir
+
 
 // const userNameRegExp =
 //   /^[0-9]{4}[a-zA-Z]{2}[0-9]{2}$/;
@@ -80,13 +84,13 @@ const getService = name => {
 
 module.exports = {
   /**
-   * @description Sign Up/Register route for student
+   * @description Sign Up/Register route for alumn
    *
    * @auth Accessible by Public/Everyone
    *
    * @note- The request body is expected to be exactly SAME as if passed to /api/auth/local
    */
-  register_student: async (ctx) => {
+  register_alumn: async (ctx) => {
     const pluginStore = strapi.store({
       type: 'plugin',
       name: 'users-permissions',
@@ -121,10 +125,9 @@ module.exports = {
       );
     }
 
-    /** NOTE: @adig: role is fixed as "student" since this is a Public API,
+    /** NOTE: @adig: role is fixed as "alumn" since this is a Public API,
      * see admin's register-with-role for better control API */
-
-    const role = "student";
+    const role = "alumn";
 
     const role_entry = await strapi
       .query('plugin::users-permissions.role')
@@ -213,10 +216,10 @@ module.exports = {
   },
 
   /**
-   * @description "Forgot Password"/"Request for password change" route for student
+   * @description "Forgot Password"/"Request for password change" route for alumn
    * @auth Accessible by Public/Everyone
    *
-   * @example POST /api/student/request-password-change
+   * @example POST /api/alumn/request-password-change
    *
    * @body { institute_email_id: string, roll: string }
    *
@@ -229,23 +232,23 @@ module.exports = {
       return ctx.badRequest(null, [{ messages: [{ id: "Required roll and email" }] }]);
     }
 
-    const student = await strapi.db.query("api::student.student").findOne({
+    const alumn = await strapi.db.query("api::alumn.alumn").findOne({
       where: { roll: roll, institute_email_id: institute_email_id },
       select: ["id"]
     });
 
-    if (!student) {
+    if (!alumn) {
       return ctx.badRequest(null, [{ messages: [{ id: "Student not found/Roll and Email don't match" }] }]);
     }
 
-    // update student's password_change_requested field to true
-    const updated = await strapi.db.query("api::student.student").update({
-      where: { id: student.id },
+    // update alumn's password_change_requested field to true
+    const updated = await strapi.db.query("api::alumn.alumn").update({
+      where: { id: alumn.id },
       data: { password_change_requested: true }
     });
 
     if (!updated) {
-      return ctx.internalServerError(null, [{ messages: [{ id: "Error updating student" }] }]);
+      return ctx.internalServerError(null, [{ messages: [{ id: "Error updating alumn" }] }]);
     }
 
     return ctx.body = { message: "Password change request sent" };

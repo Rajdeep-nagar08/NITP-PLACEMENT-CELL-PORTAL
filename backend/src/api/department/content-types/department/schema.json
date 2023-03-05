@@ -22,6 +22,12 @@
       "relation": "oneToMany",
       "target": "api::student.student",
       "mappedBy": "department"
+    },
+    "alumns": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::alumn.alumn",
+      "mappedBy": "department"
     }
   }
 }

@@ -2,7 +2,9 @@
  *
  * Reference for this: https://gist.github.com/bibekgupta3333/7c4d4ec259045d7089c36b5ae0c4e763#file-strapi_v4_user_register_override-js
  *
- * Modified to ensure username (ie. the roll number) of student matches given regex
+ * Modified to ensure username (ie. the roll number) of alumni
+ * 
+ *  matches given regex
  */
 'use strict';
 
@@ -19,7 +21,8 @@ const { ApplicationError, ValidationError } = utils.errors;
 @rajdeep
 
 The code is a Node.js script for a Strapi (a headless CMS) plugin for user registration, 
-modified to add extra functionality for student registration. 
+modified to add extra functionality for alumni
+ registration. 
 It includes functionality to verify that the username (expected to be a roll number in this case) 
 follows a specific format, the password meets certain requirements, and the email address is valid.
 
@@ -38,7 +41,9 @@ payload (user data) and a secret, and returned in the response to the client.
 
 const emailRegExp = /.*/;
 
+
 // ie. Roll number regex as suggested by Mayank sir
+
 
 // const userNameRegExp =
 //   /^[0-9]{4}[a-zA-Z]{2}[0-9]{2}$/;
@@ -86,7 +91,7 @@ module.exports = {
    *
    * @note- The request body is expected to be exactly SAME as if passed to /api/auth/local
    */
-  register_student: async (ctx) => {
+  register_alumni: async (ctx) => {
     const pluginStore = strapi.store({
       type: 'plugin',
       name: 'users-permissions',
@@ -123,8 +128,7 @@ module.exports = {
 
     /** NOTE: @adig: role is fixed as "student" since this is a Public API,
      * see admin's register-with-role for better control API */
-
-    const role = "student";
+    const role = "alumni";
 
     const role_entry = await strapi
       .query('plugin::users-permissions.role')
@@ -229,23 +233,23 @@ module.exports = {
       return ctx.badRequest(null, [{ messages: [{ id: "Required roll and email" }] }]);
     }
 
-    const student = await strapi.db.query("api::student.student").findOne({
+    const alumni = await strapi.db.query("api::alumni.alumni").findOne({
       where: { roll: roll, institute_email_id: institute_email_id },
       select: ["id"]
     });
 
-    if (!student) {
-      return ctx.badRequest(null, [{ messages: [{ id: "Student not found/Roll and Email don't match" }] }]);
+    if (!alumni) {
+      return ctx.badRequest(null, [{ messages: [{ id: "Alumni not found/Roll and Email don't match" }] }]);
     }
 
-    // update student's password_change_requested field to true
-    const updated = await strapi.db.query("api::student.student").update({
-      where: { id: student.id },
+    // update alumni's password_change_requested field to true
+    const updated = await strapi.db.query("api::alumni.alumni").update({
+      where: { id: alumni.id },
       data: { password_change_requested: true }
     });
 
     if (!updated) {
-      return ctx.internalServerError(null, [{ messages: [{ id: "Error updating student" }] }]);
+      return ctx.internalServerError(null, [{ messages: [{ id: "Error updating alumni" }] }]);
     }
 
     return ctx.body = { message: "Password change request sent" };

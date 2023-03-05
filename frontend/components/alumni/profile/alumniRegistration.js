@@ -4,24 +4,39 @@ import { toast } from 'react-toastify'
 import { API_URL } from '@/config/index'
 import AuthContext from '@/context/AuthContext'
 
-export default function AlumniRegistration({ token = '' }) {
+export default function StudentRegistration({ token = '' }) {
   const [values, setValues] = useState({
     name: '',
     roll: '',
-    email: '',
-    contact_number: '',
+    personal_email_id: '',
+    institute_email_id: '',
+    mobile_number_1: '',
+    mobile_number_2: '',
     gender: '',
+    category: '',
     address: '',
     date_of_birth: '',
-
-    // professional
-
-    company: '',
-    position_title: '',
-    year_of_experience: '',
-    graduation_year: '',
-    achivements_experience: ''
-
+    rank: '',
+    categoryRank: '',
+    registered_for: '',
+    program: '',
+    pwd: false,
+    department: '',
+    course: '',
+    spi_1: '',
+    spi_2: '',
+    spi_3: '',
+    spi_4: '',
+    spi_5: '',
+    spi_6: '',
+    spi_7: '',
+    spi_8: '',
+    cpi: '',
+    X_marks: '',
+    XII_marks: '',
+    bachelor_marks: '',
+    master_marks: '',
+    admission_year: '',
   })
 
   const router = useRouter()
@@ -39,9 +54,8 @@ export default function AlumniRegistration({ token = '' }) {
     //   element === ''
 
     // })
-
-    if (confirm('Are you sure you want to submit?')) {
-      const res = await fetch(`${API_URL}/api/alumnis`, {
+    if (confirm('Are you sure you want to submit for approval?')) {
+      const res = await fetch(`${API_URL}/api/student/submit-for-approval`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -63,9 +77,12 @@ export default function AlumniRegistration({ token = '' }) {
         toast.error(profile?.error.name)
       } else {
 
+
+
+
         const profile = await res.json()
-        toast.success('Profile Submitted !')
-        router.push(`/alumni/profile`)
+        toast.success('Profile Submitted for Approval')
+        router.push(`/alumn/profile`)
       }
     }
   }
@@ -74,6 +91,32 @@ export default function AlumniRegistration({ token = '' }) {
     const { name, value } = e.target
     setValues({ ...values, [name]: value })
   }
+
+  const [programs, setPrograms] = useState([])
+  const [courses, setCourses] = useState([])
+
+  //get courses of selected program
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/programs?populate=*`, {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setPrograms(data.data)
+      })
+  }, [])
+
+  useEffect(() => {
+    programs.map((program) => {
+      if (program.id === parseFloat(values.program)) {
+        setCourses(program.attributes.courses.data)
+      }
+    })
+  }, [values.program])
 
   return (
     <form onSubmit={handleSubmit}>
@@ -85,7 +128,8 @@ export default function AlumniRegistration({ token = '' }) {
                 Personal Information
               </h3>
               <p className='mt-1 text-sm text-gray-500'>
-                Alumni Personal Information
+                Student Personal Information, account will be active after admin
+                approval.
               </p>
             </div>
             <div className='mt-5 md:mt-0 md:col-span-2'>
@@ -108,20 +152,6 @@ export default function AlumniRegistration({ token = '' }) {
                     className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0'
                   />
                 </div>
-
-                {/* name: '',
-    roll: '',
-    email: '',
-    contact_number: '',
-    gender: '',
-    date_of_birth: '',
-    company: '',
-    position_title: '',
-    year_of_experience: '',
-    graduation_year: '',
-    achivements_experience: '' */}
-
-
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='roll'
@@ -146,31 +176,50 @@ export default function AlumniRegistration({ token = '' }) {
                     htmlFor='personal_email_id'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    Email
+                    Personal Email
                   </label>
                   <input
-                    value={values.email}
+                    value={values.personal_email_id}
                     onChange={handleInputChange}
                     type='email'
-                    name='email_id'
-                    id='email_id'
+                    name='personal_email_id'
+                    id='personal_email_id'
                     autoComplete='email'
                     required
                     className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
-
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='institute_email_id'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Institute Email
+                  </label>
+                  <input
+                    disabled
+                    value={values.institute_email_id}
+                    onChange={handleInputChange}
+                    pattern='.+@iitp\.ac\.in'
+                    type='email'
+                    name='institute_email_id'
+                    id='institute_email_id'
+                    autoComplete='email'
+                    placeholder='Ex: 1234xx21@iitp.ac.in'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-green-500 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='mobile_number_1'
                     className='block text-sm font-medium text-gray-700'
                     required
                   >
-                    Contact number
-
+                    Mobile Number 1
                   </label>
                   <input
-                    value={values.contact_number}
+                    value={values.mobile_number_1}
                     onChange={handleInputChange}
                     type='number'
                     name='mobile_number_1'
@@ -179,7 +228,24 @@ export default function AlumniRegistration({ token = '' }) {
                     className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
-
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mobile_number_2'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Mobile Number 2
+                  </label>
+                  <input
+                    value={values.mobile_number_2}
+                    onChange={handleInputChange}
+                    type='number'
+                    name='mobile_number_2'
+                    id='mobile_number_2'
+                    autoComplete='tel-national'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='gender'
@@ -202,7 +268,51 @@ export default function AlumniRegistration({ token = '' }) {
                     <option value=''>other</option>
                   </select>
                 </div>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='category'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Category
+                  </label>
+                  <select
+                    value={values.category}
+                    onChange={handleInputChange}
+                    id='category'
+                    name='category'
+                    autoComplete='category'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  >
+                    <option value=''>Select</option>
+                    <option value='general'>General</option>
+                    <option value='obc'>OBC</option>
+                    <option value='sc'>SC</option>
+                    <option value='st'>ST</option>
+                    <option value='ews'>EWS</option>
+                  </select>
+                </div>
 
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='pwd'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    PWD
+                  </label>
+                  <select
+                    value={values.pwd}
+                    onChange={handleInputChange}
+                    id='pwd'
+                    name='pwd'
+                    autoComplete='pwd'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  >
+                    <option value={false}>No</option>
+                    <option value={true}>Yes</option>
+                  </select>
+                </div>
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='date_of_birth'
@@ -240,8 +350,6 @@ export default function AlumniRegistration({ token = '' }) {
                     className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
-
-
               </div>
             </div>
           </div>
@@ -251,124 +359,424 @@ export default function AlumniRegistration({ token = '' }) {
           <div className=''>
             <div className='py-5'>
               <h3 className='text-lg font-medium leading-6 text-gray-900'>
-                Professional Details
+                Academic Details
               </h3>
               <p className='mt-1 text-sm text-gray-500'>
-                Alumni's Professional Details.
+                Student Academic Information, account will be active after admin
+                approval.
               </p>
             </div>
-
             <div className='mt-5 md:mt-0 md:col-span-2'>
               <div className='grid grid-cols-6 gap-6'>
-
-              <div className='col-span-6 sm:col-span-3'>
+                <div className='col-span-6 sm:col-span-3'>
                   <label
-                    htmlFor='company'
+                    htmlFor='rank'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    Company
+                    GATE / JEE / JAM Rank
                   </label>
                   <input
-                    value={values.company}
+                    value={values.rank}
                     onChange={handleInputChange}
-                    type='text'
-                    name='name'
-                    id='name'
-                    autoComplete='name'
-                    required
-                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0'
+                    type='number'
+                    name='rank'
+                    id='rank'
+                    autoComplete='rank'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='categoryRank'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Category Rank
+                  </label>
+                  <input
+                    value={values.categoryRank}
+                    onChange={handleInputChange}
+                    type='number'
+                    name='categoryRank'
+                    id='categoryRank'
+                    autoComplete='categoryRank'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
 
                 <div className='col-span-6 sm:col-span-3'>
                   <label
-                    htmlFor='name'
+                    htmlFor='registered_for'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    Position
+                    Registering for
+                  </label>
+                  <select
+                    value={values.registered_for}
+                    onChange={handleInputChange}
+                    id='registered_for'
+                    name='registered_for'
+                    autoComplete='registered_for'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  >
+                    <option value=''>Select</option>
+                    <option value='Internship'>Internship</option>
+                    <option value='FTE'>FTE</option>
+                  </select>
+                </div>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='program'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Program
+                  </label>
+                  <select
+                    value={values.program}
+                    onChange={handleInputChange}
+                    id='program'
+                    name='program'
+                    autoComplete='program'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  >
+                    <option value=''>Select</option>
+                    {programs.map((program) => (
+                      <option key={program.id} value={program.id}>
+                        {program.attributes.program_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
 
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='course'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Course
+                  </label>
+                  <select
+                    value={values.course}
+                    onChange={handleInputChange}
+                    id='course'
+                    name='course'
+                    autoComplete='course'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  >
+                    <option value=''>Select Course</option>
+                    {courses.map((course) => (
+                      <option key={course.id} value={course.id}>
+                        {course.attributes.course_name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='X_marks'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    X Marks
                   </label>
                   <input
-                    value={values.position}
+                    value={values.X_marks}
                     onChange={handleInputChange}
-                    type='text'
-                    name='name'
-                    id='name'
-                    autoComplete='name'
+                    type='number'
+                    name='X_marks'
+                    id='X_marks'
+                    min={33}
+                    max={100}
+                    step='.01'
+                    autoComplete=''
+                    placeholder='In percentage Ex: 88.5'
                     required
-                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='XII_marks'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    XII Marks
+                  </label>
+                  <input
+                    value={values.XII_marks}
+                    onChange={handleInputChange}
+                    type='number'
+                    name='XII_marks'
+                    id='XII_marks'
+                    min={33}
+                    max={100}
+                    step='.01'
+                    placeholder='In percentage Ex: 88.5'
+                    autoComplete=''
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='cpi'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    CPI (Current)
+                  </label>
+                  <input
+                    required
+                    value={values.cpi}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='cpi'
+                    id='cpi'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
 
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='spi_1'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    SPI-1 
+                  </label>
+                  <input
+                    value={values.spi_1}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='spi_1'
+                    id='spi_1'
+                    autoComplete='spi_1'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='spi_2'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    SPI-2
+                  </label>
+                  <input
+                    value={values.spi_2}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='spi_2'
+                    id='spi_2'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='spi_3'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    SPI-3 
+                  </label>
+                  <input
+                    value={values.spi_3}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='spi_3'
+                    id='spi_3'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='spi_4'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    SPI-4
+                  </label>
+                  <input
+                    value={values.spi_4}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='spi_4'
+                    id='spi_4'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='spi_5'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    SPI-5
+                  </label>
+                  <input
+                    value={values.spi_5}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='spi_5'
+                    id='spi_5'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='spi_6'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    SPI-6
+                  </label>
+                  <input
+                    value={values.spi_6}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='spi_6'
+                    id='spi_6'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='spi_7'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    SPI-7
+                  </label>
+                  <input
+                    value={values.spi_7}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='spi_7'
+                    id='spi_7'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-2'>
+                  <label
+                    htmlFor='spi_8'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    SPI-8 
+                  </label>
+                  <input
+                    value={values.spi_8}
+                    onChange={handleInputChange}
+                    type='number'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    name='spi_8'
+                    id='spi_8'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+
+                
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='bachelor_marks'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Bachelor&apos;s Marks (if completed)
+                  </label>
+                  <input
+                    value={values.bachelor_marks}
+                    onChange={handleInputChange}
+                    type='number'
+                    name='bachelor_marks'
+                    id='bachelor_marks'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='master_marks'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    {/* Master marks for those who have completed */}
+                    Master&apos;s Marks (if completed)
+                  </label>
+                  <input
+                    value={values.master_marks}
+                    onChange={handleInputChange}
+                    type='number'
+                    name='master_marks'
+                    id='master_marks'
+                    min={2}
+                    max={10}
+                    step='.01'
+                    placeholder='Ex: 8.86'
+                    autoComplete=''
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
+                  />
+                </div>
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='admission_year'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    Year of experience
+                    Year of admission
                   </label>
                   <input
-                    value={values.year_of_experience}
+                    value={values.admission_year}
                     onChange={handleInputChange}
                     type='number'
                     min={2000}
                     max={2200}
-                    name='year_of_experience'
-                    id='year_of_experience'
-                    autoComplete='year_of_experience'
-                    placeholder='Ex: 1,2,3'
+                    name='admission_year'
+                    id='admission_year'
+                    autoComplete='admission_year'
+                    placeholder='Ex: 2022'
                     required
                     className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
                   />
                 </div>
-
-
-
-                <div className='col-span-6 sm:col-span-3'>
-                  <label
-                    htmlFor='admission_year'
-                    className='block text-sm font-medium text-gray-700'
-                  >
-                    Graduation Year
-                  </label>
-                  <input
-                    value={values.graduation_year}
-                    onChange={handleInputChange}
-                    type='number'
-                    min={2000}
-                    max={2200}
-                    name='graduation_year'
-                    id='graduation_year'
-                    autoComplete='graduation_year'
-                    placeholder='Ex: 2024'
-                    required
-                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
-                  />
-                </div>
-
-
-                <div className='col-span-6 sm:col-span-6'>
-                  <label
-                    htmlFor='address'
-                    className='block text-sm font-medium text-gray-700'
-                  >
-                    Achievements
-
-                  </label>
-                  <textarea
-                    value={values.address}
-                    onChange={handleInputChange}
-                    rows={4}
-                    name='achievements'
-                    id='achievements'
-                    autoComplete='address'
-                    required
-                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-orange-500'
-                  />
-                </div>
-
-
-
               </div>
             </div>
           </div>
@@ -379,7 +787,7 @@ export default function AlumniRegistration({ token = '' }) {
             type='submit'
             className='ml-3 inline-flex justify-center py-2 px-3 border border-transparent shadow-lg shadow-yellow-500/80 hover:shadow-yellow-600/50 text-sm font-medium rounded-xl text-white bg-yellow-500 hover:bg-yellow-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500'
           >
-            Submit
+            Submit for approval
           </button>
         </div>
       </div>

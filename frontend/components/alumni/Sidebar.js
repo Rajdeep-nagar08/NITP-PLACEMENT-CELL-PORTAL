@@ -1,3 +1,4 @@
+/* This example requires Tailwind CSS v2.0+ */
 import { Fragment, useState, useContext } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import {
@@ -24,14 +25,37 @@ import AuthContext from '@/context/AuthContext'
 
 const navigation = [
   {
-    name: 'Profile',
-    href: '/alumni/profile',
+    name: 'Alumni Profile',
+    href: '/alumn/profile',
     icon: UserIcon,
   },
 
+  // {
+  //   name: 'All Jobs',
+  //   href: '/alumn/all-jobs',
+  //   icon: ClipboardListIcon,
+  // },
+
+  // {
+  //   name: 'Eligible Jobs',
+  //   href: '/alumn/eligible-jobs',
+  //   icon: BriefcaseIcon,
+  // },
+
+  // {
+  //   name: 'Jobs Applied',
+  //   href: '/alumn/jobs-applied',
+  //   icon: ClipboardCheckIcon,
+  // },
+
+  // {
+  //   name: 'Resume & Transcript',
+  //   href: '/alumn/resume',
+  //   icon: DocumentTextIcon,
+  // },
   {
     name: 'Reset Password',
-    href: '/alumni/reset-password',
+    href: '/alumn/reset-password',
     icon: ShieldCheckIcon,
   },
 ]

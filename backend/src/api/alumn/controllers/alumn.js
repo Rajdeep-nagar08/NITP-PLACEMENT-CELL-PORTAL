@@ -1,12 +1,12 @@
 "use strict";
 
 /**
- *  alumni controller
+ *  alumn controller
  */
 
 const { createCoreController } = require("@strapi/strapi").factories;
 
-module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
+module.exports = createCoreController("api::alumn.alumn", ({ strapi }) => ({
   /* Accessible only with proper bearer token
    */
   async findMe(ctx) {
@@ -17,7 +17,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
         { messages: [{ id: "Bearer Token not provided or invalid" }] },
       ]);
     }
-    const data = await strapi.db.query("api::alumni.alumni").findOne({
+    const data = await strapi.db.query("api::alumn.alumn").findOne({
       populate: true,
       where: {
         roll: user.username,
@@ -29,19 +29,19 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
 
   /** Authentication is needed for this
    *
-   * Note: Send data in JSON (not form-data), hence file uploads are NOT allowed on this route, use /alumni/modify route for that
+   * Note: Send data in JSON (not form-data), hence file uploads are NOT allowed on this route, use /alumn/modify route for that
    *
    ** Requires request body is same as if passed to POST request to usual create entry through strapi REST api
    * ie. ctx.request.body should be like: { data: {"name": "koi", "roll": "19023"} }
    *
    * This is for frontend to be independent of format that strapi requires
    *
-   * Using this route ensures some pre-save checks, such as approved MUST not be able to set by alumni
+   * Using this route ensures some pre-save checks, such as approved MUST not be able to set by alumn
    */
   async submit_for_approval(ctx) {
     const user = ctx.state.user;
 
-    /* This is needed since only a signed in alumni should be able to send this + We need user.id later */
+    /* This is needed since only a signed in alumn should be able to send this + We need user.id later */
     if (!user || !user.username) {
       return ctx.badRequest(null, [
         { messages: [{ id: "Bearer Token not provided or invalid" }] },
@@ -111,7 +111,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
 
     ctx.request.body = { data };
 
-    // File uploads are not allowed on this route, use /alumni/modify route for that
+    // File uploads are not allowed on this route, use /alumn/modify route for that
     ctx.request.files = {};
 
     return await this.create(ctx);
@@ -125,11 +125,11 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
    * ie. ctx.request.body should be like: { "name":"Koi","roll": "1905050","resume": File }, ie. NOT like { "data": {"name": "koi"} }
    * This was made to accommodate both types of input, as body and form-data
    * - Request body must be 'multipart/form-data'
-   * - Most fields cannot be updated after alumni clicks "Submit for approval"
+   * - Most fields cannot be updated after alumn clicks "Submit for approval"
    * - By default only selected fields at end of this function can be modified,
    *   ie. if a field name is not mentioned in this function, IT CANNOT BE CHANGED
    *
-   * @auth Requires authentication with 'alumni' role
+   * @auth Requires authentication with 'alumn' role
    */
   async modify_multiple(ctx) {
     const user = ctx.state.user;
@@ -152,21 +152,21 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
 
     // console.debug({body, files: ctx.request.files, query: ctx.query});
 
-    const alumni_data = await strapi.db.query("api::alumni.alumni").findOne({
+    const alumn_data = await strapi.db.query("api::alumn.alumn").findOne({
       where: {
         roll: roll,
       },
       select: ["id", "approved"],
     });
-    if (!alumni_data) {
+    if (!alumn_data) {
       // Returning 500, since this should not fail, it's just reading data of an existing user (as they have been provided the JWT)
       return ctx.internalServerError(null, [
-        { messages: [{ id: "Failed to fetch alumni data" }] },
+        { messages: [{ id: "Failed to fetch alumn data" }] },
       ]);
     }
 
-    // Note: Intentionally not checking `approved`, since alumni can modify some fields
-    const { id, approved } = alumni_data;
+    // Note: Intentionally not checking `approved`, since alumn can modify some fields
+    const { id, approved } = alumn_data;
 
     /**
      * NOTE TO FUTURE DEVELOPERS:
@@ -176,7 +176,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
     // Most mandatory components locked after approval of the profile (ie. only allowed to change before approval).
     // CPI can be updated when allowed by admin
 
-    // NOTE: These are not allowed to change, since alumni has already "submitted for approval"
+    // NOTE: These are not allowed to change, since alumn has already "submitted for approval"
     const fields_allowed_before_approval = [
       "name",
       "roll",
@@ -238,10 +238,10 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
     });
     if (!setting) {
       console.error(
-        "[alumni: modify] Failed to get global settings for CPI change allowed or not"
+        "[alumn: modify] Failed to get global settings for CPI change allowed or not"
       );
       console.error(
-        "[alumni: modify]     Not responding with failure, since it by default won't be modifiable"
+        "[alumn: modify]     Not responding with failure, since it by default won't be modifiable"
       );
       // return ctx.internalServerError(null, [{ messages: [{ id: "Failed to get global settings" }] }]);
     }
@@ -266,22 +266,22 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
      * do this, I am separating this strapi-dependent logic from frontend, so this array will
      * be used to rename all media fields adding "files." to the beginning
      *
-     * NOTE: This needs to be updated with every media field added to alumni schema
+     * NOTE: This needs to be updated with every media field added to alumn schema
      */
     const media_fields = ["resume", "profile_pic"];
     const files_to_upload = {};
     for (const field in ctx.request.files || {}) {
       if (media_fields.includes(field)) {
-        // Delete "resume" field in alumni. ie. by setting resume: null
-        const edited_alumni = await strapi.db
-          .query("api::alumni.alumni")
+        // Delete "resume" field in alumn. ie. by setting resume: null
+        const edited_alumn = await strapi.db
+          .query("api::alumn.alumn")
           .update({
             where: { id: id },
             data: {
               [field]: null,
             },
           });
-        // console.debug(edited_alumni);
+        // console.debug(edited_alumn);
 
         // Rename the file as `resume.pdf`
         if (field == "resume") {
@@ -325,22 +325,22 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
   },
 
   /**
-   * @description Returns whether a alumni is placed or not, if a roll given,
+   * @description Returns whether a alumn is placed or not, if a roll given,
    * else returns results for all
-   * @example http://localhost:1337/alumni/placed-status?roll=19cs11
+   * @example http://localhost:1337/alumn/placed-status?roll=19cs11
    *          response: { placed: true }
-   * @example http://localhost:1337/alumni/placed-status,
+   * @example http://localhost:1337/alumn/placed-status,
    *          response: { placed: { "placed_a1": ["19cs11", "19ec62"], "placed_a2": [...], "placed_x": [...] } }
    *
-   * @note This doesn't return 'unplaced' alumni's rolls
-   * @note There can be the case where alumni is selected in both A1 and A2, in that case
+   * @note This doesn't return 'unplaced' alumn's rolls
+   * @note There can be the case where alumn is selected in both A1 and A2, in that case
    * handle at frontend, which to show A1 or A2
    *
    * @note Conditions for being 'placed':
    * 1. On-campus selection: Logic is any application has status='selected',
    * but only category='FTE' AND classication is not 'none', since
    * classification 'none' is for internships
-   * 2. Off-campus selection: Logic is the placed_status field in the alumni's
+   * 2. Off-campus selection: Logic is the placed_status field in the alumn's
    * data is set to something other than 'unplaced'
    *
    * @returns { placed: boolean | [ [placed_status]: string ] }, If 'roll' given, then returns a
@@ -354,7 +354,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
     const roll = query.roll;
 
     if (!roll) {
-      // Get all roll numbers where the alumni is selected in some job
+      // Get all roll numbers where the alumn is selected in some job
       const applications = await strapi.db
         .query("api::application.application")
         .findMany({
@@ -368,7 +368,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
               },
             },
           },
-          populate: ["alumni", "job"],
+          populate: ["alumn", "job"],
         });
 
       const oncampus_placed = {
@@ -380,12 +380,12 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
       applications.forEach((app) => {
         // Note: Assuming job.classification is one of "A1", "A2", "X"
         oncampus_placed[`placed_${app.job.classification.toLowerCase()}`].push(
-          app.alumni.roll
+          app.alumn.roll
         );
       });
 
-      // Get array of alumnis who are NOT 'unplaced'
-      const alumnis = await strapi.db.query("api::alumni.alumni").findMany({
+      // Get array of alumns who are NOT 'unplaced'
+      const alumns = await strapi.db.query("api::alumn.alumn").findMany({
         where: {
           $not: {
             placed_status: "unplaced",
@@ -400,9 +400,9 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
         placed_x: [],
       };
 
-      alumnis.forEach((alumni) => {
-        // Note: Assuming alumni.placed_status is one of "placed_a1", "placed_a2", "placed_x"
-        offcampus_placed[alumni.placed_status].push(alumni.roll);
+      alumns.forEach((alumn) => {
+        // Note: Assuming alumn.placed_status is one of "placed_a1", "placed_a2", "placed_x"
+        offcampus_placed[alumn.placed_status].push(alumn.roll);
       });
 
       // merge unique rolls from oncampus_placed and offcampus_placed
@@ -431,18 +431,18 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
       return;
     }
 
-    const alumni = await strapi.db.query("api::alumni.alumni").findOne({
+    const alumn = await strapi.db.query("api::alumn.alumn").findOne({
       where: {
         roll: roll,
       },
       select: ["id", "placed_status"],
     });
-    if (!alumni) {
-      return ctx.notFound(null, [{ messages: [{ id: "Alumni not found" }] }]);
+    if (!alumn) {
+      return ctx.notFound(null, [{ messages: [{ id: "Student not found" }] }]);
     }
 
     // If placed_status already set, no need to query the applications, return
-    if (alumni.placed_status != "unplaced") {
+    if (alumn.placed_status != "unplaced") {
       ctx.body = { placed: true };
       return;
     }
@@ -451,7 +451,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
       .query("api::application.application")
       .findOne({
         where: {
-          alumni: alumni.id,
+          alumn: alumn.id,
           status: "selected",
           job: {
             category: "FTE",
@@ -471,31 +471,31 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
   },
 
   /**
-   * @description Returns whether a alumni has an intern offer or not
-   * @example http://localhost:1337/alumni/intern-status?roll=19cs11
+   * @description Returns whether a alumn has an intern offer or not
+   * @example http://localhost:1337/alumn/intern-status?roll=19cs11
    *
    * @note This function doesn't respect 'registered_for', for example, a
-   * alumni registered for FTE, may also have his roll in the output, in case
+   * alumn registered for FTE, may also have his roll in the output, in case
    * he was selected in an intern or internship_status is true.
    * If needed, handle/filter according to that on frontend
    *
    * @note Conditions for having an 'intern offer':
    * 1. On-campus selection: Logic is any application has status='selected',
    * and either (category='FTE' AND classication='none') or (category='Intern')
-   * 2. Off-campus selection: Logic is the intern_status field in the alumni's
+   * 2. Off-campus selection: Logic is the intern_status field in the alumn's
    * data is set
    *
    * @returns { internship: boolean | [ string ] }, If 'roll' given, then returns a
    * boolean (true/false denoting whether got/no internship respectively). Else,
    * when 'roll' not given, returns an 'array of strings' representing roll
-   * numbers of alumnis who got internships
+   * numbers of alumns who got internships
    */
   async get_intern_status(ctx) {
     const query = ctx.request.query || {};
 
     const roll = query.roll;
     if (!roll) {
-      // Get all roll numbers where the alumni is selected in some intern
+      // Get all roll numbers where the alumn is selected in some intern
       const applications = await strapi.db
         .query("api::application.application")
         .findMany({
@@ -514,20 +514,20 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
               ],
             },
           },
-          populate: ["alumni"],
+          populate: ["alumn"],
         });
 
-      const oncampus_intern = applications.map((app) => app.alumni.roll);
+      const oncampus_intern = applications.map((app) => app.alumn.roll);
 
-      // Get array of alumnis who have got an internship
-      const alumnis = await strapi.db.query("api::alumni.alumni").findMany({
+      // Get array of alumns who have got an internship
+      const alumns = await strapi.db.query("api::alumn.alumn").findMany({
         where: {
           internship_status: true,
         },
         select: ["roll"],
       });
 
-      const offcampus_intern = alumnis.map((alumni) => alumni["roll"]);
+      const offcampus_intern = alumns.map((alumn) => alumn["roll"]);
 
       // merge unique rolls from oncampus_placed and offcampus_placed
       const intern_rolls = Array.from(
@@ -538,18 +538,18 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
       return;
     }
 
-    const alumni = await strapi.db.query("api::alumni.alumni").findOne({
+    const alumn = await strapi.db.query("api::alumn.alumn").findOne({
       where: {
         roll: roll,
       },
       select: ["id", "internship_status"],
     });
-    if (!alumni) {
-      return ctx.notFound(null, [{ messages: [{ id: "Alumni not found" }] }]);
+    if (!alumn) {
+      return ctx.notFound(null, [{ messages: [{ id: "Student not found" }] }]);
     }
 
     // If intern selected, no need to query the applications, return
-    if (alumni.internship_status == true) {
+    if (alumn.internship_status == true) {
       ctx.body = { internship: true };
       return;
     }
@@ -558,7 +558,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
       .query("api::application.application")
       .findOne({
         where: {
-          alumni: alumni.id,
+          alumn: alumn.id,
           status: "selected",
           job: {
             // @ref: OR according to https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/filtering.html#or
@@ -583,7 +583,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
   },
 
   /**
-   * @description Set 'placed_status' field for a alumni (usually when they get
+   * @description Set 'placed_status' field for a alumn (usually when they get
    * placed off-campus).
    * A separate API was needed to ensure that placed_status and
    * placed_status_updated are set simulataneously
@@ -593,7 +593,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
    * @note Setting to 'unplaced' is also allowed
    *
    * @example PUT
-   * http://localhost:1337/alumni/set-placed-status?roll=19cs11&placed_status=placed_a2
+   * http://localhost:1337/alumn/set-placed-status?roll=19cs11&placed_status=placed_a2
    */
   async set_placed_status(ctx) {
     const query = ctx.request.query;
@@ -616,7 +616,7 @@ module.exports = createCoreController("api::alumni.alumni", ({ strapi }) => ({
       ]);
     }
 
-    await strapi.db.query("api::alumni.alumni").update({
+    await strapi.db.query("api::alumn.alumn").update({
       where: { roll: roll },
       data: {
         placed_status: placed_status,

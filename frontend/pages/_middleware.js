@@ -28,5 +28,13 @@ export default function _middleware(req) {
     }
   }
 
+  if (url.includes('/alumni/')) {
+    if (token) {
+      return NextResponse.next()
+    } else {
+      return NextResponse.redirect(nextUrl.origin)
+    }
+  }
+
   return NextResponse.next()
 }
