@@ -77,12 +77,21 @@ export default function Profile({ student, token }) {
     })
       .then((res) => res.json())
       .then((data) => {
+
+  console.log("hello",data)
+
         setEditCpi(data.data.attributes.cpi_change_allowed)
       })
+
+
       .catch((err) => {
         console.log(err)
+        toast.error('Unable to fetch data from setting !!! api/setting not working')
+
       })
   }, [])
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -105,6 +114,7 @@ export default function Profile({ student, token }) {
       toast.error('Something Went Wrong')
     }
   }
+
   return (
     <div className='bg-white shadow overflow-hidden sm:rounded-lg mt-4'>
       <div className='px-4 py-5 sm:px-6 flex justify-between'>

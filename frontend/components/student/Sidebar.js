@@ -107,7 +107,7 @@ export default function Sidebar({ heading = '', children }) {
                 leaveFrom='opacity-100'
                 leaveTo='opacity-0'
               >
-                <div className='absolute top-0 right-0 -mr-12 pt-2'>
+                <div className='absolute top-0 left-0 -mr-12 pt-2'>
                   <button
                     type='button'
                     className='ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white'
@@ -203,7 +203,7 @@ export default function Sidebar({ heading = '', children }) {
       </Transition.Root>
 
       {/* Static sidebar for desktop */}
-      <div className='hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 md:right-0 '>
+      <div className='hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 md:left-0 '>
         {/* Sidebar component, swap this element with another sidebar if you like */}
         <div className='flex-1 flex flex-col min-h-0 bg-stone-800'>
           <div className='flex-1 flex flex-col pt-5 pb-4 overflow-y-auto'>

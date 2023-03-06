@@ -24,12 +24,40 @@ export default function SignIn() {
   // Initialize a boolean state
   const [passwordShown, setPasswordShown] = useState(false);
 
+  const [newReg, allowNewReg] = useState(false);
+
+
   // Password toggle handler
   const togglePassword = () => {
     // When the handler is invoked
     // inverse the boolean state of passwordShown
     setPasswordShown(!passwordShown);
   };
+
+  
+  useEffect(() => {
+    fetch(`${API_URL}/api/setting`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+
+       console.log("hello",data)
+
+        allowNewReg(data.data.attributes.registrations_allowed)
+      })
+
+
+      .catch((err) => {
+        console.log(err)
+        toast.error('Unable to fetch data from setting !!! api/setting not working')
+
+      })
+  }, [])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -188,6 +216,9 @@ export default function SignIn() {
                 </button>
               </div>
             </form>
+
+            <div>
+              {newReg ? (
             <p className="p-3 text-white">
 
             Or{" "}
@@ -197,6 +228,12 @@ export default function SignIn() {
                     </a>
                   </Link>
             </p>
+              ) : (
+                ''
+              )}
+
+            </div>
+
         </div>
           </div>
       </div>

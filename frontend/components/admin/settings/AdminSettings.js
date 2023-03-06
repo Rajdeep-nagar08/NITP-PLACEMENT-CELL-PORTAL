@@ -28,10 +28,14 @@ export default function AdminSettings({ token = '' }) {
         }),
       })
         .then((res) => res.json())
+
         .then((data) => {
           console.log('res', data)
           toast.success('Successfully Updated')
         })
+
+
+
         .catch((err) => {
           toast.error('Something Went Wrong!')
           console.log(err)
@@ -50,10 +54,14 @@ export default function AdminSettings({ token = '' }) {
         setCpiChangeAllowed(data.data.attributes.cpi_change_allowed)
         setRegistrationsAllowed(data.data.attributes.registrations_allowed)
       })
+      
       .catch((err) => {
         console.log(err)
       })
   }, [])
+
+
+
 
   return (
     <main className='mt-4'>
