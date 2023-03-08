@@ -138,7 +138,7 @@ export default function Sidebar({ heading = '', children }) {
             <h1 className={`text-base font-medium rounded-md  duration-300 ${!sidebarOpen && "hidden"}`}>Logout</h1>
           </a>
         </div>
-        <div className='flex-shrink-0 flex bg-[#120101]'>
+        <div className='absolute bottom-0 left-0 pl-[0.9rem] flex-shrink-0 flex bg-[#120101]'>
           <a href='#' className='flex-shrink-0 w-full group block'>
             <div className='flex items-center'>
               <div>

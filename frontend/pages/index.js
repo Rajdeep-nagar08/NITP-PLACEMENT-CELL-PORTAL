@@ -3,7 +3,7 @@ import Navbar from '@/components/student/Header'
 import Head from 'next/head'
 import Image from 'next/image'
 import { ToastContainer } from 'react-toastify'
-import SignIn from '@/components/SignIn'
+import CoverPage from '@/components/CoverPage'
 
 export default function Home({
   title = 'Training and Placement Cell NIT Patna',
@@ -31,7 +31,7 @@ export default function Home({
             draggable
             pauseOnHover
           />
-          <SignIn />
+          <CoverPage />
         </main>
         {/*  Site footer */}
       </div>
