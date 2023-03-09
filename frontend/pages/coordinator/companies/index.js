@@ -29,6 +29,13 @@ export default function Company({ token }) {
     }
   }, [])
 
+
+  const onRowClicked = useCallback((event) => {
+    // event.data contains the row data
+    window.location.href = `/coordinator/companies/${event.data.id}`
+  }, [])
+
+
   const [columnDefs] = useState([
     {
       headerName: 'S.No.',
@@ -40,15 +47,15 @@ export default function Company({ token }) {
     {
       headerName: 'Company',
       field: 'attributes.company_name',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link href={`/coordinator/companies/${params.data.id}`}>
-              {params.value}
-            </Link>
-          </div>
-        )
-      },
+      // cellRenderer: function (params) {
+      //   return (
+      //     <div>
+      //       <Link href={`/coordinator/companies/${params.data.id}`}>
+      //         {params.value}
+      //       </Link>
+      //     </div>
+      //   )
+      // },
     },
     {
       headerName: 'Approval Status',
@@ -123,14 +130,27 @@ export default function Company({ token }) {
           </div>
         </div>
         <div className='ag-theme-alpine mt-4' style={{ height: 600 }}>
-          <AgGridReact
+          {/* <AgGridReact
             ref={gridRef}
             rowMultiSelectWithClick={true}
             rowData={rowData}
             columnDefs={columnDefs}
             rowSelection='multiple'
             defaultColDef={{ sortable: true, filter: true }}
-          ></AgGridReact>
+          ></AgGridReact> */}
+
+
+<AgGridReact
+    onCellFocused={(event) => event.api.clearFocusedCell()}
+    rowData={rowData}
+    columnDefs={columnDefs}
+    defaultColDef={{ sortable: true, filter: true }}
+    onRowClicked={onRowClicked}
+    rowStyle={{ cursor: 'pointer' }}
+    // Add the following inline styles
+  ></AgGridReact>
+
+
         </div>
       </div>
     </Layout>

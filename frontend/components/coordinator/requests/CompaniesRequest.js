@@ -6,12 +6,12 @@ import { API_URL } from '@/config/index'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
 
-export default function JobRequest({ token = '' }) {
+export default function CompaniesRequest({ token = '' }) {
   // Fetch Companies from API
-  const [jobs, setJobs] = useState([])
+  const [companies, setCompanies] = useState([])
 
   const handleApprove = async (id) => {
-    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
+    const res = await fetch(`${API_URL}/api/companies/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -20,12 +20,12 @@ export default function JobRequest({ token = '' }) {
 
       body: JSON.stringify({
         data: {
-          approval_status: 'approved',
+          status: 'approved',
         },
       }),
     })
     if (!res.ok) {
-      toast.success('Something Went Wrong!')
+      toast.warning('Something Went Wrong!')
     } else {
       toast.success('Successfully Approved')
     }
@@ -33,7 +33,7 @@ export default function JobRequest({ token = '' }) {
   }
 
   const handleReject = async (id) => {
-    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
+    const res = await fetch(`${API_URL}/api/companies/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -42,30 +42,30 @@ export default function JobRequest({ token = '' }) {
 
       body: JSON.stringify({
         data: {
-          approval_status: 'rejected',
+          status: 'rejected',
         },
       }),
     })
     if (!res.ok) {
-      toast.success('Something Went Wrong!')
+      toast.warning('Something Went Wrong!')
     } else {
-      toast.success('Successfully Rejected')
+      toast.info('Successfully Rejected')
     }
     fetchData()
   }
-
   const fetchData = async () => {
     const res = await fetch(
-      `${API_URL}/api/jobs?filters[approval_status][$eq]=pending&populate=*`,
+      `${API_URL}/api/companies?filters[status][$eq]=pending&populate=*`,
       {
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${token}`,
         },
       }
     )
     const data = await res.json()
     if (res.ok) {
-      setJobs(data.data)
+      setCompanies(data.data)
     } else {
       toast.warning('Something Went Wrong!')
     }
@@ -76,28 +76,27 @@ export default function JobRequest({ token = '' }) {
 
   const [columnDefs] = useState([
     {
-      headerName: 'Job Title',
-      field: 'attributes.job_title',
+      headerName: 'S.No.',
+      valueGetter: 'node.rowIndex + 1',
+    },
+    {
+      headerName: 'Company',
+      field: 'attributes.company_name',
       cellRenderer: function (params) {
         return (
-          <Link href={`/admin/job_unapproved/${params.data.id}`}>   
+          <Link href={`/coordinator/companies/${params.data.id}`}>
             <a>{params.value}</a>
           </Link>
         )
       },
     },
-
     {
-      headerName: 'Job Category',
-      field: 'attributes.category',
+      headerName: 'Approval Status',
+      field: 'attributes.status',
     },
     {
-      headerName: 'Company',
-      field: 'attributes.company.data.attributes.company_name',
-    },
-    {
-      headerName: 'Classfication',
-      field: 'attributes.classification',
+      headerName: 'Company Addrees',
+      field: 'attributes.company_address',
     },
     {
       headerName: 'Approve',
@@ -139,13 +138,13 @@ export default function JobRequest({ token = '' }) {
       <div className='md:flex md:items-center md:justify-between'>
         <div className='flex-1 min-w-0'>
           <h2 className='text-xl font-thin leading-7 text-gray-900 sm:text-2xl sm:truncate'>
-            Jobs
+            Companies
           </h2>
         </div>
       </div>
       <div className='ag-theme-alpine mt-4' style={{ height: 300 }}>
         <AgGridReact
-          rowData={jobs}
+          rowData={companies}
           columnDefs={columnDefs}
           defaultColDef={{ sortable: true }}
         ></AgGridReact>

@@ -224,7 +224,7 @@ export default function SignIn() {
             Or{" "}
                   <Link href="/account/studentRegistration">
                     <a className=" text-yellow-500 hover:text-orange-500 font-bold">
-                      New Registration
+                      Student Registration
                     </a>
                   </Link>
             </p>
@@ -234,9 +234,28 @@ export default function SignIn() {
 
             </div>
 
+            <div>
+              {newReg ? (
+            <p className="p-3 text-white">
+
+            Or{" "}
+                  <Link href="/account/RecruiterSignUp">
+                    <a className=" text-yellow-500 hover:text-orange-500 font-bold">
+                      Company Registration
+                    </a>
+                  </Link>
+            </p>
+              ) : (
+                ''
+              )}
+
+            </div>
+
+
         </div>
           </div>
       </div>
     </div>
   );
+
 }

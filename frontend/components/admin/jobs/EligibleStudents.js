@@ -139,6 +139,13 @@ useEffect(() => {
 }, [])
 
 
+
+const onRowClicked = useCallback((event) => {
+  // event.data contains the row data
+  window.location.href = `/admin/students/${event.data.id}`
+}, [])
+
+
   const [columnDefs] = useState([
     {
       headerName: 'S.No.',
@@ -329,14 +336,21 @@ useEffect(() => {
       </div>
 
       <div className='ag-theme-alpine mt-4' style={{ height: 400 }}>
-        <AgGridReact
-          ref={gridRef}
+
+<AgGridReact
+    onCellFocused={(event) => event.api.clearFocusedCell()}
+    ref={gridRef}
           rowMultiSelectWithClick={true}
           rowSelection='multiple'
           rowData={students}
           columnDefs={columnDefs}
           defaultColDef={{ sortable: true, filter: true }}
-        ></AgGridReact>
+    onRowClicked={onRowClicked}
+    rowStyle={{ cursor: 'pointer' }}
+    cellStyle={{ boxShadow: 'none' }}
+    // Add the following inline styles
+  ></AgGridReact>
+
       </div>
     </div>
   )

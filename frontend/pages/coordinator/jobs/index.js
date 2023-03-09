@@ -97,23 +97,43 @@ export default function Jobs({ token }) {
   ])
 
 
+  // useEffect(() => {
+  //   const config = {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   }
+
+
+  //   axios
+  //     .get(`${API_URL}/api/jobs?populate=*&sort=id:desc`, config)
+  //     .then((res) => {
+  //       let fetched_data = res.data.data
+  //       setRowData(fetched_data)
+  //     })
+  //     .catch((err) => {
+  //       toast.error('Error while fetching data')
+  //       console.error(err)
+  //     })
+  // }, [])
+
   useEffect(() => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
-    }
-
-
+    };
+  
     axios
       .get(`${API_URL}/api/jobs?populate=*&sort=id:desc`, config)
       .then((res) => {
-        let fetched_data = res.data.data
-        setRowData(fetched_data)
+        let fetched_data = res.data.data;
+        let filtered_data = fetched_data.filter(
+          (job) => job.attributes.approval_status === "approved"
+        );
+        setRowData(filtered_data);
       })
       .catch((err) => {
-        toast.error('Error while fetching data')
-        console.error(err)
-      })
-  }, [])
+        toast.error("Error while fetching data");
+        console.error(err);
+      });
+  }, []);
 
   return (
    

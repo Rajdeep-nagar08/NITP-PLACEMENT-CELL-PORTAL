@@ -9,39 +9,89 @@ import axios from 'axios'
 import { API_URL } from '@/config/index'
 import Link from 'next/link'
 
+import { useRouter } from 'next/router';
+
+
+
+// <div className='ml-4 mt-2 flex-shrink-0'>
+// <button
+//   type='button'
+//   onClick={onBtExport}
+//   className='inline-flex items-center px-4 py-2
+//   border border-transparent text-xs font-medium rounded shadow-sm
+//   text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
+//   focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+// >
+//   Export
+// </button>
+// </div>
+
+
+
+
 export default function Students({ token }) {
+
+  const router = useRouter();
+
   const [rowData, setRowData] = useState([])
 
+  // const [columnDefs] = useState([
+  //   {
+  //     headerName: 'Roll No.',
+  //     field: 'attributes.roll',
+  //     cellRenderer: function (params) {
+  //       return (
+  //         <div>
+  //           <Link href={`/admin/students/${params.data.id}`}>
+  //             {params.value}
+  //           </Link>
+  //         </div>
+  //       )
+  //     },
+  //     headerCheckboxSelection: true,
+  //     headerCheckboxSelectionFilteredOnly: true,
+  //     checkboxSelection: true,
+  //   },
+  //   {
+  //     headerName: 'Name',
+  //     field: 'attributes.name',
+  //     cellRenderer: function (params) {
+  //       return (
+  //         <div>
+  //           <Link href={`/admin/students/${params.data.id}`}>
+  //             {params.value}
+  //           </Link>
+  //         </div>
+  //       )
+  //     },
+  //   },
+
+
+  const onRowClicked = useCallback((event) => {
+    // event.data contains the row data
+    window.location.href = `/admin/students/${event.data.id}`
+  }, [])
+
+
   const [columnDefs] = useState([
+    
     {
-      headerName: 'Roll No.',
-      field: 'attributes.roll',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link href={`/admin/students/${params.data.id}`}>
-              {params.value}
-            </Link>
-          </div>
-        )
-      },
+      headerName: '',
+      field: 'checkbox',
       headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
     },
+   
+    {
+      headerName: 'Roll No.',
+      field: 'attributes.roll',
+    },
     {
       headerName: 'Name',
       field: 'attributes.name',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link href={`/admin/students/${params.data.id}`}>
-              {params.value}
-            </Link>
-          </div>
-        )
-      },
     },
+
     {
       headerName: 'Placed Status',
       field: 'attributes.placed',
@@ -306,15 +356,20 @@ export default function Students({ token }) {
         </div>
       </div>
       <div className='ag-theme-alpine mt-4' style={{ height: 600 }}>
-        <AgGridReact
-          ref={gridRef}
-          rowMultiSelectWithClick={true}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          rowSelection='multiple'
-          overlayNoRowsTemplate='Please wait while data is being fetched'
-          defaultColDef={{ sortable: true, filter: true }}
-        ></AgGridReact>
+     
+      <AgGridReact
+    onCellFocused={(event) => event.api.clearFocusedCell()}
+    rowData={rowData}
+    columnDefs={columnDefs}
+    defaultColDef={{ sortable: true, filter: true }}
+    onRowClicked={onRowClicked}
+    rowStyle={{ cursor: 'pointer' }}
+    cellStyle={{ boxShadow: 'none' }}
+    // Add the following inline styles
+    
+  ></AgGridReact>
+
+
       </div>
     </Layout>
   )
