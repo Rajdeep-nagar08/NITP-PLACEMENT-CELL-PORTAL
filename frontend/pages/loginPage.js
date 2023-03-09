@@ -17,6 +17,6 @@ export default function loginPage() {
         pauseOnHover
       />
       <SignIn />
-    </div>
-  )
+    </div>
+  )
 }
