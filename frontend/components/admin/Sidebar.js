@@ -138,9 +138,9 @@ export default function Sidebar({ heading = '', children }) {
             <h1 className={`text-base font-medium rounded-md  duration-300 ${!sidebarOpen && "hidden"}`}>Logout</h1>
           </a>
         </div>
-        <div className='absolute bottom-0 left-0 pl-[0.9rem] flex-shrink-0 flex bg-[#120101]'>
+        <div className={`absolute bottom-0 left-0 flex-shrink-0 duration-300 flex bg-[#1c0505] ${sidebarOpen ? 'sm:w-64 w-52' : 'w-20'}`}>
           <a href='#' className='flex-shrink-0 w-full group block'>
-            <div className='flex items-center'>
+            <div className='flex items-center p-2'>
               <div>
                 <img
                   className='h-8 w-8 rounded-full m-4'
@@ -148,7 +148,7 @@ export default function Sidebar({ heading = '', children }) {
                   alt=''
                 />
               </div>
-              <div className=''>
+              <div className='px-4'>
                 <h1 className={`text-base rounded-md text-white font-bold duration-300 ${!sidebarOpen && "hidden"}`}>
                   {user && user.email}
                 </h1>
@@ -161,18 +161,20 @@ export default function Sidebar({ heading = '', children }) {
         </div>
       </div>
       </div>
-      <main className='pl-32 sm:pl-64 flex flex-col'>
-        <div className='py-6'>
-          <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
-            <h1 className='text-2xl font-semibold text-gray-900'>
-              {heading}
-            </h1>
+      <div className='md:pl-64 flex flex-col flex-1'>
+        <main className='flex-1'>
+          <div className='py-6'>
+            <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
+              <h1 className='text-2xl font-semibold text-gray-900'>
+                {heading}
+              </h1>
+            </div>
+            <div className='max-w-5xl mx-auto px-4 sm:px-6 md:px-8'>
+              {children}
+            </div>
           </div>
-          <div className='max-w-7xl mx-auto px-4 sm:px-6 md:px-8'>
-            {children}
-          </div>
-        </div>
-      </main>
+        </main>
+      </div>
     </div>
   )
 }
