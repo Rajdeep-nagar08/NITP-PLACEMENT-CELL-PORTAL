@@ -9,6 +9,8 @@ import axios from 'axios'
 import { API_URL } from '@/config/index'
 import Link from 'next/link'
 
+
+
 export default function Jobs({ token }) {
   const [rowData, setRowData] = useState([])
 
@@ -37,6 +39,11 @@ const gridRef = useRef()
   }, [])
 
   /////////////////////
+  const onRowClicked = useCallback((event) => {
+    // event.data contains the row data
+    window.location.href = `/admin/jobs/${event.data.id}`
+  }, [])
+
 
 
   const [columnDefs] = useState([
@@ -44,6 +51,25 @@ const gridRef = useRef()
       headerName: 'S.No.',
       valueGetter: 'node.rowIndex + 1',
     },
+
+    {
+      headerName: 'Details',
+      field: 'id',
+      cellRenderer: function (params) {
+        return (
+          <div>
+            <button
+              type='button'
+              // onClick={() => handleApprove(params.value)}
+              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+            >
+              Details
+            </button>
+          </div>
+        )
+      },
+    },
+    
     {
       headerName: 'Company',
       field: 'attributes.company.data.attributes.company_name',
@@ -62,18 +88,18 @@ const gridRef = useRef()
     {
       headerName: 'Job Title',
       field: 'attributes.job_title',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link href={`/admin/jobs/${params.data.id}`}>{params.value}</Link>
-          </div>
-        )
-      },
+      // cellRenderer: function (params) {
+      //   return (
+      //     <div>
+      //       <Link href={`/admin/jobs/${params.data.id}`}>{params.value}</Link>
+      //     </div>
+      //   )
+      // },
     },
-    {
-      headerName: 'Approval Status',
-      field: 'attributes.approval_status',
-    },
+    // {
+    //   headerName: 'Approval Status',
+    //   field: 'attributes.approval_status',
+    // },
     {
       headerName: 'Category',
       field: 'attributes.category',
@@ -122,24 +148,47 @@ const gridRef = useRef()
     },
   ])
 
+  // useEffect(() => {
+  //   const config = {
+  //     headers: { Authorization: `Bearer ${token}` },
+  //   }
+
+  //   axios
+  //     .get(`${API_URL}/api/jobs?populate=*&sort=id:desc`, config)
+  //     .then((res) => {
+  //       let fetched_data = res.data.data
+  //       setRowData(fetched_data)
+  //     })
+  //     .catch((err) => {
+  //       toast.error('Error while fetching data')
+  //       console.error(err)
+  //     })
+  // }, [])
+
+  
   useEffect(() => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
-    }
-
+    };
+  
     axios
       .get(`${API_URL}/api/jobs?populate=*&sort=id:desc`, config)
       .then((res) => {
-        let fetched_data = res.data.data
-        setRowData(fetched_data)
+        let fetched_data = res.data.data;
+        let filtered_data = fetched_data.filter(
+          (job) => job.attributes.approval_status === "approved"
+        );
+        setRowData(filtered_data);
       })
       .catch((err) => {
-        toast.error('Error while fetching data')
-        console.error(err)
-      })
-  }, [])
+        toast.error("Error while fetching data");
+        console.error(err);
+      });
+  }, []);
 
   return (
+
+
     <Layout>
     
       <div className='flex-1'>
@@ -151,12 +200,15 @@ const gridRef = useRef()
           </div>
           <div className='mt-4 flex sm:mt-0 sm:ml-4'>
           
+
             {/* <button
               type='button'
               className='order-1 ml-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-0 sm:ml-0'
             >
               Deactivate
             </button> */}
+
+
 {/* 
             <button
               type='button'
@@ -178,13 +230,22 @@ const gridRef = useRef()
             </Link>
           </div>
         </div>
+
         <div className='ag-theme-alpine mt-4' style={{ height: 600 }}>
-          <AgGridReact
-            rowData={rowData}
-            columnDefs={columnDefs}
-            defaultColDef={{ sortable: true, filter: true }}
-          ></AgGridReact>
-        </div>
+
+  <AgGridReact
+    onCellFocused={(event) => event.api.clearFocusedCell()}
+    rowData={rowData}
+    columnDefs={columnDefs}
+    defaultColDef={{ sortable: true, filter: true }}
+    onRowClicked={onRowClicked}
+    rowStyle={{ cursor: 'pointer' }}
+    // Add the following inline styles
+  ></AgGridReact>
+
+
+</div>
+
       </div>
     </Layout>
   )

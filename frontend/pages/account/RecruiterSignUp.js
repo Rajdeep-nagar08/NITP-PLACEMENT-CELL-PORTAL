@@ -1,29 +1,80 @@
+
+/*
+
+Company name
+
+recuriter name
+
+recuriter email Id
+
+recuiter contact no
+
+
+*/
+
 import Image from 'next/image'
-import AuthContext from '@/context/AuthContext'
-import { useContext, useState, useEffect } from 'react'
+import {useState} from 'react'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { API_URL } from '@/config/index'
+import { useRouter } from 'next/router'
 
 import Link from 'next/link'
 
-export default function SignUpStudent() {
-  const [username, setUsername] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+export default function SignUpRecuiter({ token = ''}) {
 
-  const { register } = useContext(AuthContext)
+  const [values, setValues]= useState({
+    company: '',
+    recruiter_name: '',
+    email: '',
+    contact_no: '',
+  })
+  
 
-  const handleSubmit = (e) => {
+  const router = useRouter()
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
 
-    if (password !== confirmPassword) {
-      toast.error('Passwords do not match!')
-      return
-    }
+    if (confirm('Are you sure you want to submit?')) {
+      const res = await fetch(`${API_URL}/api/recruiters`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ data: values }),
+      })
+      console.log(JSON.stringify({ data: values }))
 
-    register({ username, email, password })
-  }
+
+      if (!res.ok) {
+        if (res.status === 403 || res.status === 401) {
+          toast.error('No token included')
+          return
+        }
+         
+        console.log("xy")
+        const profile = await res.json()
+        // console.log(JSON.stringify(profile, null, 2))
+        toast.error(profile?.error.name)
+      } else {
+        
+        toast.success('Registered ! We Contact You Soon')
+
+        console.log("yz")
+
+        // const profile = await res.json()
+        router.push(`/loginPage`)
+      }
+    }
+}
+
+const handleInputChange = (e) => {
+  const { name, value } = e.target
+  setValues({ ...values, [name]: value })
+}
 
   return (
     <>
@@ -40,13 +91,13 @@ export default function SignUpStudent() {
           </div>
 
           <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>
-            Training and Placement Cell
-          </h2>
-          <h2 className='text-center font-extrabold text-3xl uppercase'>
             NIT Patna
           </h2>
+          <h2 className='text-center font-extrabold text-3xl uppercase'>
+            Placement Portal
+          </h2>
           <p className='mt-2 text-center text-sm text-gray-600'>
-            New Student Registration Or{' '}
+          Let's get you registered Or{' '}
             <Link href='/'>
               <a className='font-medium text-indigo-600 hover:text-indigo-500'>
                 Login
@@ -63,29 +114,77 @@ export default function SignUpStudent() {
               method='POST'
               onSubmit={handleSubmit}
             >
+
               <div>
                 <label
                   htmlFor='username'
                   className='block text-sm font-medium text-gray-700'
                 >
-                  Username
+                  Company
                 </label>
                 <div className='mt-1'>
                   <input
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value.toLowerCase())}
-                    id='username'
-                    name='username'
-                    // pattern='[0-9]{4}[a-zA-Z]{2}[0-9]{2}'
-                    //   pattern='[0-9][0-9][0-9][0-9][0-9]'
+                    value={values.company}
+                    onChange={handleInputChange}
+                    id='company'
+                    name='company'
                     type='text'
-                    autoComplete='username'
+                    autoComplete='company'
                     required
                     className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                    placeholder='Roll Number'
+                    placeholder='Company Name'
                   />
                 </div>
               </div>
+
+
+              <div>
+                <label
+                  htmlFor='recruiter_name'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Recruiter's Name
+                </label>
+                <div className='mt-1'>
+                  <input
+                    value={values.recruiter_name}
+                    onChange={handleInputChange}
+                    id='recruiter_name'
+                    name='recruiter_name'
+                    type='text'
+                    autoComplete='recruiter_name'
+                    required
+                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    placeholder='Recruiter Name'
+                  />
+                </div>
+              </div>
+
+
+
+              <div>
+                <label
+                  htmlFor='contact_no'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  Contact Number
+                </label>
+                <div className='mt-1'>
+                  <input
+                    value={values.contact_no}
+                    onChange={handleInputChange}
+                    id='contact_no'
+                    name='contact_no'
+                    type='number'
+                    autoComplete='contact_no'
+                    required
+                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    placeholder='Contact Number'
+                  />
+                </div>
+              </div>
+
+
 
               <div>
                 <label
@@ -96,8 +195,8 @@ export default function SignUpStudent() {
                 </label>
                 <div className='mt-1'>
                   <input
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value.toLowerCase())}
+                    value={values.email}
+                    onChange={handleInputChange}
                     id='email'
                     name='email'
                     //  pattern='.+@iitp\.ac\.in'
@@ -105,56 +204,7 @@ export default function SignUpStudent() {
                     autoComplete='email'
                     required
                     className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                    placeholder='Institute email address'
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor='password'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Password
-                  <small className='block'>
-                    Must contain at least one number and one uppercase and
-                    lowercase letter, and least 8 characters
-                  </small>
-                </label>
-                <div className='mt-1'>
-                  <input
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    id='password'
-                    name='password'
-                    //  pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
-                    type='password'
-                    placeholder='strong password is recommended'
-                    autoComplete='current-password'
-                    required
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor='confirmPassword'
-                  className='block text-sm font-medium text-gray-700'
-                >
-                  Confirm Password
-                </label>
-                <div className='mt-1'>
-                  <input
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    id='confirmPassword'
-                    name='confirmPassword'
-                    //  pattern='(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}'
-                    type='password'
-                    autoComplete='current-password'
-                    required
-                    className='appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
+                    placeholder='Official email address'
                   />
                 </div>
               </div>
@@ -174,3 +224,4 @@ export default function SignUpStudent() {
     </>
   )
 }
+

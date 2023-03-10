@@ -9,9 +9,13 @@ import 'react-toastify/dist/ReactToastify.css'
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
+
   const router = useRouter()
+
   const [user, setUser] = useState(null)
+
   const [role, setRole] = useState('student')
+
   const [error, setError] = useState(null)
 
   useEffect(() => {
@@ -42,8 +46,7 @@ export const AuthProvider = ({ children }) => {
       setUser(data)
       setRole(data.role)
       toast.success('Registration Successful!')
-      // console.log("xxx",data.role)
-      // redirect after 3 seconds
+        // redirect after 3 seconds
       setTimeout(() => {
         router.push('/')
       }, 3000)
@@ -55,9 +58,6 @@ export const AuthProvider = ({ children }) => {
       toast.error(data?.error?.message)
     }
   }
-
-
-
 
   // fetch(`${NEXT_URL}/api/register`, {
   //   method: 'POST',
@@ -86,6 +86,8 @@ export const AuthProvider = ({ children }) => {
 
 
   //login user
+
+
   const login = async ({ username: identifier, password, role }) => {
     const res = await fetch(`${NEXT_URL}/api/login`, {
       method: 'POST',
@@ -102,22 +104,27 @@ export const AuthProvider = ({ children }) => {
 
 
     if (res.ok) {
+
       setUser(data.user)
 
       if(data.role!=role){
         console.log(data)
         console.log(data.role)
+
         console.log(role)
 
         toast.error("Invalid Account Type");
+
       }
+
+
       else{
 
       setRole(data.role)
       if (role === 'student') {   // student=>public
         router.push('student/profile')
       } else if (role === 'admin') {
-        router.push('admin/home')
+        router.push('/admin/home')
       } else if (role === 'coordinator') {
         router.push('coordinator/home')
       } else if(role=='company'){
