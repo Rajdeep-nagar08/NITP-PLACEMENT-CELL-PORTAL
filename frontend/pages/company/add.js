@@ -6,7 +6,7 @@ import React from 'react'
 
 export default function index({ token = '' }) {
   const pages = [
-    { name: 'Jobs', href: '/coordinator/jobs', current: false },
+    //  { name: 'Jobs', href: '/coordinator/jobs', current: false },
     { name: `Add Job`, href: '#', current: true },
   ]
   return (

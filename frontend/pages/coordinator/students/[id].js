@@ -18,8 +18,8 @@ export default function StudentProfilePage({
     { name: 'Students', href: '/coordinator/students', current: false },
     { name: `${student.attributes.name}`, href: '#', current: true },
   ]
-  const [applications, setApplications] = useState([])
-  const [eligibleJobs, setEligibleJobs] = useState([])
+  const [applications, setApplications] = useState(false)
+  const [eligibleJobs, setEligibleJobs] = useState(false)
 
   const query = qs.stringify(
     {
@@ -51,28 +51,32 @@ export default function StudentProfilePage({
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [query, token])
 
   useEffect(() => {
-    fetch(`${API_URL}/api/jobs?populate=*`, {
+    fetch(`${API_URL}/api/admin/eligiblejobs?roll=${student.attributes.roll}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     })
       .then((res) => res.json())
       .then((resp) => {
-        console.log(resp.data)
-        setEligibleJobs(resp.data)
+       console.log("eligible jobs=> ")
+       console.log(resp)
+        setEligibleJobs(resp)
+      //  console.log("fuck")
+     // console.log(resp.data)
       })
+      
       .catch((err) => {
         console.log(err)
       })
-  }, [])
+  }, [token])
 
   return (
     <Layout>
       <Breadcrumbs pages={pages} />
-      <ApplicationDetails applications={applications} />
+      {/* <ApplicationDetails applications={applications} /> */}
       <Eligiblejobs jobs={eligibleJobs} />
       <StudentProfileEdit student={student} token={token} />
     </Layout>

@@ -18,7 +18,7 @@ export default function AddJob({ token = '' }) {
     only_for_ews: false,
     only_for_female: false,
     company: '',
-    approval_status: 'pending',
+    approval_status: 'approved',
     ///
     POC1: {
       name: '',

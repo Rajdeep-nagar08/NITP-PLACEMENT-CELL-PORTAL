@@ -7,6 +7,7 @@ import {
   ChartBarIcon,
   DocumentTextIcon,
   FolderIcon,
+  CogIcon,
   HomeIcon,
   IdentificationIcon,
   ArrowLeftIcon,
@@ -41,6 +42,11 @@ const navigation = [
     name: 'Job/ Internship',
     href: '/coordinator/jobs',
     icon: DocumentTextIcon,
+  },
+  {
+    name: 'Requests',
+    href: '/coordinator/requests',
+    icon: CogIcon,
   },
   {
     name: 'Reset Password',

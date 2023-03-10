@@ -1,3 +1,4 @@
+
 import {React, useState, useEffect } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 import Image from 'next/image';
@@ -29,6 +30,8 @@ const MENU_LIST = [
         href: "/"
     },
 ]
+
+
 function CoverPage() {
     const [isOpen, setIsOpen] = useState(false);
     return (

@@ -1,9 +1,16 @@
-import { useState } from 'react'
+import { useCallback, useRef, useState, useEffect } from 'react'
 import { AgGridReact } from 'ag-grid-react'
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 
 export default function Eligiblejobs({ jobs = '' }) {
+
+  const onRowClicked = useCallback((event) => {
+    // event.data contains the row data
+    window.location.href = `/admin/jobs/${event.data.id}`
+  }, [])
+
+
   const [columnDefs] = useState([
     {
       headerName: 'Company',
@@ -40,11 +47,23 @@ export default function Eligiblejobs({ jobs = '' }) {
         </h3>
       </div>
       <div className='ag-theme-alpine mt-4' style={{ height: 200 }}>
-        <AgGridReact
+        {/* <AgGridReact
           rowData={jobs}
           columnDefs={columnDefs}
           defaultColDef={{ sortable: true }}
-        ></AgGridReact>
+        ></AgGridReact> */}
+
+<AgGridReact
+    onCellFocused={(event) => event.api.clearFocusedCell()}
+    rowData={jobs}
+    columnDefs={columnDefs}
+    defaultColDef={{ sortable: true, filter: true }}
+    onRowClicked={onRowClicked}
+    rowStyle={{ cursor: 'pointer' }}
+    // Add the following inline styles
+  ></AgGridReact>
+
+
       </div>
     </div>
   )

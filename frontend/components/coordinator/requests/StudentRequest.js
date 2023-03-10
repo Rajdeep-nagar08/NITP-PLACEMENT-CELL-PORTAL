@@ -6,12 +6,12 @@ import { API_URL } from '@/config/index'
 import { toast } from 'react-toastify'
 import Link from 'next/link'
 
-export default function JobRequest({ token = '' }) {
-  // Fetch Companies from API
-  const [jobs, setJobs] = useState([])
+export default function StudentRequest({ token = '' }) {
+  const [students, setStudents] = useState([])
 
   const handleApprove = async (id) => {
-    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
+    console.log('student', students)
+    const res = await fetch(`${API_URL}/api/students/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -20,7 +20,7 @@ export default function JobRequest({ token = '' }) {
 
       body: JSON.stringify({
         data: {
-          approval_status: 'approved',
+          approved: 'approved',
         },
       }),
     })
@@ -31,9 +31,8 @@ export default function JobRequest({ token = '' }) {
     }
     fetchData()
   }
-
   const handleReject = async (id) => {
-    const res = await fetch(`${API_URL}/api/jobs/${id}`, {
+    const res = await fetch(`${API_URL}/api/students/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -42,21 +41,21 @@ export default function JobRequest({ token = '' }) {
 
       body: JSON.stringify({
         data: {
-          approval_status: 'rejected',
+          approved: 'rejected',
         },
       }),
     })
     if (!res.ok) {
-      toast.success('Something Went Wrong!')
+      toast.warning('Something Went Wrong!')
     } else {
-      toast.success('Successfully Rejected')
+      toast.info('Successfully Rejected')
     }
     fetchData()
   }
 
   const fetchData = async () => {
     const res = await fetch(
-      `${API_URL}/api/jobs?filters[approval_status][$eq]=pending&populate=*`,
+      `${API_URL}/api/students?filters[approved][$eq]=pending&populate=*`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -65,39 +64,51 @@ export default function JobRequest({ token = '' }) {
     )
     const data = await res.json()
     if (res.ok) {
-      setJobs(data.data)
+      setStudents(data.data)
     } else {
+      console.log('error', data)
       toast.warning('Something Went Wrong!')
     }
   }
+
   useEffect(() => {
     fetchData()
   }, [])
 
   const [columnDefs] = useState([
     {
-      headerName: 'Job Title',
-      field: 'attributes.job_title',
+      headerName: 'Student Name',
+      field: 'attributes.name',
       cellRenderer: function (params) {
         return (
-          <Link href={`/admin/job_unapproved/${params.data.id}`}>   
+          <Link href={`/coordinator/students/${params.data.id}`}>
             <a>{params.value}</a>
           </Link>
         )
       },
     },
-
     {
-      headerName: 'Job Category',
-      field: 'attributes.category',
+      headerName: 'Roll No.',
+      field: 'attributes.roll',
+      cellRenderer: function (params) {
+        return (
+          <Link href={`/admin/students/${params.data.id}`}>
+            <a>{params.value}</a>
+          </Link>
+        )
+      },
     },
     {
-      headerName: 'Company',
-      field: 'attributes.company.data.attributes.company_name',
+      headerName: 'Program',
+      field: 'attributes.program.data.attributes.program_name',
     },
     {
-      headerName: 'Classfication',
-      field: 'attributes.classification',
+      headerName: 'Course',
+      field: 'attributes.course.data.attributes.course_name',
+    },
+    {
+      headerName: 'Registered For',
+      field: 'attributes.registered_for',
     },
     {
       headerName: 'Approve',
@@ -139,13 +150,13 @@ export default function JobRequest({ token = '' }) {
       <div className='md:flex md:items-center md:justify-between'>
         <div className='flex-1 min-w-0'>
           <h2 className='text-xl font-thin leading-7 text-gray-900 sm:text-2xl sm:truncate'>
-            Jobs
+            Student Registration
           </h2>
         </div>
       </div>
       <div className='ag-theme-alpine mt-4' style={{ height: 300 }}>
         <AgGridReact
-          rowData={jobs}
+          rowData={students}
           columnDefs={columnDefs}
           defaultColDef={{ sortable: true }}
         ></AgGridReact>

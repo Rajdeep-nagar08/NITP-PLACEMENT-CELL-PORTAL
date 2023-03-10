@@ -31,7 +31,6 @@ export default function JobRequest({ token = '' }) {
     }
     fetchData()
   }
-
   const handleReject = async (id) => {
     const res = await fetch(`${API_URL}/api/jobs/${id}`, {
       method: 'PUT',
@@ -80,13 +79,12 @@ export default function JobRequest({ token = '' }) {
       field: 'attributes.job_title',
       cellRenderer: function (params) {
         return (
-          <Link href={`/admin/job_unapproved/${params.data.id}`}>   
+          <Link href={`/coordinator/job_unapproved/${params.data.id}`}>
             <a>{params.value}</a>
           </Link>
         )
       },
     },
-
     {
       headerName: 'Job Category',
       field: 'attributes.category',

@@ -10,6 +10,7 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
+
   "dependencies": {
     "@strapi/plugin-i18n": "4.1.11",
     "@strapi/plugin-users-permissions": "4.1.11",

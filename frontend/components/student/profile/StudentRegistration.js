@@ -54,6 +54,7 @@ export default function StudentRegistration({ token = '' }) {
     //   element === ''
 
     // })
+    
     if (confirm('Are you sure you want to submit for approval?')) {
       const res = await fetch(`${API_URL}/api/student/submit-for-approval`, {
         method: 'POST',
