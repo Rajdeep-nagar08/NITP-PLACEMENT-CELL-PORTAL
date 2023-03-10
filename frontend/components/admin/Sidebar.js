@@ -76,7 +76,7 @@ export default function Sidebar({ heading = '', children }) {
 
   return (
     <div className='flex'>
-      <div className='fixed'>
+      <div className='fixed z-50'>
       <div className={`bg-[#2f0707] h-screen ${sidebarOpen ? 'sm:w-64 w-52' : 'w-20'} duration-300 relative`}>
         <ArrowLeftIcon className={`text-[#2f0707] bg-white rounded-full h-5 w-5 absolute -right-3 top-9 border border-[#2f0707] cursor-pointer ${!sidebarOpen && "rotate-180"}`}
           onClick={() => setSidebarOpen(!sidebarOpen)} />
@@ -161,7 +161,9 @@ export default function Sidebar({ heading = '', children }) {
         </div>
       </div>
       </div>
-      <div className='md:pl-64 flex flex-col flex-1'>
+      <div className='md:pl-64 pl-20 flex flex-col flex-1 bg-[#340404a3]' onClick={() => {
+    setSidebarOpen(false);
+      }}>
         <main className='flex-1'>
           <div className='py-6'>
             <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>

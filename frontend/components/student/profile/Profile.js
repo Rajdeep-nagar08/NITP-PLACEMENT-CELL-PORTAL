@@ -116,7 +116,7 @@ export default function Profile({ student, token }) {
   }
 
   return (
-    <div className='bg-white shadow overflow-hidden sm:rounded-lg mt-4'>
+    <div className='bg-[#f5f1fa] shadow overflow-hidden sm:rounded-lg mt-4'>
       <div className='px-4 py-5 sm:px-6 flex justify-between'>
         <div>
           <h3 className='text-lg leading-6 font-medium text-gray-900'>
@@ -173,7 +173,7 @@ export default function Profile({ student, token }) {
               <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
                 Profile Picture
               </dt>
-              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1'>
+              <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 -z-50'>
                 {student.profile_pic ? (
                   <div>
                     <Image
@@ -599,6 +599,7 @@ export default function Profile({ student, token }) {
           </div>
         </dl>
       </div>
+      
     </div>
   )
 }
