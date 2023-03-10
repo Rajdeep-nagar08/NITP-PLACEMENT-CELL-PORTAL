@@ -8,7 +8,7 @@ export default function AddCompany({ token = '' }) {
     company_name: '',
     company_address: '',
     remarks: '',
-    status: 'pending',
+    status: 'approved',
     contact1: {
       name: '',
       designation: '',

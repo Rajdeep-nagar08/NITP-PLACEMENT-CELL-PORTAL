@@ -28,6 +28,7 @@ export default function SignUpRecuiter({ token = ''}) {
     recruiter_name: '',
     email: '',
     contact_no: '',
+    approved: 'pending'
   })
   
 

@@ -39,6 +39,14 @@ const navigation = [
   },
 
   {
+    name: 'Recruiters',
+    href: '/admin/recruiters',
+    icon: UserCircleIcon,
+
+  },
+
+
+  {
     name: 'Companies',
     href: '/admin/companies',
     icon: FolderIcon,

@@ -22,11 +22,21 @@
     },
     "email": {
       "type": "email",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "contact_no": {
       "type": "biginteger",
       "required": true
+    },
+    "approved": {
+      "type": "enumeration",
+      "enum": [
+        "pending",
+        "approved",
+        "rejected"
+      ],
+      "default": "pending"
     }
   }
 }

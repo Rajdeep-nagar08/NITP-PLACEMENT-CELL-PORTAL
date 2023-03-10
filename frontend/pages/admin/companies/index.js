@@ -52,10 +52,10 @@ export default function Students({ token }) {
         )
       },
     },
-    {
-      headerName: 'Approval Status',
-      field: 'attributes.status',
-    },
+    // {
+    //   headerName: 'Approval Status',
+    //   field: 'attributes.status',
+    // },
     {
       headerName: 'Company Addrees',
       field: 'attributes.company_address',
