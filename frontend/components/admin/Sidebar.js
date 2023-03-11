@@ -169,7 +169,7 @@ export default function Sidebar({ heading = '', children }) {
         </div>
       </div>
       </div>
-      <div className='md:pl-64 pl-20 flex flex-col flex-1 bg-[#340404a3]' onClick={() => {
+      <div className={`${sidebarOpen ? 'pl-64' : 'pl-16' } flex flex-col flex-1 `} onClick={() => {
     setSidebarOpen(false);
       }}>
         <main className='flex-1'>
