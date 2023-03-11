@@ -22,6 +22,7 @@ export default function EditRecruiterPage({ data, token }) {
 export async function getServerSideProps({ req, params }) {
 
   const { token } = parseCookies(req)
+
   const id = params.id
 
   const config = {
@@ -29,6 +30,7 @@ export async function getServerSideProps({ req, params }) {
   }
 
   const res = await axios.get(`${API_URL}/api/users/${id}?populate=*`, config)
+
   console.log(res.data)
 
   return {

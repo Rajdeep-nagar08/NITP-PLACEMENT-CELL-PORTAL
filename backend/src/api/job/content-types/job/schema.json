@@ -120,6 +120,23 @@
       "type": "component",
       "repeatable": false,
       "component": "company.contact-details"
+    },
+    "company_category": {
+      "type": "string"
+    },
+    "industry_sector": {
+      "type": "string"
+    },
+    "details_of_pay_package": {
+      "displayName": "package",
+      "type": "component",
+      "repeatable": false,
+      "component": "job.package"
+    },
+    "hr": {
+      "type": "component",
+      "repeatable": false,
+      "component": "job.hr"
     }
   }
 }

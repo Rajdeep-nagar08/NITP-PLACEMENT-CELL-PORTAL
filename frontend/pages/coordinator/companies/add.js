@@ -1,5 +1,5 @@
 import Breadcrumbs from '@/components/coordinator/Breadcrumbs'
-import AddCompany from '@/components/coordinator/companies/AddCompany'
+import AddCompany from '@/components/admin/companies/AddCompany'
 import Layout from '@/components/coordinator/Layout'
 import { parseCookies } from '@/helpers/index'
 import React from 'react'

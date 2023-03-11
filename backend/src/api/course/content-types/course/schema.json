@@ -27,12 +27,6 @@
       "relation": "manyToOne",
       "target": "api::program.program",
       "inversedBy": "courses"
-    },
-    "alumns": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::alumn.alumn",
-      "mappedBy": "course"
     }
   }
 }

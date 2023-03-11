@@ -28,12 +28,6 @@
       "relation": "oneToMany",
       "target": "api::course.course",
       "mappedBy": "program"
-    },
-    "alumns": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::alumn.alumn",
-      "mappedBy": "program"
     }
   }
 }

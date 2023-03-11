@@ -169,24 +169,6 @@
       "type": "boolean",
       "required": true
     },
-    "program": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::program.program",
-      "inversedBy": "alumns"
-    },
-    "course": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::course.course",
-      "inversedBy": "alumns"
-    },
-    "department": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::department.department",
-      "inversedBy": "alumns"
-    },
     "placed_status": {
       "type": "enumeration",
       "enum": [

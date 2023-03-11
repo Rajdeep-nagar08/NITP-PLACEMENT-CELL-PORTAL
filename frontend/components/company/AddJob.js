@@ -33,7 +33,24 @@ export default function AddJob({ token = '' }) {
       mail_id: '',
       mobile_no: '',
     },
+    company_category: '',
+    industry_sector: '',
+    details_of_pay_package: {
+      basic_salary: '',
+      allowance: '',
+      perks: '',
+      ctc: '',
+    },
+    hr: {
+      name: '',
+      contact_number: '',
+      email: '',
+
+    }
 })
+
+
+
 
 const { user, logout } = useContext(AuthContext)
 
@@ -116,8 +133,6 @@ const { user, logout } = useContext(AuthContext)
         body: formData,
       })
 
-      console.log("Boss")
-
       console.log(res)
 
       if (!res.ok) {
@@ -148,6 +163,28 @@ const { user, logout } = useContext(AuthContext)
     setValues({ ...values, [name]: value })
   }
 
+  
+  const handleContactThreeInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      ['details_of_pay_package']: {
+        ...values.details_of_pay_package,
+        [name]: value,
+      },
+    })
+  }
+  
+  const handleContactFourInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      ['hr']: {
+        ...values.hr,
+        [name]: value,
+      },
+    })
+  }
 
 
   
@@ -231,12 +268,53 @@ const { user, logout } = useContext(AuthContext)
 </select>
 
 
+                </div> 
+                }
 
 
 
+                    <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='company_category'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Company Category
+                    <small className='text-gray-500 ml-1'>
+                      e.g- gov, psu, mnc, pvt ltd, start up, ngo etc.
+                    </small>
+                  </label>
+                  <input
+                    value={values.company_category}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='company_category'
+                    id='company_category'
+                    autoComplete='company_category'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
 
 
-                </div> }
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='industry_sector'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Industry Sector
+                    <small className='text-gray-500 ml-1'>
+                      e.g- core, IT, management, finance, consulting, teaching, finance etc.
+                    </small>
+                  </label>
+                  <input
+                    value={values.industry_sector}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='industry_sector'
+                    id='industry_sector'
+                    autoComplete='industry_sector'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
 
 
                 <div className='col-span-6 sm:col-span-3'>
@@ -257,6 +335,8 @@ const { user, logout } = useContext(AuthContext)
                     className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                   />
                 </div>
+
+
                 {/* Add field to upload JAF */}
                 <div className='col-span-6 sm:col-span-3'>
                   <label
@@ -414,6 +494,7 @@ const { user, logout } = useContext(AuthContext)
                     className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                   />
                 </div>
+
                 <div className='col-span-6 sm:col-span-2'>
                   <label
                     htmlFor='last_date'
@@ -522,6 +603,173 @@ const { user, logout } = useContext(AuthContext)
             </div>
           </div>
         </div>
+
+        
+
+        <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
+          <div className='md:grid md:grid-cols-3 md:gap-6'>
+            <div className='md:col-span-1'>
+              <h3 className='text-lg font-medium leading-6 text-gray-900'>
+                Pay Package
+              </h3>
+              <p className='mt-1 text-sm text-gray-500'>
+              Details of Pay Package
+              </p>
+            </div>
+            <div className='mt-5 md:mt-0 md:col-span-2'>
+              <div className='grid grid-cols-6 gap-6'>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='basic_salary'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Basic Salary
+                  </label>
+                  <input
+                    value={values.details_of_pay_package.basic_salary}
+                    onChange={handleContactThreeInputChange}
+                    type='text'
+                    name='basic_salary'
+                    id='basic_salary'
+                    autoComplete='basic_salary'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='allowance'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Allowance
+                  </label>
+                  <input
+                    value={values.details_of_pay_package.allowance}
+                    onChange={handleContactThreeInputChange}
+                    type='text'
+                    name='allowance'
+                    id='allowance'
+                    autoComplete='allowance'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='perks'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Perks
+                  </label>
+                  <input
+                    value={values.details_of_pay_package.perks}
+                    onChange={handleContactThreeInputChange}
+                    type='text'
+                    name='perks'
+                    id='perks'
+                    autoComplete='tel-national'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='ctc'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    CTC
+                  </label>
+                  <input
+                    value={values.details_of_pay_package.ctc}
+                    onChange={handleContactThreeInputChange}
+                    type='text'
+                    name='ctc'
+                    id='ctc'
+                    autoComplete='tel-national'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        
+        <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
+          <div className='md:grid md:grid-cols-3 md:gap-6'>
+            <div className='md:col-span-1'>
+              <h3 className='text-lg font-medium leading-6 text-gray-900'>
+                HR/Recruiter
+              </h3>
+              <p className='mt-1 text-sm text-gray-500'>
+                Contact Details Of HR/Recruiter
+              </p>
+            </div>
+            <div className='mt-5 md:mt-0 md:col-span-2'>
+              <div className='grid grid-cols-6 gap-6'>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='name'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Name
+                  </label>
+                  <input
+                    value={values.hr.name}
+                    onChange={handleContactFourInputChange}
+                    type='text'
+                    name='name'
+                    id='name'
+                    autoComplete='name'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mail_id'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Email
+                  </label>
+                  <input
+                    value={values.hr.mail_id}
+                    onChange={handleContactFourInputChange}
+                    type='email'
+                    name='mail_id'
+                    id='mail_id'
+                    autoComplete='email'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mobile_no'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    	Telephone/ Mobile
+                  </label>
+                  <input
+                    value={values.hr.mobile_no}
+                    onChange={handleContactFourInputChange}
+                    type='text'
+                    name='mobile_no'
+                    id='mobile_no'
+                    autoComplete='tel-national'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
 
         <div className='flex justify-end'>
           <button
