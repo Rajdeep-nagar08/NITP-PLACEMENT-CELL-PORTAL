@@ -146,7 +146,7 @@ export default function Sidebar({ heading = '', children }) {
         </div>
       </div>
       </div>
-      <div className={`${sidebarOpen ? 'pl-64' : 'pl-16' } flex bg-[#dfdeec78] flex-col flex-1 `} onClick={() => setSidebarOpen(false)}>
+      <div className={`${sidebarOpen ? 'pl-64' : 'pl-16' } flex bg-[#dfdeec78] min-h-screen flex-col flex-1 `} onClick={() => setSidebarOpen(false)}>
         <main className='flex-1'>
           <div className='py-6'>
             <div className=' max-w-6xl mx-auto px-1 pl-8 sm:px-6 lg:px-2'>

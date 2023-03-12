@@ -11,6 +11,7 @@ import {
   InboxIcon,
   LogoutIcon,
   MenuIcon,
+  CollectionIcon,
   UserCircleIcon,
   UsersIcon,
   XIcon,
@@ -41,7 +42,7 @@ const navigation = [
   {
     name: 'Recruiters',
     href: '/admin/recruiters',
-    icon: UserCircleIcon,
+    icon: CollectionIcon,
 
   },
 
@@ -57,7 +58,6 @@ const navigation = [
     name: 'Jobs/Internship',
     href: '/admin/jobs',
     icon: BriefcaseIcon,
-    spacing: true,
   },
   {
     name: 'Requests',
@@ -88,7 +88,7 @@ export default function Sidebar({ heading = '', children }) {
       <div className={`bg-[#2f0707] h-screen ${sidebarOpen ? 'sm:w-64 w-52' : 'w-20'} duration-300 relative`}>
         <ArrowLeftIcon className={`text-[#2f0707] bg-white rounded-full h-5 w-5 absolute -right-3 top-9 border border-[#2f0707] cursor-pointer ${!sidebarOpen && "rotate-180"}`}
           onClick={() => setSidebarOpen(!sidebarOpen)} />
-        <div className='inline-flex p-4'>
+        <div className='inline-flex p-3'>
           <Image
             width={50}
             height={50}
@@ -131,7 +131,7 @@ export default function Sidebar({ heading = '', children }) {
               false
                 ? 'bg-[#911e1ea8] text-yellow-200'
                 : 'text-gray-300 hover:bg-[#471919c5] hover:text-white',
-              'flex items-center px-1 my-2 font-bold rounded-full py-2 pl-2 mt-7 '
+              'flex items-center px-1 my-2 font-bold rounded-full pl-2 mt-3 '
             )}
           >
             <LogoutIcon
@@ -169,7 +169,7 @@ export default function Sidebar({ heading = '', children }) {
         </div>
       </div>
       </div>
-      <div className={`${sidebarOpen ? 'pl-64' : 'pl-16' } flex flex-col flex-1 `} onClick={() => {
+      <div className={`${sidebarOpen ? 'pl-64' : 'pl-16' } bg-[#37030342] flex flex-col flex-1 `} onClick={() => {
     setSidebarOpen(false);
       }}>
         <main className='flex-1'>
@@ -179,7 +179,7 @@ export default function Sidebar({ heading = '', children }) {
                 {heading}
               </h1>
             </div>
-            <div className='max-w-5xl mx-auto px-4 sm:px-6 md:px-8'>
+            <div className='max-w-7xl mx-auto px-4 sm:px-4 md:px-6 min-h-screen'>
               {children}
             </div>
           </div>
