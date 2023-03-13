@@ -119,8 +119,6 @@ export default function Jobs({ token }) {
     {
       headerName: 'Classification',
       field: 'attributes.classification',
-      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
-      headerClass: ' header-cell ',
     },
     {
       headerName: 'JAF',
