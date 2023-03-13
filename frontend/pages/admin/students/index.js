@@ -79,6 +79,7 @@ export default function Students({ token }) {
 
 
   const [columnDefs] = useState([
+    
     {
       headerName: 'Roll No.',
       field: 'attributes.roll',
@@ -94,6 +95,11 @@ export default function Students({ token }) {
       headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
+    },
+   
+    {
+      headerName: 'Roll No.',
+      field: 'attributes.roll',
     },
     {
       headerName: 'Name',
@@ -359,8 +365,7 @@ export default function Students({ token }) {
 
         while (fetched_data.length < total_cnt) {
           const res = await axios.get(
-            `${API_URL}/api/students?pagination[page]=${
-              fetched_data.length / PAGE_SIZE + 1
+            `${API_URL}/api/students?pagination[page]=${fetched_data.length / PAGE_SIZE + 1
             }&pagination[pageSize]=${PAGE_SIZE}&populate=*`,
             config
           )
@@ -388,10 +393,10 @@ export default function Students({ token }) {
 
   return (
     <Layout>
-      <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
+      <div className=' px-4 py-5 border-b border-gray-200 sm:px-6'>
         <div className='-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap'>
           <div className='ml-4 mt-2'>
-            <h3 className='text-lg leading-6 font-medium text-gray-900'>
+            <h3 className='text-xl leading-6 font-medium text-gray-900'>
               Students
             </h3>
           </div>
@@ -401,8 +406,8 @@ export default function Students({ token }) {
               onClick={onBtExport}
               className='inline-flex items-center px-4 py-2
               border border-transparent text-xs font-medium rounded shadow-sm
-              text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
-              focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+              text-white bg-red-900 hover:bg-red-800 focus:outline-none
+              focus:ring-2 focus:ring-offset-2 focus:ring-red-900'
             >
               Export
             </button>
@@ -412,14 +417,17 @@ export default function Students({ token }) {
       <div className='ag-theme-alpine mt-4' style={{ height: 600 }}>
      
       <AgGridReact
-          ref={gridRef}
-     rowMultiSelectWithClick={true}
-     rowData={rowData}
-     columnDefs={columnDefs}
-     rowSelection='multiple'
-     defaultColDef={{ sortable: true, filter: true }}
-     overlayNoRowsTemplate='Please wait while data is being fetched'
+    onCellFocused={(event) => event.api.clearFocusedCell()}
+    rowData={rowData}
+    columnDefs={columnDefs}
+    defaultColDef={{ sortable: true, filter: true }}
+    onRowClicked={onRowClicked}
+    rowStyle={{ cursor: 'pointer' }}
+    cellStyle={{ boxShadow: 'none' }}
+    // Add the following inline styles
+    
   ></AgGridReact>
+
 
       </div>
     </Layout>

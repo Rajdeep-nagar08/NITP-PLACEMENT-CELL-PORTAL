@@ -16,26 +16,31 @@ export default function Eligiblejobs({ jobs = '' }) {
       headerName: 'Company',
       field: 'company.company_name',
       filter: 'agTextColumnFilter',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc' }),
     },
     {
       headerName: 'Job',
       field: 'job_title',
       filter: 'agTextColumnFilter',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc', }),
     },
     {
       headerName: 'Classification',
       field: 'classification',
       filter: 'agTextColumnFilter',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc', }),
     },
     {
       headerName: 'Category',
       field: 'category',
       filter: 'agTextColumnFilter',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc', }),
     },
     {
       headerName: 'Job Status',
       field: 'job_status',
       filter: 'agTextColumnFilter',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc', }),
     },
   ])
   return (
@@ -46,22 +51,24 @@ export default function Eligiblejobs({ jobs = '' }) {
           Eligible Jobs
         </h3>
       </div>
-      <div className='ag-theme-alpine mt-4' style={{ height: 200 }}>
+      <div className='ag-theme-alpine mt-4 ' style={{ height: 200 }}>
         {/* <AgGridReact
           rowData={jobs}
           columnDefs={columnDefs}
           defaultColDef={{ sortable: true }}
         ></AgGridReact> */}
 
-<AgGridReact
-    onCellFocused={(event) => event.api.clearFocusedCell()}
-    rowData={jobs}
-    columnDefs={columnDefs}
-    defaultColDef={{ sortable: true, filter: true }}
-    onRowClicked={onRowClicked}
-    rowStyle={{ cursor: 'pointer' }}
-    // Add the following inline styles
-  ></AgGridReact>
+        <AgGridReact
+          onCellFocused={(event) => event.api.clearFocusedCell()}
+          rowData={jobs}
+          columnDefs={columnDefs}
+          defaultColDef={{ sortable: true, filter: true }}
+          domLayout='autoHeight'
+          headerClass="my-header-class"
+          onRowClicked={onRowClicked}
+          rowStyle={{ cursor: 'pointer' }}
+        // Add the following inline styles
+        ></AgGridReact>
 
 
       </div>

@@ -15,16 +15,16 @@ export default function Jobs({ token }) {
   const [rowData, setRowData] = useState([])
 
 
-///////////////////////////////////////////////////
+  ///////////////////////////////////////////////////
 
-const gridRef = useRef()
+  const gridRef = useRef()
 
   const onBtExport = useCallback(() => {
 
     // See comment in pages/admin/students/index.js for logic behind this
 
     const selected_and_visible_node = gridRef.current.api.getSelectedNodes().findIndex(node => node.displayed);
-   
+
     console.log(selected_and_visible_node)
 
     if (selected_and_visible_node == -1) {
@@ -48,18 +48,26 @@ const gridRef = useRef()
     {
       headerName: 'S.No.',
       valueGetter: 'node.rowIndex + 1',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell '
     },
 
     {
       headerName: 'Details',
       field: 'id',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
       cellRenderer: function (params) {
         return (
           <div>
             <button
               type='button'
+<<<<<<< HEAD
                onClick={() => handleApprove(params.value)}
               className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+=======
+              // onClick={() => handleApprove(params.value)}
+              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600'
+>>>>>>> 34e58a465261f36315703d0721132a6953247c7f
             >
               Details
             </button>
@@ -67,10 +75,11 @@ const gridRef = useRef()
         )
       },
     },
-    
+
     {
       headerName: 'Company',
       field: 'attributes.company.data.attributes.company_name',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
       // cellRenderer: function (params) {
       //   return (
       //     <div>
@@ -86,6 +95,7 @@ const gridRef = useRef()
     
     {
       headerName: 'Job Title',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
       field: 'attributes.job_title',
       // cellRenderer: function (params) {
       //   return (
@@ -97,16 +107,26 @@ const gridRef = useRef()
     },
    
     {
+<<<<<<< HEAD
       headerName: 'Job Category',
+=======
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell ',
+      headerName: 'Category',
+>>>>>>> 34e58a465261f36315703d0721132a6953247c7f
       field: 'attributes.category',
     },
     {
       headerName: 'Classification',
       field: 'attributes.classification',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell ',
     },
     {
       headerName: 'JAF',
       field: 'attributes.jaf.data.attributes.url',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell ',
       cellRenderer: function (params) {
         return (
           <div>
@@ -115,7 +135,7 @@ const gridRef = useRef()
                 href={`${API_URL}${params.value}`}
                 target='_blank'
                 rel='noreferrer'
-                className='inline-flex items-center py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-indigo-600 hover:text-indigo-700 focus:text-indigo-800'
+                className='inline-flex items-center py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-yellow-600 hover:text-yellow-700 focus:text-yellow-800'
               >
                 View JAF
               </a>
@@ -129,18 +149,26 @@ const gridRef = useRef()
     {
       headerName: 'POC 1 Name',
       field: 'attributes.POC1.name',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell '
     },
     {
       headerName: 'POC 1 Mobile No',
       field: 'attributes.POC1.mobile_no',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell '
     },
     {
       headerName: 'POC 2 Name',
       field: 'attributes.POC2.name',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell '
     },
     {
       headerName: 'POC 2 Mobile No',
       field: 'attributes.POC2.mobile_no',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell '
     },
 
 
@@ -163,12 +191,12 @@ const gridRef = useRef()
   //     })
   // }, [])
 
-  
+
   useEffect(() => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-  
+
     axios
       .get(`${API_URL}/api/jobs?populate=*&sort=id:desc`, config)
       .then((res) => {
@@ -188,16 +216,16 @@ const gridRef = useRef()
 
 
     <Layout>
-    
+
       <div className='flex-1'>
-        <div className='border-b border-gray-200 px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8'>
+        <div className='border-b border-gray-200  px-4 py-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8'>
           <div className='flex-1 min-w-0'>
             <h1 className='text-lg font-medium leading-6 text-gray-900 sm:truncate'>
               Jobs
             </h1>
           </div>
           <div className='mt-4 flex sm:mt-0 sm:ml-4'>
-          
+
 
             {/* <button
               type='button'
@@ -207,7 +235,7 @@ const gridRef = useRef()
             </button> */}
 
 
-{/* 
+            {/* 
             <button
               type='button'
               onClick={onBtExport}
@@ -221,7 +249,7 @@ const gridRef = useRef()
             <Link href={`/admin/jobs/add`}>
               <button
                 type='button'
-                className='order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 sm:ml-3'
+                className='order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-900 hover:bg-rose-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-800 sm:order-1 sm:ml-3'
               >
                 Add Job
               </button>
@@ -229,8 +257,9 @@ const gridRef = useRef()
           </div>
         </div>
 
-        <div className='ag-theme-alpine mt-4' style={{ height: 600 }}>
+        <div className='ag-theme-alpine mt-4' style={{ height: 1000 }}>
 
+<<<<<<< HEAD
   <AgGridReact
     // onCellFocused={(event) => event.api.clearFocusedCell()}
     rowData={rowData}
@@ -240,9 +269,22 @@ const gridRef = useRef()
     // rowStyle={{ cursor: 'pointer' }}
     // Add the following inline styles
   ></AgGridReact>
+=======
+          <AgGridReact
+            onCellFocused={(event) => event.api.clearFocusedCell()}
+            rowData={rowData}
+            columnDefs={columnDefs}
+            defaultColDef={{ sortable: true, filter: true }}
+            onRowClicked={onRowClicked}
+            domLayout= 'autoHeight'
+            headerClass="my-header-class"
+            rowStyle={{ cursor: 'pointer' }}
+          // Add the following inline styles
+          ></AgGridReact>
+>>>>>>> 34e58a465261f36315703d0721132a6953247c7f
 
 
-</div>
+        </div>
 
       </div>
     </Layout>

@@ -39,11 +39,14 @@ export default function ApplicationDetails({ applications = '' }) {
           Applied Jobs
         </h3>
       </div>
-      <div className='ag-theme-alpine mt-4' style={{ height: 200 }}>
+      <div className='ag-theme-alpine mt-4' style={{ height: 300 }}>
         <AgGridReact
           rowData={applications}
           columnDefs={columnDefs}
           defaultColDef={{ sortable: true }}
+          
+          domLayout= 'autoHeight'
+          headerClass="my-header-class"
         ></AgGridReact>
       </div>
     </div>

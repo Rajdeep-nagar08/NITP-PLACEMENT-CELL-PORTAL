@@ -269,18 +269,22 @@ export default function StudentApplied({ token = '', id = ''}) {
       headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Status',
       field: 'attributes.status',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Student Name',
       field: 'attributes.student.data.attributes.name',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Roll',
       field: 'attributes.student.data.attributes.roll',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
       cellRenderer: function (params) {
         return (
           <div>
@@ -296,76 +300,94 @@ export default function StudentApplied({ token = '', id = ''}) {
     {
       headerName: 'Institute Email',
       field: 'attributes.student.data.attributes.institute_email_id',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Personal Email',
       field: 'attributes.student.data.attributes.personal_email_id',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Mobile Number',
       field: 'attributes.student.data.attributes.mobile_number_1',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Alternate Mobile Number',
       field: 'attributes.student.data.attributes.mobile_number_2',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Program',
       field:
         'attributes.student.data.attributes.program.data.attributes.program_name',
+        cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Course',
       field:
         'attributes.student.data.attributes.course.data.attributes.course_name',
+        cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Category',
       field: 'attributes.student.data.attributes.category',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Gender',
       field: 'attributes.student.data.attributes.gender',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Date of Birth',
       field: 'attributes.student.data.attributes.date_of_birth',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Xth Marks',
       field: 'attributes.student.data.attributes.X_marks',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'XIIth Marks',
       field: 'attributes.student.data.attributes.XII_marks',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'CPI',
       field: 'attributes.student.data.attributes.cpi',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'GATE / JEE / JAM Rank',
       field: 'attributes.job.data.attributes.rank',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'GATE / JEE / JAM Category Rank',
       field: 'attributes.job.data.attributes.categoryRank',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Bachelor Marks',
       field: 'attributes.student.data.attributes.bachelor_marks',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Master Marks',
       field: 'attributes.student.data.attributes.master_marks',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Address',
       field: 'attributes.student.data.attributes.address',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
     },
     {
       headerName: 'Resume Link',
       field: 'attributes.student.data.attributes.resume_link',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc'}),
       cellRenderer: function (params) {
         return (
           <div>
@@ -384,6 +406,7 @@ export default function StudentApplied({ token = '', id = ''}) {
     {
       headerName: 'Transcript Link',
       field: 'attributes.student.data.attributes.transcript_link',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
       cellRenderer: function (params) {
         return (
           <div>
@@ -404,6 +427,7 @@ export default function StudentApplied({ token = '', id = ''}) {
     {
       headerName: 'Cover Letter Link',
       field: 'attributes.student.data.attributes.cover_letter_link',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
       cellRenderer: function (params) {
         return (
           <div>
@@ -476,13 +500,15 @@ export default function StudentApplied({ token = '', id = ''}) {
         </div>
       </div>
 
-      <div className='ag-theme-alpine mt-4' style={{ height: 400 }}>
+      <div className='ag-theme-alpine mt-4' style={{ height: 1000 }}>
         <AgGridReact
           ref={gridRef}
           rowMultiSelectWithClick={true}
           rowSelection='multiple'
           rowData={students}
           columnDefs={columnDefs}
+          domLayout= 'autoHeight'
+          headerClass="my-header-class"
           defaultColDef={{ sortable: true, filter: true }}
         ></AgGridReact>
       </div>
