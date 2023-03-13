@@ -38,11 +38,13 @@ export default function Jobs({ token }) {
     }
   }, [])
 
-  
+  /////////////////////
+  const onRowClicked = useCallback((event) => {
+    // event.data contains the row data
+    window.location.href = `/admin/jobs/${event.data.id}`
+  }, [])
 
-  function handleApprove(id) {
-    window.location.href = `/admin/jobs/${id}`;
-  }
+
 
   const [columnDefs] = useState([
     {
@@ -61,13 +63,8 @@ export default function Jobs({ token }) {
           <div>
             <button
               type='button'
-<<<<<<< HEAD
-               onClick={() => handleApprove(params.value)}
-              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
-=======
               // onClick={() => handleApprove(params.value)}
               className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600'
->>>>>>> 34e58a465261f36315703d0721132a6953247c7f
             >
               Details
             </button>
@@ -92,7 +89,6 @@ export default function Jobs({ token }) {
       //   )
       // },
     },
-    
     {
       headerName: 'Job Title',
       cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
@@ -105,20 +101,21 @@ export default function Jobs({ token }) {
       //   )
       // },
     },
-   
+    // {
+    //   headerName: 'Approval Status',
+    //   field: 'attributes.approval_status',
+    // },
     {
-<<<<<<< HEAD
-      headerName: 'Job Category',
-=======
       cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
       headerClass: ' header-cell ',
       headerName: 'Category',
->>>>>>> 34e58a465261f36315703d0721132a6953247c7f
       field: 'attributes.category',
     },
     {
       headerName: 'Classification',
       field: 'attributes.classification',
+      cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
+      headerClass: ' header-cell ',
     },
     {
       headerName: 'JAF',
@@ -168,8 +165,6 @@ export default function Jobs({ token }) {
       cellStyle: (params) => ({ borderRight: '2px solid #ccc',  }),
       headerClass: ' header-cell '
     },
-
-
   ])
 
   // useEffect(() => {
@@ -257,17 +252,6 @@ export default function Jobs({ token }) {
 
         <div className='ag-theme-alpine mt-4' style={{ height: 1000 }}>
 
-<<<<<<< HEAD
-  <AgGridReact
-    // onCellFocused={(event) => event.api.clearFocusedCell()}
-    rowData={rowData}
-    columnDefs={columnDefs}
-    defaultColDef={{ sortable: true, filter: true }}
-    // onRowClicked={onRowClicked}
-    // rowStyle={{ cursor: 'pointer' }}
-    // Add the following inline styles
-  ></AgGridReact>
-=======
           <AgGridReact
             onCellFocused={(event) => event.api.clearFocusedCell()}
             rowData={rowData}
@@ -279,7 +263,6 @@ export default function Jobs({ token }) {
             rowStyle={{ cursor: 'pointer' }}
           // Add the following inline styles
           ></AgGridReact>
->>>>>>> 34e58a465261f36315703d0721132a6953247c7f
 
 
         </div>

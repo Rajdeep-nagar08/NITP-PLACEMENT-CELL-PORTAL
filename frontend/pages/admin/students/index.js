@@ -79,33 +79,30 @@ export default function Students({ token }) {
 
 
   const [columnDefs] = useState([
-    
     {
-      headerName: 'Roll No.',
-      field: 'attributes.roll',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link href={`/admin/students/${params.data.id}`}>
-              {params.value}
-            </Link>
-          </div>
-        )
-      },
+      headerName: '',
+      field: 'checkbox',
       headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
     },
-   
+    
     {
       headerName: 'Roll No.',
       field: 'attributes.roll',
+      // cellRenderer: function (params) {
+      //   return (
+      //     <div>
+      //       <Link href={`/admin/students/${params.data.id}`}>
+      //         {params.value}
+      //       </Link>
+      //     </div>
+      //   )
+      // },
+      // headerCheckboxSelection: true,
+      // headerCheckboxSelectionFilteredOnly: true,
+      // checkboxSelection: true,
     },
-    {
-      headerName: 'Name',
-      field: 'attributes.name',
-    },
-
     {
       headerName: 'Details',
       field: 'id',
@@ -115,7 +112,7 @@ export default function Students({ token }) {
             <button
               type='button'
                onClick={() => handleApprove(params.value)}
-              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+               className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600'
             >
               Details
             </button>
@@ -126,6 +123,11 @@ export default function Students({ token }) {
       // function handleApprove(id) {
       //   window.location.href = `/admin/companies/${id}`;
       // }
+    },
+   
+    {
+      headerName: 'Name',
+      field: 'attributes.name',
     },
     {
       headerName: 'Approved',
@@ -173,28 +175,28 @@ export default function Students({ token }) {
       headerName: 'Registered For',
       field: 'attributes.registered_for',
     },
-    // {
-    //   headerName: 'Resume',
-    //   field: 'attributes.resume',
-    //   cellRenderer: function (params) {
-    //     return (
-    //       <div>
-    //         {params.value ? (
-    //           <a
-    //             href={API_URL + params.value.data.attributes.url}
-    //             target='_blank'
-    //             rel='noreferrer'
-    //             className='inline-flex items-center py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-indigo-600 hover:text-indigo-700 focus:text-indigo-800'
-    //           >
-    //             Resume
-    //           </a>
-    //         ) : (
-    //           <span>NA</span>
-    //         )}
-    //       </div>
-    //     )
-    //   },
-    // },
+    {
+      headerName: 'Resume',
+      field: 'attributes.resume',
+      cellRenderer: function (params) {
+        return (
+          <div>
+            {params.value.data ? (
+              <a
+                href={API_URL + params.value.data.attributes.url}
+                target='_blank'
+                rel='noreferrer'
+                className='inline-flex items-center py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-indigo-600 hover:text-indigo-700 focus:text-indigo-800'
+              >
+                Resume
+              </a>
+            ) : (
+              <span>NA</span>
+            )}
+          </div>
+        )
+      },
+    },
     {
       headerName: 'Resume',
       field: 'attributes.resume_link',
@@ -355,7 +357,7 @@ export default function Students({ token }) {
     axios
 
       .get(
-        `${API_URL}/api/students?pagination[page]=1&pagination[pageSize]=${PAGE_SIZE}&approved=approved&populate=*"}`,
+        `${API_URL}/api/students?pagination[page]=1&pagination[pageSize]=${PAGE_SIZE}&populate=*`,
         config
       )
 
@@ -421,8 +423,8 @@ export default function Students({ token }) {
     rowData={rowData}
     columnDefs={columnDefs}
     defaultColDef={{ sortable: true, filter: true }}
-    onRowClicked={onRowClicked}
-    rowStyle={{ cursor: 'pointer' }}
+    // onRowClicked={onRowClicked}
+    // rowStyle={{ cursor: 'pointer' }}
     cellStyle={{ boxShadow: 'none' }}
     // Add the following inline styles
     
