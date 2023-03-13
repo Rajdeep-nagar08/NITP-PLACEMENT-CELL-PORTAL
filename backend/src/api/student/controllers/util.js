@@ -70,10 +70,21 @@ module.exports = {
         // Instead of silently returning false, I am throwing an error, this may
         // cause some 500s initially, but will likely reduce silent eligibility
         // bugs in the long run
+
+        console.log(7);
+
+
         const { id, X_marks, XII_marks, cpi, registered_for, course, placed_status, placed_status_updated, internship_status } = student;
         if (!id || !X_marks || !XII_marks || !cpi || !registered_for) {
             throw `Some mandatory parameters not passed, or are null: ${student, job}`;
         }
+
+        console.log("checking student id=>"+id);
+
+        console.log("checking student X_marks=>"+X_marks);
+
+
+        console.log(8);
 
         {
             // Basic job status checks
@@ -91,12 +102,17 @@ module.exports = {
             */
         }
 
+        console.log(9);
+
+
         {
             // Basic qualification checks
             if (job.min_X_marks > X_marks) {
                 debug_reason("X marks not sufficient");
                 return false /* Xth marks less than minimum required */;
             }
+
+
 
             if (job.min_XII_marks > XII_marks) {
                 debug_reason("XII marks not sufficient");
@@ -135,6 +151,9 @@ module.exports = {
             }
        }
 
+       console.log(11);
+
+
         {
             // Filter based on job.eligible_courses
             if (job.eligible_courses) {
@@ -145,6 +164,9 @@ module.exports = {
                 }
             }
         }
+
+        console.log(12);
+
 
         {
             // Filter based on job.start_date and job.last_date
@@ -174,6 +196,9 @@ module.exports = {
             }
         }
 
+
+        console.log(13);
+
         {
             // Check if student has already applied to this job
             const existing_application = await strapi.db.query("api::application.application")
@@ -184,11 +209,18 @@ module.exports = {
                     },
                 });
 
+        console.log(131);
+
+
             if (existing_application) {
                 debug_reason("Student already applied to this job");
                 return false /* Already applied */;
             }
         }
+
+        console.log(14);
+
+
 
 	if ( job.category == "Internship" ) {
             const existing_internship_selection = selected_applications
@@ -210,6 +242,9 @@ module.exports = {
                     return false /* Already selected in an Internship */;
                 }
             }
+
+        console.log(15);
+
 
             // Check the extra conditions, based on already selected applications
             // console.debug({ selected_applications });
@@ -235,6 +270,9 @@ module.exports = {
                 // precedence, but if null, use offcampus_A2_placed_date
                 date_A2_selection = oncampus_A2_placed_date || offcampus_A2_placed_date;
             }
+
+        console.log(16);
+
 
             // Number of applications to A1 jobs created by student, AFTER being selected in an A2 job
             // FUTURE: This calculation will get repeated for all jobs, see if it can be optimised
@@ -272,6 +310,9 @@ module.exports = {
                 return false;
             }
 
+        console.log(17);
+
+
             // Ensure condition 3 in "More conditions".
             if (first_A2_application != null || placed_status === "placed_a2") {
                 // If selected in A2 already, then other A2 jobs not eligible now
@@ -307,6 +348,9 @@ module.exports = {
      * @param {string/number} roll - Roll number of the student, whose applications are to be fetched 
      * @returns 
      */
+
+
+
 
 
     async helper_get_applications(roll) {

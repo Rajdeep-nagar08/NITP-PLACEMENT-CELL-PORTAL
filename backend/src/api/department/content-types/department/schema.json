@@ -15,7 +15,7 @@
     "department_name": {
       "type": "string",
       "unique": true,
-      "required": true
+      "required": false
     },
     "students": {
       "type": "relation",

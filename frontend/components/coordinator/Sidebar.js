@@ -16,6 +16,7 @@ import {
   MenuIcon,
   UsersIcon,
   XIcon,
+  UserCircleIcon
 } from '@heroicons/react/outline'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -42,6 +43,12 @@ const navigation = [
     name: 'Job/ Internship',
     href: '/coordinator/jobs',
     icon: DocumentTextIcon,
+  },
+  {
+    name: 'Recruiters',
+    href: '/coordinator/recruiters',
+    icon: UserCircleIcon,
+
   },
   {
     name: 'Requests',

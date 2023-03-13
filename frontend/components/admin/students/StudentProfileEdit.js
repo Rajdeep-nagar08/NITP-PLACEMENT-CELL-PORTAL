@@ -18,9 +18,13 @@ export default function StudentProfileEdit({ token = '', student }) {
     placed_status,
     ...newStudent
   } = student.attributes
+
   const [values, setValues] = useState(newStudent)
 
   const router = useRouter()
+
+
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -30,6 +34,12 @@ export default function StudentProfileEdit({ token = '', student }) {
     //   element === ''
 
     // })
+
+
+    console.log("ID=>"+id)
+
+    // id=String(id)
+
     if (confirm('Are you sure you want to edit student profile?')) {
       const res = await fetch(`${API_URL}/api/students/${id}`, {
         method: 'PUT',
@@ -39,7 +49,8 @@ export default function StudentProfileEdit({ token = '', student }) {
         },
         body: JSON.stringify({ data: values }),
       })
-      console.log(JSON.stringify({ data: values }))
+
+      console.log("changed=>"+JSON.stringify({ data: values }))
 
       if (!res.ok) {
         if (res.status === 403 || res.status === 401) {
@@ -48,8 +59,11 @@ export default function StudentProfileEdit({ token = '', student }) {
         }
 
         const profile = await res.json()
-        console.log(profile)
+
+        console.log("pagal"+profile)
+
         toast.error(profile?.error.name)
+
       } else {
         const profile = await res.json()
         toast.success('Profile Edited Successfully')
@@ -89,7 +103,9 @@ export default function StudentProfileEdit({ token = '', student }) {
   }
 
   const [programs, setPrograms] = useState([])
+
   const [courses, setCourses] = useState([])
+
   const [placedStatus, setPlacedStatus] = useState(placed_status)
 
   //get courses of selected program
@@ -107,6 +123,26 @@ export default function StudentProfileEdit({ token = '', student }) {
       })
   }, [])
 
+
+//   useEffect(() => {
+//   const res = fetch(`${API_URL}/api/students/${id}`, {
+//     method: 'PUT',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Authorization: `Bearer ${token}`,
+//     },
+//     body: JSON.stringify({ data: values }),
+//   }).then(res => {
+//     console.log(res.data)
+//   })
+// },[])
+
+
+
+
+
+
+
   useEffect(() => {
     programs.map((program) => {
       if (program.id === parseFloat(values.program)) {
@@ -115,9 +151,13 @@ export default function StudentProfileEdit({ token = '', student }) {
     })
   }, [values.program])
 
+
+
   return (
     <>
       {/* Form for changeing placed status, DO NOT REMOVE thinking empty form */}
+
+
       <form onSubmit={changePlacedStatus} id='placedStatus'></form>
       <form onSubmit={handleSubmit}>
         <div className='space-y-6 mt-4'>
@@ -486,6 +526,9 @@ export default function StudentProfileEdit({ token = '', student }) {
                       <option>FTE</option>
                     </select>
                   </div>
+
+
+              
                   <div className='col-span-6 sm:col-span-3'>
                     <label
                       htmlFor='program'
@@ -510,6 +553,8 @@ export default function StudentProfileEdit({ token = '', student }) {
                       ))}
                     </select>
                   </div>
+
+
 
                   <div className='col-span-6 sm:col-span-3'>
                     <label

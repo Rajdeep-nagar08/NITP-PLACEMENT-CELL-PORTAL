@@ -29,6 +29,10 @@ export default function Students({ token }) {
     }
   }, [])
 
+  function handleApprove(id) {
+    window.location.href = `/admin/companies/${id}`;
+  }
+
 
 
   const [columnDefs] = useState([
@@ -42,20 +46,43 @@ export default function Students({ token }) {
     {
       headerName: 'Company',
       field: 'attributes.company_name',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link href={`/admin/companies/${params.data.id}`}>
-              {params.value}
-            </Link>
-          </div>
-        )
-      },
+      // cellRenderer: function (params) {
+      //   return (
+      //     <div>
+      //       <Link href={`/admin/companies/${params.data.id}`}>
+      //         {params.value}
+      //       </Link>
+      //     </div>
+      //   )
+      // },
     },
     // {
     //   headerName: 'Approval Status',
     //   field: 'attributes.status',
     // },
+  
+    {
+      headerName: 'Details',
+      field: 'id',
+      cellRenderer: function (params) {
+        return (
+          <div>
+            <button
+              type='button'
+               onClick={() => handleApprove(params.value)}
+              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+            >
+              Details
+            </button>
+          </div>
+        )
+      },
+    
+      // function handleApprove(id) {
+      //   window.location.href = `/admin/companies/${id}`;
+      // }
+    },
+
     {
       headerName: 'Company Addrees',
       field: 'attributes.company_address',
@@ -80,6 +107,9 @@ export default function Students({ token }) {
       .get(`${API_URL}/api/companies?populate=*&sort=id:DESC`, config)
       .then(async (res) => {
         let fetched_data = res.data.data
+        fetched_data = fetched_data.filter((company) => {
+          return company.attributes.company_name === 'checkme'
+        })
         setRowData(fetched_data)
       })
       .catch((err) => {

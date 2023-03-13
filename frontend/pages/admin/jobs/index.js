@@ -38,13 +38,11 @@ const gridRef = useRef()
     }
   }, [])
 
-  /////////////////////
-  const onRowClicked = useCallback((event) => {
-    // event.data contains the row data
-    window.location.href = `/admin/jobs/${event.data.id}`
-  }, [])
+  
 
-
+  function handleApprove(id) {
+    window.location.href = `/admin/jobs/${id}`;
+  }
 
   const [columnDefs] = useState([
     {
@@ -60,7 +58,7 @@ const gridRef = useRef()
           <div>
             <button
               type='button'
-              // onClick={() => handleApprove(params.value)}
+               onClick={() => handleApprove(params.value)}
               className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
             >
               Details
@@ -85,6 +83,7 @@ const gridRef = useRef()
       //   )
       // },
     },
+    
     {
       headerName: 'Job Title',
       field: 'attributes.job_title',
@@ -96,12 +95,9 @@ const gridRef = useRef()
       //   )
       // },
     },
-    // {
-    //   headerName: 'Approval Status',
-    //   field: 'attributes.approval_status',
-    // },
+   
     {
-      headerName: 'Category',
+      headerName: 'Job Category',
       field: 'attributes.category',
     },
     {
@@ -146,6 +142,8 @@ const gridRef = useRef()
       headerName: 'POC 2 Mobile No',
       field: 'attributes.POC2.mobile_no',
     },
+
+
   ])
 
   // useEffect(() => {
@@ -234,12 +232,12 @@ const gridRef = useRef()
         <div className='ag-theme-alpine mt-4' style={{ height: 600 }}>
 
   <AgGridReact
-    onCellFocused={(event) => event.api.clearFocusedCell()}
+    // onCellFocused={(event) => event.api.clearFocusedCell()}
     rowData={rowData}
     columnDefs={columnDefs}
     defaultColDef={{ sortable: true, filter: true }}
-    onRowClicked={onRowClicked}
-    rowStyle={{ cursor: 'pointer' }}
+    // onRowClicked={onRowClicked}
+    // rowStyle={{ cursor: 'pointer' }}
     // Add the following inline styles
   ></AgGridReact>
 

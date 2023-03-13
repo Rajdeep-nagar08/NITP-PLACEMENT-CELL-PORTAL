@@ -36,6 +36,7 @@ export default function SignIn() {
 
   
   useEffect(() => {
+
     fetch(`${API_URL}/api/setting`, {
       method: 'GET',
       headers: {
@@ -48,13 +49,13 @@ export default function SignIn() {
        console.log("hello",data)
 
         allowNewReg(data.data.attributes.registrations_allowed)
+
       })
 
 
       .catch((err) => {
         console.log(err)
-        toast.error('Unable to fetch data from setting !!! api/setting not working')
-
+        toast.error('Unable to fetch tpc_guidelines')
       })
   }, [])
 

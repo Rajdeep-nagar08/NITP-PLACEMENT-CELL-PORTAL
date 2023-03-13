@@ -26,6 +26,7 @@ export default function EditJob({ token = '', job = '' }) {
   const [values, setValues] = useState(newJob)
 
   const router = useRouter()
+
   const [eligibleCourses, setEligibleCourses] = useState(
     new Set(
       // convert string of values to numbers
@@ -84,7 +85,12 @@ export default function EditJob({ token = '', job = '' }) {
       toast.error('Please select atleast one course')
       return
     }
+
+
     values['eligible_courses'] = Array.from(eligibleCourses).toString()
+
+
+
     if (confirm('Are you sure you edit job?')) {
       const res = await fetch(`${API_URL}/api/jobs/${id}`, {
         method: 'PUT',
@@ -96,6 +102,21 @@ export default function EditJob({ token = '', job = '' }) {
       })
 
       console.log(JSON.stringify({ data: values }))
+
+      
+
+  if (values.POC1.name=="") {
+    toast.error('Please add details of 1st POC')
+    return
+    
+  }
+
+  if (values.POC2.name=="") {
+    toast.error('Please add details of 2nd POC')
+    return
+  }
+
+
       if (!res.ok) {
         if (res.status === 403 || res.status === 401) {
           toast.error('No token included')
@@ -112,9 +133,13 @@ export default function EditJob({ token = '', job = '' }) {
   }
 
   const handleInputChange = (e) => {
+
     const { name, value } = e.target
+
     setValues({ ...values, [name]: value })
   }
+
+
   useEffect(() => {
     fetch(`${API_URL}/api/programs?populate=*`, {
       headers: {
@@ -130,6 +155,33 @@ export default function EditJob({ token = '', job = '' }) {
 
     console.log(eligibleCourses)
   }, [])
+
+
+  
+  const handleContactThreeInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      ['details_of_pay_package']: {
+        ...values.details_of_pay_package,
+        [name]: value,
+      },
+    })
+  }
+
+
+   
+  const handleContactFourInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      ['hr']: {
+        ...values.hr,
+        [name]: value,
+      },
+    })
+  }
+
 
   const handleUpload = async (e) => {
     e.preventDefault()
@@ -158,6 +210,30 @@ export default function EditJob({ token = '', job = '' }) {
   const handleFileChange = (e) => {
     setNewJaf(e.target.files[0])
   }
+
+
+  const handleContactOneInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      ['POC1']: {
+        ...values.POC1,
+        [name]: value,
+      },
+    })
+  }
+  const handleContactTwoInputChange = (e) => {
+    const { name, value } = e.target
+    setValues({
+      ...values,
+      ['POC2']: {
+        ...values.POC2,
+        [name]: value,
+      },
+    })
+  }
+
+
 
   return (
     <>
@@ -266,6 +342,8 @@ export default function EditJob({ token = '', job = '' }) {
             <div className='md:grid md:grid-cols-3 md:gap-6'>
               <div className='mt-5 md:mt-0 md:col-span-3'>
                 <div className='grid grid-cols-6 gap-6'>
+
+
                   <div className='col-span-6 sm:col-span-3'>
                     <label
                       htmlFor='company_address'
@@ -277,6 +355,35 @@ export default function EditJob({ token = '', job = '' }) {
                       {company.data.attributes.company_name}
                     </p>
                   </div>
+
+
+                  <div className='col-span-6 sm:col-span-3'>
+                    <label
+                      htmlFor='company_category'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Company Category
+                    </label>
+                    <p className='mt-1 block w-full py-2 px-3 border border-green-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'>
+                      {company.data.attributes.company_category}
+                    </p>
+                  </div>
+
+
+                  
+                  <div className='col-span-6 sm:col-span-3'>
+                    <label
+                      htmlFor='industry_sector'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Industry Sector
+                    </label>
+                    <p className='mt-1 block w-full py-2 px-3 border border-green-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'>
+                      {company.data.attributes.industry_sector}
+                    </p>
+                  </div>
+
+
                   <div className='col-span-6 sm:col-span-3'>
                     <label
                       htmlFor='job_title'
@@ -294,6 +401,8 @@ export default function EditJob({ token = '', job = '' }) {
                       className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                     />
                   </div>
+
+
                   <div className='col-span-6 sm:col-span-2'>
                     <label
                       htmlFor='classification'
@@ -314,6 +423,8 @@ export default function EditJob({ token = '', job = '' }) {
                       <option value='none'>None (for Internship)</option>
                     </select>
                   </div>
+
+
                   <div className='col-span-6 sm:col-span-2'>
                     <label
                       htmlFor='category'
@@ -332,6 +443,8 @@ export default function EditJob({ token = '', job = '' }) {
                       <option value='FTE'>FTE</option>
                     </select>
                   </div>
+
+
 
                   <div className='col-span-6 sm:col-span-2'>
                     <label
@@ -511,6 +624,8 @@ export default function EditJob({ token = '', job = '' }) {
                       <option value='true'>Yes</option>
                     </select>
                   </div>
+
+
                   <div className='col-span-12 sm:col-span-6'>
                     <div className='grid grid-cols-12 gap-6'>
                       {programs.map((program) => (
@@ -557,6 +672,361 @@ export default function EditJob({ token = '', job = '' }) {
               </div>
             </div>
           </div>
+
+
+
+
+          <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
+          <div className='md:grid md:grid-cols-3 md:gap-6'>
+            <div className='md:col-span-1'>
+              <h3 className='text-lg font-medium leading-6 text-gray-900'>
+                Pay Package
+              </h3>
+              <p className='mt-1 text-sm text-gray-500'>
+              Details of Pay Package
+              </p>
+            </div>
+            <div className='mt-5 md:mt-0 md:col-span-2'>
+              <div className='grid grid-cols-6 gap-6'>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='basic_salary'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Basic Salary
+                  </label>
+                  <input
+                    value={values.details_of_pay_package.basic_salary}
+                    onChange={handleContactThreeInputChange}
+                    type='text'
+                    name='basic_salary'
+                    id='basic_salary'
+                    autoComplete='basic_salary'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'              
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='allowance'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Allowance
+                  </label>
+                  <input
+                    value={values.details_of_pay_package.allowance}
+                    onChange={handleContactThreeInputChange}
+                    type='text'
+                    name='allowance'
+                    id='allowance'
+                    autoComplete='allowance'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='perks'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Perks
+                  </label>
+                  <input
+                    value={values.details_of_pay_package.perks}
+                    onChange={handleContactThreeInputChange}
+                    type='text'
+                    name='perks'
+                    id='perks'
+                    autoComplete='perks'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='ctc'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    CTC
+                  </label>
+                  <input
+                    value={values.details_of_pay_package.ctc}
+                    onChange={handleContactThreeInputChange}
+                    type='text'
+                    name='ctc'
+                    id='ctc'
+                    autoComplete='ctc'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+         
+        <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
+          <div className='md:grid md:grid-cols-3 md:gap-6'>
+            <div className='md:col-span-1'>
+              <h3 className='text-lg font-medium leading-6 text-gray-900'>
+                HR/Recruiter
+              </h3>
+              <p className='mt-1 text-sm text-gray-500'>
+                Contact Details Of HR/Recruiter
+              </p>
+            </div>
+            <div className='mt-5 md:mt-0 md:col-span-2'>
+              <div className='grid grid-cols-6 gap-6'>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='name'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Name
+                  </label>
+                  <input
+                    value={values.hr.name}
+                    onChange={handleContactFourInputChange}
+                    type='text'
+                    name='name'
+                    id='name'
+                    autoComplete='name'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mail_id'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Email
+                  </label>
+                  <input
+                    value={values.hr.mail_id}
+                    onChange={handleContactFourInputChange}
+                    type='email'
+                    name='mail_id'
+                    id='mail_id'
+                    autoComplete='email'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mobile_no'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    	Telephone/ Mobile
+                  </label>
+                  <input
+                    value={values.hr.mobile_no}
+                    onChange={handleContactFourInputChange}
+                    type='text'
+                    name='mobile_no'
+                    id='mobile_no'
+                    autoComplete='tel-national'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+        
+        <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
+          <div className='md:grid md:grid-cols-3 md:gap-6'>
+            <div className='md:col-span-1'>
+              <h3 className='text-lg font-medium leading-6 text-gray-900'>
+                POC 1
+              </h3>
+              <p className='mt-1 text-sm text-gray-500'>
+                Details of 1st POC.
+              </p>
+            </div>
+            <div className='mt-5 md:mt-0 md:col-span-2'>
+              <div className='grid grid-cols-6 gap-6'>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='name'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    value={values.POC1.name}
+                    onChange={handleContactOneInputChange}
+                    type='text'
+                    name='name'
+                    id='name'
+                    autoComplete='name'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mail_id'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Email
+                  </label>
+                  <input
+                    value={values.POC1.mail_id}
+                    onChange={handleContactOneInputChange}
+                    type='email'
+                    name='mail_id'
+                    id='mail_id'
+                    autoComplete='email'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mobile_no'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Mobile Number
+                  </label>
+                  <input
+                    value={values.POC1.mobile_no}
+                    onChange={handleContactOneInputChange}
+                    type='text'
+                    name='mobile_no'
+                    id='mobile_no'
+                    autoComplete='tel-national'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+              
+                {/* <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='designation'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Designation
+                  </label>
+                  <input
+                    value={values.contact1.designation}
+                    onChange={handleContactOneInputChange}
+                    type='text'
+                    name='designation'
+                    id='designation'
+                    autoComplete='designation'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div> */}
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className='bg-white shadow px-4 py-5 sm:rounded-lg sm:p-6'>
+          <div className='md:grid md:grid-cols-3 md:gap-6'>
+            <div className='md:col-span-1'>
+              <h3 className='text-lg font-medium leading-6 text-gray-900'>
+                POC 2
+              </h3>
+              <p className='mt-1 text-sm text-gray-500'>
+                Details of 2nd POC.
+              </p>
+            </div>
+            <div className='mt-5 md:mt-0 md:col-span-2'>
+              <div className='grid grid-cols-6 gap-6'>
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='name'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Full Name
+                  </label>
+                  <input
+                    value={values.POC2.name}
+                    onChange={handleContactTwoInputChange}
+                    type='text'
+                    name='name'
+                    id='name'
+                    autoComplete='name'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mail_id'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Email
+                  </label>
+                  <input
+                    value={values.POC2.mail_id}
+                    onChange={handleContactTwoInputChange}
+                    type='email'
+                    name='mail_id'
+                    id='mail_id'
+                    autoComplete='email'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='mobile_no'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Mobile Number
+                  </label>
+                  <input
+                    value={values.POC2.mobile_no}
+                    onChange={handleContactTwoInputChange}
+                    type='text'
+                    name='mobile_no'
+                    id='mobile_no'
+                    autoComplete='tel-national'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div>
+
+                {/* <div className='col-span-6 sm:col-span-3'>
+                  <label
+                    htmlFor='designation'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Designation
+                  </label>
+                  <input
+                    value={values.contact2.designation}
+                    onChange={handleContactTwoInputChange}
+                    type='text'
+                    name='designation'
+                    id='designation'
+                    autoComplete='designation'
+                    className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
+                  />
+                </div> */}
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
 
           <div className='flex justify-end'>
             <button

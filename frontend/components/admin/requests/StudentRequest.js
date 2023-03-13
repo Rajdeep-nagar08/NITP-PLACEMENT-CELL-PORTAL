@@ -31,6 +31,8 @@ export default function StudentRequest({ token = '' }) {
     }
     fetchData()
   }
+
+
   const handleReject = async (id) => {
     const res = await fetch(`${API_URL}/api/students/${id}`, {
       method: 'PUT',
@@ -81,7 +83,7 @@ export default function StudentRequest({ token = '' }) {
       field: 'attributes.name',
       cellRenderer: function (params) {
         return (
-          <Link href={`/admin/students/${params.data.id}`}>
+          <Link href={`/admin/unapproved_students/${params.data.id}`}>
             <a>{params.value}</a>
           </Link>
         )
@@ -90,13 +92,13 @@ export default function StudentRequest({ token = '' }) {
     {
       headerName: 'Roll No.',
       field: 'attributes.roll',
-      cellRenderer: function (params) {
-        return (
-          <Link href={`/admin/students/${params.data.id}`}>
-            <a>{params.value}</a>
-          </Link>
-        )
-      },
+      // cellRenderer: function (params) {
+      //   return (
+      //     <Link href={`/admin/students/${params.data.id}`}>
+      //       <a>{params.value}</a>
+      //     </Link>
+      //   )
+      // },
     },
     {
       headerName: 'Program',

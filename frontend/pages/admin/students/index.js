@@ -67,29 +67,63 @@ export default function Students({ token }) {
   //   },
 
 
-  const onRowClicked = useCallback((event) => {
-    // event.data contains the row data
-    window.location.href = `/admin/students/${event.data.id}`
-  }, [])
+  // const onRowClicked = useCallback((event) => {
+  //   // event.data contains the row data
+  //   window.location.href = `/admin/students/${event.data.id}`
+  // }, [])
+
+
+  function handleApprove(id) {
+        window.location.href = `/admin/students/${id}`;
+      }
 
 
   const [columnDefs] = useState([
-    
     {
-      headerName: '',
-      field: 'checkbox',
+      headerName: 'Roll No.',
+      field: 'attributes.roll',
+      cellRenderer: function (params) {
+        return (
+          <div>
+            <Link href={`/admin/students/${params.data.id}`}>
+              {params.value}
+            </Link>
+          </div>
+        )
+      },
       headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
     },
-   
-    {
-      headerName: 'Roll No.',
-      field: 'attributes.roll',
-    },
     {
       headerName: 'Name',
       field: 'attributes.name',
+    },
+
+    {
+      headerName: 'Details',
+      field: 'id',
+      cellRenderer: function (params) {
+        return (
+          <div>
+            <button
+              type='button'
+               onClick={() => handleApprove(params.value)}
+              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+            >
+              Details
+            </button>
+          </div>
+        )
+      },
+    
+      // function handleApprove(id) {
+      //   window.location.href = `/admin/companies/${id}`;
+      // }
+    },
+    {
+      headerName: 'Approved',
+      field: 'attributes.approved'
     },
 
     {
@@ -133,30 +167,30 @@ export default function Students({ token }) {
       headerName: 'Registered For',
       field: 'attributes.registered_for',
     },
+    // {
+    //   headerName: 'Resume',
+    //   field: 'attributes.resume',
+    //   cellRenderer: function (params) {
+    //     return (
+    //       <div>
+    //         {params.value ? (
+    //           <a
+    //             href={API_URL + params.value.data.attributes.url}
+    //             target='_blank'
+    //             rel='noreferrer'
+    //             className='inline-flex items-center py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-indigo-600 hover:text-indigo-700 focus:text-indigo-800'
+    //           >
+    //             Resume
+    //           </a>
+    //         ) : (
+    //           <span>NA</span>
+    //         )}
+    //       </div>
+    //     )
+    //   },
+    // },
     {
       headerName: 'Resume',
-      field: 'attributes.resume',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            {params.value.data ? (
-              <a
-                href={API_URL + params.value.data.attributes.url}
-                target='_blank'
-                rel='noreferrer'
-                className='inline-flex items-center py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-indigo-600 hover:text-indigo-700 focus:text-indigo-800'
-              >
-                Resume
-              </a>
-            ) : (
-              <span>NA</span>
-            )}
-          </div>
-        )
-      },
-    },
-    {
-      headerName: 'Resume Link',
       field: 'attributes.resume_link',
       cellRenderer: function (params) {
         return (
@@ -192,6 +226,7 @@ export default function Students({ token }) {
     {
       headerName: 'Gender',
       field: 'attributes.gender',
+
     },
     {
       headerName: 'Date of Birth',
@@ -203,8 +238,11 @@ export default function Students({ token }) {
     },
   ])
 
+
   // Get placed status of students from /api/student/placed-status
   // @Ouput: {placed: {placed_a1: [], placed_a2: [], placed_x: []}}
+
+
   const getPlacedStatus = useCallback(async (data) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -232,6 +270,7 @@ export default function Students({ token }) {
     return new_row_data
   }, [])
 
+
   const getInternshipStatus = useCallback(async (data) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -253,6 +292,7 @@ export default function Students({ token }) {
   }, [])
 
   const gridRef = useRef()
+
   const onBtExport = useCallback(() => {
     // NOTE: getSelectedRows() and getDisplayedRowCount() also return filtered selected rows
     // which are not visible on the screen, so not usable
@@ -297,7 +337,9 @@ export default function Students({ token }) {
     }
   }, [])
 
+  
   useEffect(() => {
+
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     }
@@ -305,10 +347,12 @@ export default function Students({ token }) {
     const PAGE_SIZE = 100
 
     axios
+
       .get(
-        `${API_URL}/api/students?pagination[page]=1&pagination[pageSize]=${PAGE_SIZE}&populate=*`,
+        `${API_URL}/api/students?pagination[page]=1&pagination[pageSize]=${PAGE_SIZE}&approved=approved&populate=*"}`,
         config
       )
+
       .then(async (res) => {
         let fetched_data = res.data.data
         let total_cnt = res.data.meta.pagination.total
@@ -320,17 +364,27 @@ export default function Students({ token }) {
             }&pagination[pageSize]=${PAGE_SIZE}&populate=*`,
             config
           )
+          
           fetched_data = fetched_data.concat(res.data.data)
         }
+
         fetched_data = await getPlacedStatus(fetched_data)
+
         fetched_data = await getInternshipStatus(fetched_data)
+
+        fetched_data = fetched_data.filter((student) => {
+          return student.attributes.approved === 'approved'
+         })
+
         setRowData(fetched_data)
+
       })
       .catch((err) => {
         toast.error('Error while fetching data')
         console.error(err)
       })
   }, [token])
+
 
   return (
     <Layout>
@@ -358,17 +412,14 @@ export default function Students({ token }) {
       <div className='ag-theme-alpine mt-4' style={{ height: 600 }}>
      
       <AgGridReact
-    onCellFocused={(event) => event.api.clearFocusedCell()}
-    rowData={rowData}
-    columnDefs={columnDefs}
-    defaultColDef={{ sortable: true, filter: true }}
-    onRowClicked={onRowClicked}
-    rowStyle={{ cursor: 'pointer' }}
-    cellStyle={{ boxShadow: 'none' }}
-    // Add the following inline styles
-    
+          ref={gridRef}
+     rowMultiSelectWithClick={true}
+     rowData={rowData}
+     columnDefs={columnDefs}
+     rowSelection='multiple'
+     defaultColDef={{ sortable: true, filter: true }}
+     overlayNoRowsTemplate='Please wait while data is being fetched'
   ></AgGridReact>
-
 
       </div>
     </Layout>

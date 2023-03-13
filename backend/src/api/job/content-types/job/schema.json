@@ -122,7 +122,8 @@
       "component": "company.contact-details"
     },
     "company_category": {
-      "type": "string"
+      "type": "string",
+      "default": "NA"
     },
     "industry_sector": {
       "type": "string"

@@ -12,19 +12,24 @@ import Link from 'next/link'
 export default function Students({ token }) {
   const [rowData, setRowData] = useState([])
 
+
+    function handleApprove(id) {
+        window.location.href = `/coordinator/students/${id}`;
+      }
+
   const [columnDefs] = useState([
     {
       headerName: 'Roll No.',
       field: 'attributes.roll',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            <Link href={`/coordinator/students/${params.data.id}`}>
-              {params.value}
-            </Link>
-          </div>
-        )
-      },
+      // cellRenderer: function (params) {
+      //   return (
+      //     <div>
+      //       <Link href={`/coordinator/students/${params.data.id}`}>
+      //         {params.value}
+      //       </Link>
+      //     </div>
+      //   )
+      // },
       headerCheckboxSelection: true,
       headerCheckboxSelectionFilteredOnly: true,
       checkboxSelection: true,
@@ -32,15 +37,36 @@ export default function Students({ token }) {
     {
       headerName: 'Name',
       field: 'attributes.name',
+      // cellRenderer: function (params) {
+      //   return (
+      //     <div>
+      //       <Link href={`/coordinator/students/${params.data.id}`}>
+      //         {params.value}
+      //       </Link>
+      //     </div>
+      //   )
+      // },
+    },
+    {
+      headerName: 'Details',
+      field: 'id',
       cellRenderer: function (params) {
         return (
           <div>
-            <Link href={`/coordinator/students/${params.data.id}`}>
-              {params.value}
-            </Link>
+            <button
+              type='button'
+               onClick={() => handleApprove(params.value)}
+              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+            >
+              Details
+            </button>
           </div>
         )
       },
+    
+      // function handleApprove(id) {
+      //   window.location.href = `/admin/companies/${id}`;
+      // }
     },
     {
       headerName: 'Placed Status',

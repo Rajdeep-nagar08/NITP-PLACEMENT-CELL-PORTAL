@@ -30,10 +30,15 @@ export default function Company({ token }) {
   }, [])
 
 
-  const onRowClicked = useCallback((event) => {
-    // event.data contains the row data
-    window.location.href = `/coordinator/companies/${event.data.id}`
-  }, [])
+  // const onRowClicked = useCallback((event) => {
+  //   // event.data contains the row data
+  //   window.location.href = `/coordinator/companies/${event.data.id}`
+  // }, [])
+
+
+  function handleApprove(id) {
+        window.location.href = `/coordinator/companies/${id}`;
+      }
 
 
   const [columnDefs] = useState([
@@ -56,6 +61,28 @@ export default function Company({ token }) {
       //     </div>
       //   )
       // },
+    },
+    
+    {
+      headerName: 'Details',
+      field: 'id',
+      cellRenderer: function (params) {
+        return (
+          <div>
+            <button
+              type='button'
+               onClick={() => handleApprove(params.value)}
+              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+            >
+              Details
+            </button>
+          </div>
+        )
+      },
+    
+      // function handleApprove(id) {
+      //   window.location.href = `/admin/companies/${id}`;
+      // }
     },
     {
       headerName: 'Approval Status',
@@ -141,12 +168,12 @@ export default function Company({ token }) {
 
 
 <AgGridReact
-    onCellFocused={(event) => event.api.clearFocusedCell()}
+    // onCellFocused={(event) => event.api.clearFocusedCell()}
     rowData={rowData}
     columnDefs={columnDefs}
     defaultColDef={{ sortable: true, filter: true }}
-    onRowClicked={onRowClicked}
-    rowStyle={{ cursor: 'pointer' }}
+    // onRowClicked={onRowClicked}
+    // rowStyle={{ cursor: 'pointer' }}
     // Add the following inline styles
   ></AgGridReact>
 

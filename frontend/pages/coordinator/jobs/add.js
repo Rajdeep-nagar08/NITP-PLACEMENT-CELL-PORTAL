@@ -1,5 +1,5 @@
 import Breadcrumbs from '@/components/coordinator/Breadcrumbs'
-import AddJob from '@/components/admin/jobs/AddJob'
+import AddJob from '@/components/coordinator/jobs/AddJob'
 import Layout from '@/components/coordinator/Layout'
 import { parseCookies } from '@/helpers/index'
 import React from 'react'
