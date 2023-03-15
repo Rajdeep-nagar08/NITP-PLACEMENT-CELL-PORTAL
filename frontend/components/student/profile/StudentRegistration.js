@@ -14,7 +14,21 @@ export default function StudentRegistration({ token = '' }) {
     mobile_number_2: '',
     gender: '',
     category: '',
+    father_name: '',
+    father_occupation: '',
+    mother_name: '',
+    mother_occupation: '',
+    blood_group: '',
+    height: '',
+    weight: '',
+    type_of_disability: '',
+    disibilaty_percentage: '',
     address: '',
+    domicile: '',
+    city: '',
+    state: '',
+    pin_code: '',
+    correspondance_address: '',
     date_of_birth: '',
     rank: '',
     categoryRank: '',
@@ -31,12 +45,28 @@ export default function StudentRegistration({ token = '' }) {
     spi_6: '',
     spi_7: '',
     spi_8: '',
+    spi_9: '',
     cpi: '',
+    X_board: '',
+    X_YOP: '',
     X_marks: '',
+    XII_board: '',
+    XII_YOP: '',
     XII_marks: '',
     bachelor_marks: '',
     master_marks: '',
     admission_year: '',
+    total_backlogs: '',
+    current_backlogs: '',
+    current_status: '',
+    disability_certificate: '',
+    aadhar_no: '',
+    driving_licience_no: '',
+    driving_licience_link: '',
+    pancard_no: '',
+    all_sem_marksheet: '',
+    X_marksheet: '',
+    XII_marksheet: ''
   })
 
   const router = useRouter()
@@ -94,6 +124,7 @@ export default function StudentRegistration({ token = '' }) {
   }
 
   const [programs, setPrograms] = useState([])
+
   const [courses, setCourses] = useState([])
 
   //get courses of selected program
@@ -152,6 +183,8 @@ export default function StudentRegistration({ token = '' }) {
                     className='mt-0 block w-full px-0.5 border-0 border-b-2 border-blue-900 '
                   />
                 </div>
+
+
                 <div className='col-span-9 sm:col-span-3'>
                   <label
                     htmlFor='name'
@@ -170,6 +203,84 @@ export default function StudentRegistration({ token = '' }) {
                     className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
                   />
                 </div>
+
+                
+                <div className='col-span-9 sm:col-span-3'>
+                  <label
+                    htmlFor='father_name'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Father's Name
+                  </label>
+                  <input
+                    value={values.father_name}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='father_name'
+                    id='father_name'
+                    autoComplete='father_name'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+                <div className='col-span-9 sm:col-span-3'>
+                  <label
+                    htmlFor='father_occupation'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Father's Occupation
+                  </label>
+                  <input
+                    value={values.father_occupation}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='father_occupation'
+                    id='father_occupation'
+                    autoComplete='father_occupation'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+
+                <div className='col-span-9 sm:col-span-3'>
+                  <label
+                    htmlFor='mother_name'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Mother's Name
+                  </label>
+                  <input
+                    value={values.mother_name}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='mother_name'
+                    id='mother_name'
+                    autoComplete='mother_name'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+                <div className='col-span-9 sm:col-span-3'>
+                  <label
+                    htmlFor='mother_occupation'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Mother's Occupation
+                  </label>
+                  <input
+                    value={values.mother_occupation}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='mother_occupation'
+                    id='mother_occupation'
+                    autoComplete='mother_occupation'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
 
                 <div className='col-span-9 sm:col-span-3'>
                   <label
@@ -314,6 +425,70 @@ export default function StudentRegistration({ token = '' }) {
                     <option value={true}>Yes</option>
                   </select>
                 </div>
+
+                <div className='col-span-9 sm:col-span-3'>
+                  <label
+                    htmlFor='type_of_disability'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Type Of Diability (If PWD)
+                  </label>
+                  <input
+                    disabled
+                    value={values.type_of_disability}
+                    type='text'
+                    name='type_of_disability'
+                    id='type_of_disability'
+                    autoComplete='type_of_disability'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-blue-900 '
+                  />
+                </div>
+
+
+                <div className='col-span-9 sm:col-span-3'>
+                  <label
+                    htmlFor='disability_percentage'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Disability Percentage (If PWD)
+                  </label>
+                  <input
+                    disabled
+                    value={values.disability_percentage}
+                    type='text'
+                    name='disability_percentage'
+                    id='disability_percentage'
+                    autoComplete='disability_percentage'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 border-blue-900 '
+                  />
+                </div>
+
+
+
+                
+              <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='disability_certificate'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                  Disibility Certificate (IF PWD)
+                  </label>
+                  <input
+                    value={values.disability_certificate}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='disability_certificate'
+                    id='disability_certificate'
+                    autoComplete='disability_certificate'
+                    placehlder='Drive Link'
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+
+
+
                 <div className='col-span-3 sm:col-span-1'>
                   <label
                     htmlFor='date_of_birth'
@@ -333,12 +508,81 @@ export default function StudentRegistration({ token = '' }) {
                   />
                 </div>
 
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='blood_group'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Blood Group
+                  </label>
+                  <input
+                    value={values.blood_group}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='blood_group'
+                    id='blood_group'
+                    autoComplete='blood_group'
+                    placeholder='E.g- A+'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='height'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Height
+                  </label>
+                  <input
+                    value={values.height}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='height'
+                    id='height'
+                    autoComplete='height'
+                    placeholder='In cm (E.g 68.9)'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='weight'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Weight
+                  </label>
+                  <input
+                    value={values.weight}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='weight'
+                    id='weight'
+                    autoComplete='weight'
+                    placeholder='In Kg (E.g - 58)'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+                
+
+
+
+
                 <div className='col-span-10 sm:col-span-5'>
                   <label
                     htmlFor='address'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    Address
+                    Permanent Address
                   </label>
                   <textarea
                     value={values.address}
@@ -351,6 +595,198 @@ export default function StudentRegistration({ token = '' }) {
                     className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
                   />
                 </div>
+
+
+                
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='domicile'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Domicile
+                  </label>
+                  <input
+                    value={values.domicile}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='domicile'
+                    id='domicile'
+                    autoComplete='domicile'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+                 
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='city'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    City
+                  </label>
+                  <input
+                    value={values.city}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='city'
+                    id='city'
+                    autoComplete='city'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='state'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    State
+                  </label>
+                  <input
+                    value={values.state}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='state'
+                    id='state'
+                    autoComplete='state'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='pin_code'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    PIN CODE
+                  </label>
+                  <input
+                    value={values.pin_code}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='pin_code'
+                    id='pin_code'
+                    autoComplete='pin_code'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='correspondance_address'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Correspondance Address
+                  </label>
+                  <input
+                    value={values.correspondance_address}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='correspondance_address'
+                    id='correspondance_address'
+                    autoComplete='correspondance_address'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='aadhar_no'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Aadhar No
+                  </label>
+                  <input
+                    value={values.aadhar_no}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='aadhar_no'
+                    id='aadhar_no'
+                    autoComplete='aadhar_no'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='driving_licience_no'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Driving Licience No
+                  </label>
+                  <input
+                    value={values.driving_licience_no}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='driving_licience_no'
+                    id='driving_licience_no'
+                    autoComplete='driving_licience_no'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='driving_licience_link'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                  Driving Licience
+                  </label>
+                  <input
+                    value={values.driving_licience_link}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='driving_licience_link'
+                    id='driving_licience_link'
+                    autoComplete='driving_licience_link'
+                    placeholder='Drive Link'
+                  
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='pancard_no'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Pan Card No
+                  </label>
+                  <input
+                    value={values.pancard_no}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='pancard_no'
+                    id='pancard_no'
+                    autoComplete='pancard_no'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+
+
+
+
+
+
+
+
               </div>
             </div>
           </div>
@@ -470,6 +906,54 @@ export default function StudentRegistration({ token = '' }) {
                   ))}
                 </select>
               </div>
+
+
+
+              <div className='col-span-5 sm:col-span-2'>
+                <label
+                  htmlFor='X_board'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  X Board
+                </label>
+                <input
+                  value={values.X_board}
+                  onChange={handleInputChange}
+                  type='text'
+                  name='X_board'
+                  id='X_board'
+                  // min={33}
+                  // max={100}
+                  // step='.01'
+                  autoComplete='X_board'
+                  // placeholder='In percentage Ex: 88.5'
+                  required
+                  className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
+                />
+              </div>
+
+
+
+              <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='X_YOP'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    X Year Of Passing
+                  </label>
+                  <input
+                    value={values.X_YOP}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='X_YOP'
+                    id='X_YOP'
+                    autoComplete='X_YOP'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
               <div className='col-span-5 sm:col-span-2'>
                 <label
                   htmlFor='X_marks'
@@ -492,6 +976,71 @@ export default function StudentRegistration({ token = '' }) {
                   className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
                 />
               </div>
+
+
+              <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='X_marksheet'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    X Marksheet
+                  </label>
+                  <input
+                    value={values.X_marksheet}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='X_marksheet'
+                    id='X_marksheet'
+                    autoComplete='X_marksheet'
+                  placeholder='Drive Link'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+
+
+              <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='XII_board'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    XII Board
+                  </label>
+                  <input
+                    value={values.XII_board}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='XII_board'
+                    id='XII_board'
+                    autoComplete='XII_board'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='XII_YOP'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    XII Year Of Passing
+                  </label>
+                  <input
+                    value={values.XII_YOP}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='XII_YOP'
+                    id='XII_YOP'
+                    autoComplete='XII_YOP'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
               <div className='col-span-5 sm:col-span-2'>
                 <label
                   htmlFor='XII_marks'
@@ -509,11 +1058,35 @@ export default function StudentRegistration({ token = '' }) {
                   max={100}
                   step='.01'
                   placeholder='In percentage Ex: 88.5'
-                  autoComplete=''
+                  autoComplete='XII_marks'
                   required
                   className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
                 />
               </div>
+
+
+              <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='XII_marksheet'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    XII Marksheet
+                  </label>
+                  <input
+                    value={values.XII_marksheet}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='XII_marksheet'
+                    id='XII_marksheet'
+                    autoComplete='XII_marksheet'
+                  placeholder='Drive Link'
+
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
               <div className='col-span-5 sm:col-span-2'>
                 <label
                   htmlFor='admission_year'
@@ -750,6 +1323,8 @@ export default function StudentRegistration({ token = '' }) {
                   className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
                 />
               </div>
+
+
               <div className='col-span-2 sm:col-span-1'>
                 <label
                   htmlFor='spi_8'
@@ -771,6 +1346,116 @@ export default function StudentRegistration({ token = '' }) {
                   className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
                 />
               </div>
+
+
+              <div className='col-span-2 sm:col-span-1'>
+                <label
+                  htmlFor='spi_9'
+                  className='block text-sm font-medium text-gray-700'
+                >
+                  SPI-9
+                </label>
+                <input
+                  value={values.spi_9}
+                  onChange={handleInputChange}
+                  type='number'
+                  min={2}
+                  max={10}
+                  step='.01'
+                  placeholder='Ex: 8.86'
+                  name='spi_9'
+                  id='spi_9'
+                  autoComplete='spi_9'
+                  className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
+                />
+              </div>
+
+
+              
+              <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='all_sem_marksheet'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                  All Sem Marksheets
+                  </label>
+                  <input
+                    value={values.all_sem_marksheet}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='all_sem_marksheet'
+                    id='all_sem_marksheet'
+                    autoComplete='all_sem_marksheet'
+                    placeholder='Drive Link'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+              <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='total_backlogs'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Total Backlogs
+                  </label>
+                  <input
+                    value={values.total_backlogs}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='total_backlogs'
+                    id='total_backlogs'
+                    autoComplete='total_backlogs'
+                    placeholder='Ex: 0,1'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                
+              <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='current_backlogs'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Current Backlogs
+                  </label>
+                  <input
+                    value={values.current_backlogs}
+                    onChange={handleInputChange}
+                    type='text'
+                    name='current_backlogs'
+                    id='current_backlogs'
+                    autoComplete='current_backlogs'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
+                <div className='col-span-3 sm:col-span-1'>
+                  <label
+                    htmlFor='current_status'
+                    className='block text-sm font-medium text-gray-700'
+                  >
+                    Current Status
+                  </label>
+                  <input
+                    value={values.current_status}
+                    onChange={handleInputChange}
+                    type='text'
+                    name=''
+                    id='current_status'
+                    autoComplete='current_status'
+                    placeholder='Ex: P/F'
+                    required
+                    className='mt-0 block w-full px-0.5 border-0 border-b-2 text-sm text-gray-600 border-gray-300 focus:ring-0 focus:border-stone-500'
+                  />
+                </div>
+
+
             </div>
           </div>
         </div>
