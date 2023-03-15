@@ -10,8 +10,8 @@ import { API_URL } from '@/config/index'
 import Link from 'next/link'
 
 export default function Students({ token }) {
-  const [rowData, setRowData] = useState([])
 
+  const [rowData, setRowData] = useState([])
 
     function handleApprove(id) {
         window.location.href = `/coordinator/students/${id}`;
@@ -264,6 +264,7 @@ export default function Students({ token }) {
   }, [])
 
   const gridRef = useRef()
+  
   const onBtExport = useCallback(() => {
     // See comment in pages/admin/students/index.js for logic behind this
 

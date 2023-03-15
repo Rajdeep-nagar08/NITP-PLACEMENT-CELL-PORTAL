@@ -1,5 +1,5 @@
-import Breadcrumbs from '@/components/admin/Breadcrumbs'
-import Layout from '@/components/admin/Layout'
+import Breadcrumbs from '@/components/coordinator/Breadcrumbs'
+import Layout from '@/components/coordinator/Layout'
 import { API_URL } from '@/config/index'
 import { parseCookies } from '@/helpers/index'
 import axios from 'axios'
@@ -29,7 +29,7 @@ export default function RecruiterData({ data, token }) {
 
   return (
     <Layout>
-      <Breadcrumbs items={[{ label: 'Recruiters', path: '/admin/recruiters' }, { label: recruiter?.attributes?.recruiter_name }]} />
+      <Breadcrumbs items={[{ label: 'Recruiters', path: '/coordinator/recruiters' }, { label: recruiter?.attributes?.recruiter_name }]} />
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold">{recruiter?.attributes?.recruiter_name}</h1>
       </div>

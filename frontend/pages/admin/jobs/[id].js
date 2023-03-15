@@ -17,7 +17,7 @@ export default function EditJobPage({ token = '', data }) {
     <Layout>
       <Breadcrumbs pages={pages} />
       <EligibleStudents token={token} id={data.data.id} />
-      {/* <StudentApplied token={token} id={data.data.id} /> */}
+      <StudentApplied token={token} id={data.data.id} />
       <EditJob token={token} job={data.data} />
     </Layout>
   )

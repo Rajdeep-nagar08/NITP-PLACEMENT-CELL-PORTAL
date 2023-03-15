@@ -38,7 +38,7 @@ module.exports = {
 		console.log("Backend file working")
 
 		// const { jobId } = { 1 };
-		
+
 	//	const jobId = 1;
 
 		const { jobId } = ctx.query;
@@ -74,9 +74,9 @@ module.exports = {
 
 		console.log(5);
 
-		const { job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female } = job_self;
+		const {job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female, company_category, industry_sector} = job_self;
 		
-		console.log(job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female)
+		console.log(job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female, company_category, industry_sector)
 
 		if (approval_status !== "approved") {
             return ctx.badRequest(null, [{ messages: [{ id: "Job not approved yet" }] }]);

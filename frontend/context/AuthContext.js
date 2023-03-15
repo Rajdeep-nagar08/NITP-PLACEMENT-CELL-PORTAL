@@ -41,10 +41,13 @@ export const AuthProvider = ({ children }) => {
   
 
     if (res.ok) {
+
       const data = await res.json()
 
       setUser(data)
+
       setRole(data.role)
+
       toast.success('Registration Successful!')
         // redirect after 3 seconds
       setTimeout(() => {
@@ -100,6 +103,7 @@ export const AuthProvider = ({ children }) => {
         role,
       }),
     })
+
     const data = await res.json()
 
 
@@ -121,6 +125,7 @@ export const AuthProvider = ({ children }) => {
       else{
 
       setRole(data.role)
+
       if (role === 'student') {   // student=>public
         router.push('student/profile')
       } else if (role === 'admin') {

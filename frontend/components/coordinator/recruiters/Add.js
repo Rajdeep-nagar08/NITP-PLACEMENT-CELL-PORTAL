@@ -24,7 +24,7 @@ export default function AddRecruiterComponent({ token = '' }) {
     }
 
     if (confirm('Are you sure you want to add this recruiter?')) {
-      const res = await fetch(`${API_URL}/api/admin/register-with-role`, {
+      const res = await fetch(`${API_URL}/api/coordinator/register-with-role`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,

@@ -14,7 +14,9 @@ export default function EligibleStudents({ token = '', id = '',job = {}}) {
   console.log(id)
 
   const [students, setStudents] = useState([])
+
   const gridRef = useRef()
+
   const onBtExport = useCallback(() => {
 
     // See comment in pages/admin/students/index.js for logic behind this
@@ -129,6 +131,7 @@ const fetchData = async () => {
   const data = await res.json()
 
   console.log("elig students=>")
+
   console.log(data)
 
   setStudents(data)

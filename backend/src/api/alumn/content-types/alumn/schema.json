@@ -200,6 +200,96 @@
     "internship_status": {
       "type": "boolean",
       "default": false
+    },
+    "father_name": {
+      "type": "string"
+    },
+    "father_occupation": {
+      "type": "string"
+    },
+    "mother_name": {
+      "type": "string"
+    },
+    "mother_occupation": {
+      "type": "string"
+    },
+    "blood_group": {
+      "type": "string"
+    },
+    "height": {
+      "type": "string"
+    },
+    "weight": {
+      "type": "string"
+    },
+    "type_of_disability": {
+      "type": "string"
+    },
+    "disability_percentage": {
+      "type": "string"
+    },
+    "domicile": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "pin_code": {
+      "type": "string"
+    },
+    "correspondance_address": {
+      "type": "text"
+    },
+    "X_board": {
+      "type": "string"
+    },
+    "X_YOP": {
+      "type": "string"
+    },
+    "XII_board": {
+      "type": "string"
+    },
+    "XII_YOP": {
+      "type": "string"
+    },
+    "total_backlogs": {
+      "type": "string"
+    },
+    "current_backlogs": {
+      "type": "string"
+    },
+    "current_status": {
+      "type": "string"
+    },
+    "aadhar_no": {
+      "type": "string"
+    },
+    "driving_licience_no": {
+      "type": "string"
+    },
+    "pancard_no": {
+      "type": "string"
+    },
+    "all_sem_marksheet": {
+      "type": "string"
+    },
+    "X_marksheet": {
+      "type": "string"
+    },
+    "XII_marksheet": {
+      "type": "string"
+    },
+    "spi_9": {
+      "type": "string"
+    },
+    "disabilty_certificate": {
+      "type": "string"
+    },
+    "driving_licience_link": {
+      "type": "string"
     }
   }
 }
