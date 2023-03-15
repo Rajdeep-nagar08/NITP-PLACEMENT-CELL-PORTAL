@@ -6,6 +6,8 @@ import {
   ArrowLeftIcon,
   LogoutIcon,
   ShieldCheckIcon,
+  ClipboardCheckIcon,
+  ClipboardListIcon,
   UserIcon,
 } from '@heroicons/react/outline'
 import Image from 'next/image'
@@ -32,11 +34,11 @@ const navigation = [
     icon: BriefcaseIcon,
   },
 
-  // {
-  //   name: 'Jobs Applied',
-  //   href: '/student/jobs-applied',
-  //   icon: ClipboardCheckIcon,
-  // },
+  {
+    name: 'Jobs Applied',
+    href: '/student/jobs-applied',
+    icon: ClipboardCheckIcon,
+  },
 
   {
     name: 'Resume & Transcript',

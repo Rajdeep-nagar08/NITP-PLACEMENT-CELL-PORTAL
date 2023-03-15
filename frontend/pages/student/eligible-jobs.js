@@ -69,29 +69,29 @@ export default function EligibleJobs({ token = '' }) {
     },
   }));
 
-  // async function handleApply(id) {
-  //   if (confirm('Are you sure to apply ?')) {
-  //     const res = await fetch(`${API_URL}/api/student/apply?jobId=${id}`, {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${token}`,
-  //       },
-  //     })
+   async function handleApply(id) {
+     if (confirm('Are you sure to apply ?')) {
+       const res = await fetch(`${API_URL}/api/student/apply?jobId=${id}`, {
+         method: 'POST',
+         headers: {
+           'Content-Type': 'application/json',
+           Authorization: `Bearer ${token}`,
+         },
+       })
 
-  //     if (!res.ok) {
-  //       if (res.status === 403 || res.status === 401) {
-  //         toast.error('Invalid User')
-  //         return
-  //       }
-  //       console.debug(res)
-  //       let err_msg = 'Something Went Wrong'
-  //       try {
-  //         const data = await res.json();
+       if (!res.ok) {
+         if (res.status === 403 || res.status === 401) {
+           toast.error('Invalid User')
+           return
+         }
+         console.debug(res)
+         let err_msg = 'Something Went Wrong'
+         try {
+           const data = await res.json();
 
 
-	//   /* In case of error, from backend we should receive this structure:
-	//    *
+	  /* In case of error, from backend we should receive this structure:
+	    *
 	//    * {
 	//    *   data: null
 	//    *   error: {
@@ -108,24 +108,26 @@ export default function EligibleJobs({ token = '' }) {
 	//    * */
 
 
-	//   if(data.error && Array.isArray(data.error.details)) {
-	//     const err_detail = data.error.details[0];
-	//     if (err_detail && Array.isArray(err_detail.messages)) {
-	//       if(err_detail.messages[0]) {
-	// 	err_msg = err_detail.messages[0].id || err_msg;
-	//       }
-	//     }
-	//   }
+	  if(data.error && Array.isArray(data.error.details)) {
+	     const err_detail = data.error.details[0];
+	     if (err_detail && Array.isArray(err_detail.messages)) {
+	       if(err_detail.messages[0]) {
+	 	err_msg = err_detail.messages[0].id || err_msg;
+	       }
+	     }
+	   }
 
-	// } catch(_e) {}
-  //       toast.error(err_msg)
-  //     } else {
-  //       const data = await res.json()
-  //       toast.success('Successfully Applied')
-  //       router.push(`/student/jobs-applied`)
-  //     }
-  //   }
-  // }
+	} catch(_e) {}
+         toast.error(err_msg)
+       } else {
+         const data = await res.json()
+         toast.success('Successfully Applied')
+        router.push(`/student/jobs-applied`)
+       }
+     }
+   }
+
+   
 
   const [columnDefs] = useState([
     {
@@ -139,23 +141,23 @@ export default function EligibleJobs({ token = '' }) {
       field: 'company.company_name',
       filter: 'agTextColumnFilter',
     },
-    // {
-    //   headerName: 'Apply',
-    //   field: 'id',
-    //   cellRenderer: function (params) {
-    //     return (
-    //       <div>
-    //         <button
-    //           type='button'
-    //           onClick={() => handleApply(params.value)}
-    //           className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-    //         >
-    //           Apply
-    //         </button>
-    //       </div>
-    //     )
-    //   },
-    // },
+    {
+      headerName: 'Apply',
+      field: 'id',
+      cellRenderer: function (params) {
+        return (
+          <div>
+            <button
+              type='button'
+              onClick={() => handleApply(params.value)}
+              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
+            >
+              Apply
+            </button>
+          </div>
+        )
+      },
+    },
     {
       headerName: 'JAF',
       field: 'jaf.url',
