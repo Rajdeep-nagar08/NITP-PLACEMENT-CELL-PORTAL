@@ -218,8 +218,7 @@ module.exports = {
             }
         }
 
-        console.log(14);
-
+        console.log("Atlassian")
 
 
 	if ( job.category == "Internship" ) {
@@ -276,6 +275,7 @@ module.exports = {
 
             // Number of applications to A1 jobs created by student, AFTER being selected in an A2 job
             // FUTURE: This calculation will get repeated for all jobs, see if it can be optimised
+
             const num_new_A1_application = (await strapi.db.query("api::application.application").findMany({
                 where: {
                     student: id,

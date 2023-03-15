@@ -107,9 +107,9 @@ export default function Students({ token }) {
       .get(`${API_URL}/api/companies?populate=*&sort=id:DESC`, config)
       .then(async (res) => {
         let fetched_data = res.data.data
-        fetched_data = fetched_data.filter((company) => {
-          return company.attributes.company_name === 'checkme'
-        })
+        // fetched_data = fetched_data.filter((company) => {
+        //   return company.attributes.company_name === 'checkme'
+        // })
         setRowData(fetched_data)
       })
       .catch((err) => {
