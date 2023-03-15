@@ -423,6 +423,7 @@ export default function Students({ token }) {
     rowData={rowData}
     columnDefs={columnDefs}
     defaultColDef={{ sortable: true, filter: true }}
+          domLayout= 'autoHeight'
     // onRowClicked={onRowClicked}
     // rowStyle={{ cursor: 'pointer' }}
     cellStyle={{ boxShadow: 'none' }}

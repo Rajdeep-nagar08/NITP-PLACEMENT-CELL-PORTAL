@@ -14,11 +14,10 @@ html {
   --ag-background-color: rgba(255, 255, 255, 0.856);
   --ag-header-foreground-color: #ffffff;
   --ag-header-background-color: rgb(59, 1, 1);
-  --ag-odd-row-background-color: rgba(66, 0, 0, 0.825);
+  --ag-odd-row-background-color: #e1bd537b;
   --ag-header-column-resize-handle-color: rgb(0, 0, 0);
-
   --ag-font-size: 17px;
-  --ag-font-color: black;
+  --ag-font-color: rgb(250, 255, 102);
   --ag-font-family: monospace;
 }
 

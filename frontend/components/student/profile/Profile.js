@@ -116,7 +116,7 @@ export default function Profile({ student, token }) {
   }
 
   return (
-    <div className='bg-[#f5f1fa] shadow overflow-hidden sm:rounded-lg mt-4'>
+    <div className='bg-white shadow overflow-hidden sm:rounded-lg mt-4'>
       <div className='px-4 py-5 sm:px-6 flex justify-between'>
         <div>
           <h3 className='text-lg leading-6 font-medium text-gray-900'>
@@ -124,13 +124,13 @@ export default function Profile({ student, token }) {
             {student.approved == 'pending' && (
               <span className='px-2 mx-2 py-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-orange-100 text-orange-800'>
                 <svg
-                  className='animate-spin  ml-1 mr-3 h-5 w-5 text-green'
+                  className='animate-spin  ml-1 mr-3 h-5 w-5 text-green-800'
                   xmlns='http://www.w3.org/2000/svg'
                   fill='none'
                   viewBox='0 0 24 24'
                 >
                   <circle
-                    className='opacity-25'
+                    className='opacity-15'
                     cx='12'
                     cy='12'
                     r='10'

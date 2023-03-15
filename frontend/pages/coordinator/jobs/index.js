@@ -13,9 +13,9 @@ export default function Jobs({ token }) {
   const [rowData, setRowData] = useState([])
 
 
-    function handleApprove(id) {
-        window.location.href = `/coordinator/jobs/${id}`;
-      }
+  function handleApprove(id) {
+    window.location.href = `/coordinator/jobs/${id}`;
+  }
 
 
   const [columnDefs] = useState([
@@ -31,7 +31,7 @@ export default function Jobs({ token }) {
           <div>
             <button
               type='button'
-               onClick={() => handleApprove(params.value)}
+              onClick={() => handleApprove(params.value)}
               className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
             >
               Details
@@ -39,7 +39,7 @@ export default function Jobs({ token }) {
           </div>
         )
       },
-    
+
       // function handleApprove(id) {
       //   window.location.href = `/admin/companies/${id}`;
       // }
@@ -145,7 +145,7 @@ export default function Jobs({ token }) {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-  
+
     axios
       .get(`${API_URL}/api/jobs?populate=*&sort=id:desc`, config)
       .then((res) => {
@@ -162,7 +162,7 @@ export default function Jobs({ token }) {
   }, []);
 
   return (
-   
+
     <Layout>
 
       <div className='flex-1'>
@@ -173,8 +173,8 @@ export default function Jobs({ token }) {
             </h1>
           </div>
           <div className='mt-4 flex sm:mt-0 sm:ml-4'>
-          
-          
+
+
             {/* <button
               type='button'
               className='order-1 ml-3 inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-0 sm:ml-0'
@@ -186,7 +186,7 @@ export default function Jobs({ token }) {
             <Link href={`/coordinator/jobs/add`}>
               <button
                 type='button'
-                className='order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:order-1 sm:ml-3'
+                className='order-0 inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-black bg-[#e1be53] hover:bg-[#f0c74c] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500 sm:order-1 sm:ml-3'
               >
                 Add Job
               </button>
@@ -198,6 +198,8 @@ export default function Jobs({ token }) {
             rowData={rowData}
             columnDefs={columnDefs}
             defaultColDef={{ sortable: true, filter: true }}
+            rowSelection='multiple'
+            domLayout='autoHeight'
           ></AgGridReact>
         </div>
       </div>
