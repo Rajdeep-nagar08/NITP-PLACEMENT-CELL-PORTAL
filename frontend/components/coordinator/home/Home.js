@@ -1,11 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import RegisteredGraph from '@/components/coordinator/home/RegisteredGraph'
-import PlacedGraph from '@/components/coordinator/home/PlacedGraph'
-import axios from 'axios'
+import NewRequest from './NewRequest'
 import { API_URL } from '@/config/index'
+import axios from 'axios'
+import PlacedGraph from './PlacedGraph'
 
 export default function Home({ token = '' }) {
   const [student, setStudent] = useState([])
+  const [job, setJob] = useState([])
+  const [company, setCompany] = useState([])
   const [ftestudent, setFtestudent] = useState([])
   const [internstudent, setInternstudent] = useState([])
 
@@ -36,6 +39,43 @@ export default function Home({ token = '' }) {
         console.log(err)
       })
   }, [])
+
+  useEffect(() => {
+    fetch(
+      `${API_URL}/api/jobs?filters[approval_status][$eq]=pending&populate=*`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    )
+      .then((res) => res.json())
+      .then((res) => {
+        setJob(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  useEffect(() => {
+    fetch(`${API_URL}/api/companies?filters[status][$eq]=pending&populate=*`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => res.json())
+      .then((res) => {
+        setCompany(res)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [token])
 
   // Get placed status of students from /api/student/placed-status
   // @Ouput: {placed: {placed_a1: [], placed_a2: [], placed_x: []}}
@@ -72,6 +112,9 @@ export default function Home({ token = '' }) {
         role='list'
         className='grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3'
       >
+        <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
+          <NewRequest student={student} job={job} company={company} />
+        </li>
         <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
           <RegisteredGraph student={student} title='Registered Students' />
         </li>

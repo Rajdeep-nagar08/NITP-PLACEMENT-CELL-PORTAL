@@ -7,22 +7,18 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 export default function RegisteredGraph({ student = [], title = '' }) {
   const [resultMap, setResultMap] = useState([])
 
+  useEffect(() => {
+    const occurences = student.reduce(function (r, row) {
+      r[row.attributes.program.data.attributes.program_name] =
+        ++r[row.attributes.program.data.attributes.program_name] || 1
+      return r
+    }, {})
 
-  //   useEffect(() => {
-  //     const occurences = student.reduce(function (r, row) {
-  //       r[row.attributes.program.data.attributes.program_name] =
-  //         ++r[row.attributes.program.data.attributes.program_name] || 1
-  //       return r
-  //     }, {})
-
-  //   const mapData = Object.keys(occurences).map(function (key) {
-  //     return { key: key, value: occurences[key] }
-  //   })
-  //   setResultMap(mapData)
-  // }, [student])
-
-
-
+    const mapData = Object.keys(occurences).map(function (key) {
+      return { key: key, value: occurences[key] }
+    })
+    setResultMap(mapData)
+  }, [student])
   let result = {
     labels: resultMap.map((item) => item.key),
     datasets: [
@@ -55,3 +51,4 @@ export default function RegisteredGraph({ student = [], title = '' }) {
     </div>
   )
 }
+

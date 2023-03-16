@@ -434,7 +434,6 @@ export default function StudentRegistration({ token = '' }) {
                     Type Of Diability (If PWD)
                   </label>
                   <input
-                    disabled
                     value={values.type_of_disability}
                     type='text'
                     name='type_of_disability'
@@ -453,7 +452,6 @@ export default function StudentRegistration({ token = '' }) {
                     Disability Percentage (If PWD)
                   </label>
                   <input
-                    disabled
                     value={values.disability_percentage}
                     type='text'
                     name='disability_percentage'
