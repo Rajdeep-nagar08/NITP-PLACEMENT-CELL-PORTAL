@@ -1,4 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import {
+  UserAddIcon,
+  BriefcaseIcon,
+  OfficeBuildingIcon,
+} from '@heroicons/react/outline'
 
 export default function NewRequest({ student, job, company }) {
   const [studentCount, setStudentCount] = useState(0)
@@ -6,14 +11,18 @@ export default function NewRequest({ student, job, company }) {
   const [companyCount, setCompanyCount] = useState(0)
   const people = [
     {
+      
       name: 'Student Approval',
       count: studentCount,
+      icon: UserAddIcon,
     },
     {
+      icon:BriefcaseIcon,
       name: 'Job Approval',
       count: jobCount,
     },
     {
+      icon:OfficeBuildingIcon,
       name: 'Company Approval',
       count: companyCount,
     },
@@ -41,33 +50,24 @@ export default function NewRequest({ student, job, company }) {
   }, [company])
 
   return (
-    <div className='-mx-4'>
-      <p className='text-center text-xl font-bold'>New Requests</p>
-      {/* Component showing notification count */}
-      <div className='mt-8 flex flex-col'>
-        <div className='-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8'>
-          <div className='inline-block min-w-full py-2 align-middle md:px-6 lg:px-8'>
-            <div className='overflow-hidden  md:rounded-lg'>
-              <table className='min-w-full divide-y divide-gray-300'>
-                <tbody className='divide-y divide-gray-200 bg-white'>
-                  {people.map((person) => (
-                    <tr key={person.name}>
-                      <td className='whitespace-nowrap py-4 px-2 text-sm text-gray-600 text-left'>
-                        {person.name}
-                      </td>
-
-                      <td className='whitespace-nowrap px-3 py-2 text-sm text-gray-500 '>
-                        <p className='bg-cyan-600 text-white px-1 py-0.5 rounded-full'>
+    <div className='p-5 '>
+      <div className='font-bold text-xl'>New Requests</div>
+      <div className='m-3 py-4'>
+      {people.map((person) => (
+                    <div key={person.name} className='bg-yellow-100 mb-4 rounded-lg flex flex-col'>
+                      <div className='text-sm h-7 w-7 text-red-900 self-center m-1'>
+                      <person.icon />
+                      </div>
+                      <div className='text-sm text-black '>
+                        <div className=' text-xl font-bold rounded-full'>
                           {person.count}
-                        </p>
-                      </td>
-                    </tr>
+                        </div>
+                      </div>
+                      <div className='text-sm font-semibold text-black p-1 font-mono'>
+                        {person.name}
+                      </div>
+                    </div>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   )

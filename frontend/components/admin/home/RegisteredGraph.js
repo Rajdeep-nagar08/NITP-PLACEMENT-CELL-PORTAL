@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-
-import { Doughnut, Pie } from 'react-chartjs-2'
+import { Doughnut } from 'react-chartjs-2'
 ChartJS.register(ArcElement, Tooltip, Legend)
 
 export default function RegisteredGraph({ student = [], title = '' }) {
@@ -26,15 +25,15 @@ export default function RegisteredGraph({ student = [], title = '' }) {
         label: 'Students Registered',
         data: resultMap.map((item) => item.value),
         backgroundColor: [
-          'rgba(60, 174, 255, 0.9)',
-          'rgba(174, 94, 250, 0.9)',
-          'rgba(91, 223, 172, 0.9)',
+          'rgba(139, 2, 2, 0.8)',
+          'rgba(35, 141, 236, 0.8)',
+          'rgba(85, 35, 236, 0.8)',
           'rgba(255, 206, 86, 0.9)',
           'rgba(75, 192, 192, 0.9)',
           'rgba(153, 102, 255, 0.9)',
           'rgba(255, 159, 64, 0.9)',
         ],
-        borderWidth: 0,
+        borderWidth: 0.2,
       },
     ],
   }
