@@ -38,7 +38,7 @@ export default function Nav() {
       console.log(res)
       setTpcGuidelines(data.attributes.tpc_guidelines.data.attributes.url)
     } catch (err) {
-      toast.error('Error fetching TPC Guidelines')
+      // toast.error('Error fetching TPC Guidelines')
      console.log(err)
     }
   }
@@ -48,10 +48,10 @@ export default function Nav() {
 
 
   return (
-    <div>
+    <div className="bg-white shadow">
       <Slideover open={open} setOpen={setOpen} />
       <div className='hidden sm:block'>
-        <div className='border-b border-gray-200 px-4 backdrop-blur'>
+        <div className='border-b border-gray-200'>
           <nav className='-mb-px flex space-x-8' aria-label='Tabs'>
             {tabs.map((tab) => (
               <a
@@ -72,12 +72,13 @@ export default function Nav() {
             {/* Notification icon at the right */}
             <div className='flex-grow' />
             <a
-              onClick={toggleSlideover}
-              className='whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer transition duration-150 ease-in-out select-none focus:outline-none focus:text-indigo-800 focus:border-indigo-700'
-            >
-              {/* Animate bell icon */}
-              <BellIcon className='h-6 w-6 text-gray-500 hover:text-indigo-700 hover:animate-pulse' />
-            </a>
+  onClick={toggleSlideover}
+  className='whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm cursor-pointer transition duration-150 ease-in-out select-none focus:outline-none focus:text-indigo-800 focus:border-indigo-700'
+>
+  {/* Animate bell icon */}
+  <BellIcon className='h-6 w-6 text-gray-500 hover:text-indigo-700 animate-colors' />
+</a>
+
           </nav>
         </div>
       </div>

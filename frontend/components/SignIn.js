@@ -14,7 +14,7 @@ export default function SignIn() {
     { id: "student", title: "Student" },
     { id: "coordinator", title: "Coordinator" },
     { id: "admin", title: "Admin" },
-    { id: "alumn", title: "Alumn"}
+    // { id: "alumn", title: "Alumn"}
   ];
 
   const { login, error } = useContext(AuthContext);
@@ -55,7 +55,7 @@ export default function SignIn() {
 
       .catch((err) => {
         console.log(err)
-        toast.error('Unable to fetch tpc_guidelines')
+        // toast.error('Unable to fetch tpc_guidelines')
       })
   }, [])
 
@@ -66,7 +66,8 @@ export default function SignIn() {
   };
 
   return (
-    <div className="bg-[url('/images/bg.jpg')] bg-cover bg-no-repeat ">
+    // <div className="bg-[url('/images/bg.jpg')] bg-cover bg-no-repeat ">
+    <div>
       <Nav />
 
       <div className="min-h-full flex md:flex-row cm:flex-col sm:px-6 lg:px-8 m-5">
@@ -82,13 +83,13 @@ export default function SignIn() {
               />
             </div>
 
-            <h2 className="mt-6 text-center text-3xl font-extrabold font-serif text-white">
+            <h2 className="mt-6 text-center text-3xl font-extrabold font-serif text-Black">
               Training and Placement Cell
             </h2>
-            <h2 className="text-center font-extrabold text-3xl uppercase text-black my-5">
+            <h2 className="text-center font-extrabold text-3xl uppercase text-Black my-5">
               NIT Patna
             </h2>
-            <p className="m-3 text-white font-serif">
+            <p className="m-3 text-Black font-serif">
               The Training and Placement cell of NIT PATNA forms an integral
               part in shaping the careers of the students of the institute. It
               organizes and coordinates campus placement program to fulfill its
@@ -126,7 +127,7 @@ export default function SignIn() {
                 <option value="company">Company</option>
                 <option value="student">Student</option>
                 <option value="coordinator">Coordinator</option>
-                <option value="alumn">Alumn</option>
+                {/* <option value="alumn">Alumn</option> */}
               </select>
             </div>
             <form
