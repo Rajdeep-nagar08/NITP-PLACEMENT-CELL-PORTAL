@@ -102,34 +102,6 @@
       "default": "pending",
       "required": true
     },
-    "spi_1": {
-      "type": "string"
-    },
-    "spi_2": {
-      "type": "string"
-    },
-    "spi_3": {
-      "type": "string"
-    },
-    "spi_4": {
-      "type": "string"
-    },
-    "spi_5": {
-      "type": "string"
-    },
-    "spi_6": {
-      "type": "string"
-    },
-    "spi_7": {
-      "type": "string"
-    },
-    "spi_8": {
-      "type": "string"
-    },
-    "cpi": {
-      "type": "string",
-      "required": true
-    },
     "bachelor_marks": {
       "type": "string"
     },
@@ -212,12 +184,129 @@
       "default": false,
       "required": false
     },
+    "father_name": {
+      "type": "string"
+    },
+    "father_occupation": {
+      "type": "string"
+    },
+    "mother_name": {
+      "type": "string"
+    },
+    "mother_occupation": {
+      "type": "string"
+    },
+    "blood_group": {
+      "type": "string"
+    },
+    "type_of_disability": {
+      "type": "string"
+    },
+    "disability_percentage": {
+      "type": "string"
+    },
+    "domicile": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "pin_code": {
+      "type": "string"
+    },
+    "correspondance_address": {
+      "type": "text"
+    },
+    "X_board": {
+      "type": "string"
+    },
+    "X_YOP": {
+      "type": "string"
+    },
+    "XII_board": {
+      "type": "string"
+    },
+    "XII_YOP": {
+      "type": "string"
+    },
+    "current_status": {
+      "type": "string"
+    },
+    "aadhar_no": {
+      "type": "string"
+    },
+    "driving_licience_no": {
+      "type": "string"
+    },
+    "pancard_no": {
+      "type": "string"
+    },
+    "all_sem_marksheet": {
+      "type": "string"
+    },
+    "X_marksheet": {
+      "type": "string"
+    },
+    "XII_marksheet": {
+      "type": "string"
+    },
+    "disabilty_certificate": {
+      "type": "string"
+    },
+    "driving_licience_link": {
+      "type": "string"
+    },
     "placed_status_updated": {
       "type": "datetime",
       "unique": false
     },
     "cover_letter_link": {
       "type": "string"
+    },
+    "spi_1": {
+      "type": "decimal"
+    },
+    "spi_2": {
+      "type": "decimal"
+    },
+    "spi_3": {
+      "type": "decimal"
+    },
+    "spi_4": {
+      "type": "decimal"
+    },
+    "spi_5": {
+      "type": "decimal"
+    },
+    "spi_6": {
+      "type": "decimal"
+    },
+    "spi_7": {
+      "type": "decimal"
+    },
+    "spi_8": {
+      "type": "decimal"
+    },
+    "spi_9": {
+      "type": "decimal"
+    },
+    "current_backlogs": {
+      "type": "integer"
+    },
+    "total_backlogs": {
+      "type": "integer"
+    },
+    "height": {
+      "type": "decimal"
+    },
+    "weight": {
+      "type": "decimal"
+    },
+    "cpi": {
+      "type": "decimal"
     }
   }
 }

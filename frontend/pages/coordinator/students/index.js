@@ -19,33 +19,28 @@ export default function Students({ token }) {
 
   const [columnDefs] = useState([
     {
+      headerName: '',
+      field: 'checkbox',
+      headerCheckboxSelection: true,
+      headerCheckboxSelectionFilteredOnly: true,
+      checkboxSelection: true,
+    },
+    
+    {
       headerName: 'Roll No.',
       field: 'attributes.roll',
       // cellRenderer: function (params) {
       //   return (
       //     <div>
-      //       <Link href={`/coordinator/students/${params.data.id}`}>
+      //       <Link href={`/admin/students/${params.data.id}`}>
       //         {params.value}
       //       </Link>
       //     </div>
       //   )
       // },
-      headerCheckboxSelection: true,
-      headerCheckboxSelectionFilteredOnly: true,
-      checkboxSelection: true,
-    },
-    {
-      headerName: 'Name',
-      field: 'attributes.name',
-      // cellRenderer: function (params) {
-      //   return (
-      //     <div>
-      //       <Link href={`/coordinator/students/${params.data.id}`}>
-      //         {params.value}
-      //       </Link>
-      //     </div>
-      //   )
-      // },
+      // headerCheckboxSelection: true,
+      // headerCheckboxSelectionFilteredOnly: true,
+      // checkboxSelection: true,
     },
     {
       headerName: 'Details',
@@ -56,7 +51,7 @@ export default function Students({ token }) {
             <button
               type='button'
                onClick={() => handleApprove(params.value)}
-              className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500'
+               className='inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-600'
             >
               Details
             </button>
@@ -68,6 +63,22 @@ export default function Students({ token }) {
       //   window.location.href = `/admin/companies/${id}`;
       // }
     },
+   
+    {
+      headerName: 'Name',
+      field: 'attributes.name',
+    },
+
+    {
+      headerName: 'Admission Year',
+      field: 'attributes.admission_year',
+    },
+
+    {
+      headerName: 'Approved',
+      field: 'attributes.approved'
+    },
+
     {
       headerName: 'Placed Status',
       field: 'attributes.placed',
@@ -84,11 +95,27 @@ export default function Students({ token }) {
       headerName: 'Program',
       field: 'attributes.program.data.attributes.program_name',
     },
+
     {
-      headerName: 'CPI',
-      field: 'attributes.cpi',
-      filter: 'agNumberColumnFilter',
+      headerName: 'Father Name',
+      field: 'attributes.father_name',
     },
+
+    {
+      headerName: 'Father Occupation',
+      field: 'attributes.father_occupation',
+    },
+
+    {
+      headerName: 'Mother Name',
+      field: 'attributes.mother_name',
+    },
+
+    {
+      headerName: 'Mother Occupation',
+      field: 'attributes.mother_occupation',
+    },
+
     {
       headerName: 'Mobile',
       field: 'attributes.mobile_number_1',
@@ -132,7 +159,7 @@ export default function Students({ token }) {
       },
     },
     {
-      headerName: 'Resume Link',
+      headerName: 'Resume',
       field: 'attributes.resume_link',
       cellRenderer: function (params) {
         return (
@@ -153,6 +180,210 @@ export default function Students({ token }) {
         )
       },
     },
+    
+
+    {
+      headerName: 'Blood Group',
+      field: 'attributes.blood_group',
+
+    },
+
+    {
+      headerName: 'Height',
+      field: 'attributes.height',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Weight',
+      field: 'attributes.weight',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Domicile',
+      field: 'attributes.domicile',
+    },
+
+    {
+      headerName: 'Address',
+      field: 'attributes.address',
+    },
+
+
+
+    {
+      headerName: 'City',
+      field: 'attributes.city',
+    },
+
+    {
+      headerName: 'State',
+      field: 'attributes.state',
+    },
+
+    {
+      headerName: 'Pin Code',
+      field: 'attributes.pin_code',
+    },
+
+    {
+      headerName: 'Correspondance Address',
+      field: 'attributes.correspondance_address',
+    },
+
+    {
+      headerName: 'Aadhar No',
+      field: 'attributes.aadhar_no',
+    },
+
+    {
+      headerName: 'Driving Licience No',
+      field: 'attributes.driving_licience_no',
+    },
+
+    {
+      headerName: 'Driving Licience',
+      field: 'attributes.driving_licience_link',
+    },
+
+    {
+      headerName: 'Pancard No',
+      field: 'attributes.pancard_no',
+    },
+
+    {
+      headerName: 'All Semester Marksheets',
+      field: 'attributes.all_sem_marksheet',
+    },
+
+    {
+      headerName: 'X Marksheet',
+      field: 'attributes.X_marksheet',
+    },
+
+    {
+      headerName: 'XII Marksheet',
+      field: 'attributes.XII_marksheet',
+    },
+
+    {
+      headerName: 'X Board',
+      field: 'attributes.X_board',
+    },
+
+    {
+      headerName: 'X YOP',
+      field: 'attributes.X_YOP',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'XII Board',
+      field: 'attributes.XII_board',
+      
+    },
+
+    {
+      headerName: 'XII YOP',
+      field: 'attributes.XII_YOP',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 1',
+      field: 'attributes.spi_1',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 2',
+      field: 'attributes.spi_2',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 3',
+      field: 'attributes.spi_3',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 4',
+      field: 'attributes.spi_4',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 5',
+      field: 'attributes.spi_5',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 6',
+      field: 'attributes.spi_6',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 7',
+      field: 'attributes.spi_7',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 8',
+      field: 'attributes.spi_8',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 9',
+      field: 'attributes.spi_9',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Total Backlogs',
+      field: 'attributes.total_backlogs',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Current Backlogs',
+      field: 'attributes.current_backlogs',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Current Status',
+      field: 'attributes.current_status',
+    },
+
+    {
+      headerName: 'CPI',
+      field: 'attributes.cpi',
+      filter: 'agNumberColumnFilter',
+    },
+    
+    
+    
     {
       headerName: 'Xth Marks',
       field: 'attributes.X_marks',
@@ -165,9 +396,30 @@ export default function Students({ token }) {
       headerName: 'Category',
       field: 'attributes.category',
     },
+
+    {
+      headerName: 'PWD',
+      field: 'attributes.pwd',
+    },
+
+  
+    {
+      headerName: 'Disability Percentage (If PWD)',
+      field: 'attributes. disability_percentage',
+    },
+
+    
+    {
+      headerName: 'Disability Certificate (If PWD)',
+      field: 'attributes. disabilty_certificate',
+    },
+
+
+
     {
       headerName: 'Gender',
       field: 'attributes.gender',
+
     },
     {
       headerName: 'Date of Birth',
@@ -178,6 +430,7 @@ export default function Students({ token }) {
       field: 'attributes.bachelor_marks',
     },
   ])
+
 
   const getPlacedStatus = useCallback(async (data) => {
     const config = {
@@ -255,6 +508,11 @@ export default function Students({ token }) {
         }
         fetched_data = await getPlacedStatus(fetched_data)
         fetched_data = await getInternshipStatus(fetched_data)
+
+        fetched_data = fetched_data.filter((student) => {
+          return student.attributes.approved === 'approved'
+         })
+
         setRowData(fetched_data)
       })
       .catch((err) => {

@@ -426,6 +426,7 @@ export default function StudentRegistration({ token = '' }) {
                   </select>
                 </div>
 
+
                 <div className='col-span-9 sm:col-span-3'>
                   <label
                     htmlFor='type_of_disability'
@@ -492,7 +493,7 @@ export default function StudentRegistration({ token = '' }) {
                     htmlFor='date_of_birth'
                     className='block text-sm font-medium text-gray-700'
                   >
-                    DOB
+                       Date of Birth
                   </label>
                   <input
                     value={values.date_of_birth}
@@ -1106,6 +1107,9 @@ export default function StudentRegistration({ token = '' }) {
                   className='mt-0 block w-full px-0.5 border-0 border-b-2 border-gray-300 focus:ring-0 focus:border-stone-500'
                 />
               </div>
+
+
+
               <div className='col-span-5 sm:col-span-2'>
                 <label
                   htmlFor='cpi'

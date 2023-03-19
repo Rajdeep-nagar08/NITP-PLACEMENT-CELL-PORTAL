@@ -7,7 +7,7 @@ import qs from 'qs'
 import { useEffect, useState } from 'react'
 import ApplicationDetails from '@/components/admin/students/ApplicationDetails'
 import Eligiblejobs from '@/components/admin/students/EligibleJobs'
-import StudentProfileEdit from '@/components/coordinator/students/StudentProfileEdit'
+import StudentProfile from '@/components/coordinator/students/StudentProfile'
 
 export default function StudentProfilePage({
   token = '',
@@ -83,7 +83,7 @@ export default function StudentProfilePage({
       <Breadcrumbs pages={pages} />
       {/* <ApplicationDetails applications={applications} /> */}
       {/* <Eligiblejobs jobs={eligibleJobs} /> */}
-      <StudentProfileEdit student={student} token={token} />
+      <StudentProfile student={student} token={token} />
     </Layout>
   )
 }

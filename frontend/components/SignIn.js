@@ -66,8 +66,7 @@ export default function SignIn() {
   };
 
   return (
-    // <div className="bg-[url('/images/bg.jpg')] bg-cover bg-no-repeat ">
-    <div>
+    <div className=" bg-cover bg-no-repeat ">
       <Nav />
 
       <div className="min-h-full flex md:flex-row cm:flex-col sm:px-6 lg:px-8 m-5">
@@ -83,13 +82,13 @@ export default function SignIn() {
               />
             </div>
 
-            <h2 className="mt-6 text-center text-3xl font-extrabold font-serif text-Black">
+            <h2 className="mt-6 text-center text-3xl font-extrabold font-serif text-stone-800">
               Training and Placement Cell
             </h2>
             <h2 className="text-center font-extrabold text-3xl uppercase text-Black my-5">
               NIT Patna
             </h2>
-            <p className="m-3 text-Black font-serif">
+            <p className="m-3 text-gray-900 font-serif">
               The Training and Placement cell of NIT PATNA forms an integral
               part in shaping the careers of the students of the institute. It
               organizes and coordinates campus placement program to fulfill its

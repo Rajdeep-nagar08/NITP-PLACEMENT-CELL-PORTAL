@@ -115,18 +115,19 @@ export default function Home({ token = '' }) {
         <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
           <NewRequest student={student} job={job} company={company} />
         </li>
+        <li className='md:col-span-2 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
+          <PlacedGraph student={student} />
+        </li>
         <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
           <RegisteredGraph student={student} title='Registered Students' />
         </li>
         <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
-          <RegisteredGraph student={ftestudent} title='FTE students' />
-        </li>
-        <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
           <RegisteredGraph student={internstudent} title='Intern students' />
         </li>
-        <li className='md:col-span-2 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
-          <PlacedGraph student={student} />
+        <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
+          <RegisteredGraph student={ftestudent} title='FTE students' />
         </li>
+
       </ul>
     </div>
   )

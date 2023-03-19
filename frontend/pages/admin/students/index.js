@@ -11,67 +11,11 @@ import Link from 'next/link'
 
 import { useRouter } from 'next/router';
 
-
-
-// <div className='ml-4 mt-2 flex-shrink-0'>
-// <button
-//   type='button'
-//   onClick={onBtExport}
-//   className='inline-flex items-center px-4 py-2
-//   border border-transparent text-xs font-medium rounded shadow-sm
-//   text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
-//   focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
-// >
-//   Export
-// </button>
-// </div>
-
-
-
-
 export default function Students({ token }) {
 
   const router = useRouter();
 
   const [rowData, setRowData] = useState([])
-
-  // const [columnDefs] = useState([
-  //   {
-  //     headerName: 'Roll No.',
-  //     field: 'attributes.roll',
-  //     cellRenderer: function (params) {
-  //       return (
-  //         <div>
-  //           <Link href={`/admin/students/${params.data.id}`}>
-  //             {params.value}
-  //           </Link>
-  //         </div>
-  //       )
-  //     },
-  //     headerCheckboxSelection: true,
-  //     headerCheckboxSelectionFilteredOnly: true,
-  //     checkboxSelection: true,
-  //   },
-  //   {
-  //     headerName: 'Name',
-  //     field: 'attributes.name',
-  //     cellRenderer: function (params) {
-  //       return (
-  //         <div>
-  //           <Link href={`/admin/students/${params.data.id}`}>
-  //             {params.value}
-  //           </Link>
-  //         </div>
-  //       )
-  //     },
-  //   },
-
-
-  // const onRowClicked = useCallback((event) => {
-  //   // event.data contains the row data
-  //   window.location.href = `/admin/students/${event.data.id}`
-  // }, [])
-
 
   function handleApprove(id) {
         window.location.href = `/admin/students/${id}`;
@@ -129,6 +73,12 @@ export default function Students({ token }) {
       headerName: 'Name',
       field: 'attributes.name',
     },
+
+    {
+      headerName: 'Admission Year',
+      field: 'attributes.admission_year',
+    },
+
     {
       headerName: 'Approved',
       field: 'attributes.approved'
@@ -150,11 +100,27 @@ export default function Students({ token }) {
       headerName: 'Program',
       field: 'attributes.program.data.attributes.program_name',
     },
+
     {
-      headerName: 'CPI',
-      field: 'attributes.cpi',
-      filter: 'agNumberColumnFilter',
+      headerName: 'Father Name',
+      field: 'attributes.father_name',
     },
+
+    {
+      headerName: 'Father Occupation',
+      field: 'attributes.father_occupation',
+    },
+
+    {
+      headerName: 'Mother Name',
+      field: 'attributes.mother_name',
+    },
+
+    {
+      headerName: 'Mother Occupation',
+      field: 'attributes.mother_occupation',
+    },
+
     {
       headerName: 'Mobile',
       field: 'attributes.mobile_number_1',
@@ -219,6 +185,210 @@ export default function Students({ token }) {
         )
       },
     },
+    
+
+    {
+      headerName: 'Blood Group',
+      field: 'attributes.blood_group',
+
+    },
+
+    {
+      headerName: 'Height',
+      field: 'attributes.height',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Weight',
+      field: 'attributes.weight',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Domicile',
+      field: 'attributes.domicile',
+    },
+
+    {
+      headerName: 'Address',
+      field: 'attributes.address',
+    },
+
+
+
+    {
+      headerName: 'City',
+      field: 'attributes.city',
+    },
+
+    {
+      headerName: 'State',
+      field: 'attributes.state',
+    },
+
+    {
+      headerName: 'Pin Code',
+      field: 'attributes.pin_code',
+    },
+
+    {
+      headerName: 'Correspondance Address',
+      field: 'attributes.correspondance_address',
+    },
+
+    {
+      headerName: 'Aadhar No',
+      field: 'attributes.aadhar_no',
+    },
+
+    {
+      headerName: 'Driving Licience No',
+      field: 'attributes.driving_licience_no',
+    },
+
+    {
+      headerName: 'Driving Licience',
+      field: 'attributes.driving_licience_link',
+    },
+
+    {
+      headerName: 'Pancard No',
+      field: 'attributes.pancard_no',
+    },
+
+    {
+      headerName: 'All Semester Marksheets',
+      field: 'attributes.all_sem_marksheet',
+    },
+
+    {
+      headerName: 'X Marksheet',
+      field: 'attributes.X_marksheet',
+    },
+
+    {
+      headerName: 'XII Marksheet',
+      field: 'attributes.XII_marksheet',
+    },
+
+    {
+      headerName: 'X Board',
+      field: 'attributes.X_board',
+    },
+
+    {
+      headerName: 'X YOP',
+      field: 'attributes.X_YOP',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'XII Board',
+      field: 'attributes.XII_board',
+      
+    },
+
+    {
+      headerName: 'XII YOP',
+      field: 'attributes.XII_YOP',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 1',
+      field: 'attributes.spi_1',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 2',
+      field: 'attributes.spi_2',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 3',
+      field: 'attributes.spi_3',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 4',
+      field: 'attributes.spi_4',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 5',
+      field: 'attributes.spi_5',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 6',
+      field: 'attributes.spi_6',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 7',
+      field: 'attributes.spi_7',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 8',
+      field: 'attributes.spi_8',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'SPI 9',
+      field: 'attributes.spi_9',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Total Backlogs',
+      field: 'attributes.total_backlogs',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Current Backlogs',
+      field: 'attributes.current_backlogs',
+      filter: 'agNumberColumnFilter',
+
+    },
+
+    {
+      headerName: 'Current Status',
+      field: 'attributes.current_status',
+    },
+
+    {
+      headerName: 'CPI',
+      field: 'attributes.cpi',
+      filter: 'agNumberColumnFilter',
+    },
+    
+    
+    
     {
       headerName: 'Xth Marks',
       field: 'attributes.X_marks',
@@ -231,6 +401,30 @@ export default function Students({ token }) {
       headerName: 'Category',
       field: 'attributes.category',
     },
+
+    {
+      headerName: 'PWD',
+      field: 'attributes.pwd',
+    },
+
+    {
+      headerName: 'Type Of Disability',
+      field: 'attributes.type_of_disability',
+    },
+  
+    {
+      headerName: 'Disability Percentage (If PWD)',
+      field: 'attributes.disability_percentage',
+    },
+
+    
+    {
+      headerName: 'Disability Certificate (If PWD)',
+      field: 'attributes.disabilty_certificate',
+    },
+
+
+
     {
       headerName: 'Gender',
       field: 'attributes.gender',
@@ -278,7 +472,6 @@ export default function Students({ token }) {
     return new_row_data
   }, [])
 
-
   const getInternshipStatus = useCallback(async (data) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -299,84 +492,34 @@ export default function Students({ token }) {
     return new_row_data
   }, [])
 
-  const gridRef = useRef()
-
-  const onBtExport = useCallback(() => {
-    // NOTE: getSelectedRows() and getDisplayedRowCount() also return filtered selected rows
-    // which are not visible on the screen, so not usable
-
-    /**
-     * @logic
-     *
-     * If some visible row is selected, then export ONLY those selected records, if no,
-     * then export all rows.
-     *
-     * Because we want to know if a row is selected, the most useful API 'COULD BE'
-     * getSelectedRows()
-     *
-     * BUT, there can be cases, where a row is selected, but when column filter was used,
-     * the row is not visible on the screen, but getSelectedRows() still returns those
-     *
-     * And, we think that some row is selected, while NO VISIBLE ROW may be selected.
-     * Example: Two rows, select 2nd row, then filter such that 2nd row is not visible.
-     * Then I have one row, not selected, so I should export ALL (ie. first row),
-     * but using getSelectedRows() it will return 1 row is selected, but exportDataAsCsv()
-     * will export NO rows.
-     *
-     * So, to handle this case:
-     * 1. Get all selected rows (using Nodes, since they have .displayed property)
-     * 2. If no selected row is visible, so KOI BHI ROW visible select NAHI hai,
-     *    so export ALL
-     */
-    const selected_and_visible_node = gridRef.current.api
-      .getSelectedNodes()
-      .findIndex((node) => node.displayed)
-
-    if (selected_and_visible_node == -1) {
-      // If nothing is selected, export ALL
-      console.log('Nothing selected, exporting all students')
-      gridRef.current.api.exportDataAsCsv()
-    } else {
-      // Else, export selected
-      console.log('Exporting selected students')
-      gridRef.current.api.exportDataAsCsv({
-        onlySelected: true,
-      })
-    }
-  }, [])
-
-  
   useEffect(() => {
-
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     }
+
     // Get all students, for strapi's pagination, using count of 50 per page
     const PAGE_SIZE = 100
 
     axios
-
       .get(
         `${API_URL}/api/students?pagination[page]=1&pagination[pageSize]=${PAGE_SIZE}&populate=*`,
         config
       )
-
       .then(async (res) => {
         let fetched_data = res.data.data
         let total_cnt = res.data.meta.pagination.total
 
         while (fetched_data.length < total_cnt) {
           const res = await axios.get(
-            `${API_URL}/api/students?pagination[page]=${fetched_data.length / PAGE_SIZE + 1
+            `${API_URL}/api/students?pagination[page]=${
+              fetched_data.length / PAGE_SIZE + 1
             }&pagination[pageSize]=${PAGE_SIZE}&populate=*`,
             config
           )
-          
           fetched_data = fetched_data.concat(res.data.data)
+          // fetched_data.length += res.data.meta.pagination.pageSize;
         }
-
         fetched_data = await getPlacedStatus(fetched_data)
-
         fetched_data = await getInternshipStatus(fetched_data)
 
         fetched_data = fetched_data.filter((student) => {
@@ -384,21 +527,38 @@ export default function Students({ token }) {
          })
 
         setRowData(fetched_data)
-
       })
       .catch((err) => {
         toast.error('Error while fetching data')
         console.error(err)
       })
-  }, [token])
+  }, [])
 
+  const gridRef = useRef()
+  
+  const onBtExport = useCallback(() => {
+    // See comment in pages/admin/students/index.js for logic behind this
 
+    const selected_and_visible_node = gridRef.current.api
+      .getSelectedNodes()
+      .findIndex((node) => node.displayed)
+
+    if (selected_and_visible_node == -1) {
+      // If nothing is selected, export ALL
+      gridRef.current.api.exportDataAsCsv()
+    } else {
+      // Else, export selected
+      gridRef.current.api.exportDataAsCsv({
+        onlySelected: true,
+      })
+    }
+  }, [])
   return (
     <Layout>
-      <div className=' px-4 py-5 border-b border-gray-200 sm:px-6'>
+      <div className='bg-white px-4 py-5 border-b border-gray-200 sm:px-6'>
         <div className='-ml-4 -mt-2 flex items-center justify-between flex-wrap sm:flex-nowrap'>
           <div className='ml-4 mt-2'>
-            <h3 className='text-xl leading-6 font-medium text-gray-900'>
+            <h3 className='text-lg leading-6 font-medium text-gray-900'>
               Students
             </h3>
           </div>
@@ -408,8 +568,8 @@ export default function Students({ token }) {
               onClick={onBtExport}
               className='inline-flex items-center px-4 py-2
               border border-transparent text-xs font-medium rounded shadow-sm
-              text-white bg-red-900 hover:bg-red-800 focus:outline-none
-              focus:ring-2 focus:ring-offset-2 focus:ring-red-900'
+              text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
+              focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500'
             >
               Export
             </button>
@@ -417,21 +577,16 @@ export default function Students({ token }) {
         </div>
       </div>
       <div className='ag-theme-alpine mt-4' style={{ height: 600 }}>
-     
-      <AgGridReact
-    onCellFocused={(event) => event.api.clearFocusedCell()}
-    rowData={rowData}
-    columnDefs={columnDefs}
-    defaultColDef={{ sortable: true, filter: true }}
+        <AgGridReact
+          ref={gridRef}
+          rowMultiSelectWithClick={true}
+          rowData={rowData}
+          columnDefs={columnDefs}
+          rowSelection='multiple'
           domLayout= 'autoHeight'
-    // onRowClicked={onRowClicked}
-    // rowStyle={{ cursor: 'pointer' }}
-    cellStyle={{ boxShadow: 'none' }}
-    // Add the following inline styles
-    
-  ></AgGridReact>
-
-
+          defaultColDef={{ sortable: true, filter: true }}
+          overlayNoRowsTemplate='Please wait while data is being fetched'
+        ></AgGridReact>
       </div>
     </Layout>
   )
@@ -439,6 +594,7 @@ export default function Students({ token }) {
 
 export async function getServerSideProps({ req }) {
   const { token } = parseCookies(req)
+
   return {
     props: { token: token }, // will be passed to the page component as props
   }
