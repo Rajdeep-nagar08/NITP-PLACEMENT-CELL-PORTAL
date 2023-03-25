@@ -70,15 +70,41 @@ module.exports = {
         prefix: '',
       },
     },
+
+
     {
       method: 'GET',
-      path: '/student/intern-status',
-      handler: 'student.get_intern_status',
+      path: '/student/intern-status-2',
+      handler: 'student.get_intern_status_2',
       config: {
         middlewares: ['plugin::users-permissions.rateLimit'],
         prefix: '',
       },
     },
+
+
+    {
+      method: 'GET',
+      path: '/student/intern-status-6',
+      handler: 'student.get_intern_status_6',
+      config: {
+        middlewares: ['plugin::users-permissions.rateLimit'],
+        prefix: '',
+      },
+    },
+
+
+    {
+      method: 'GET',
+      path: '/student/fte-status',
+      handler: 'student.get_fte_status',
+      config: {
+        middlewares: ['plugin::users-permissions.rateLimit'],
+        prefix: '',
+      },
+    },
+
+
     {
       method: "PUT",
       path: "/student/set-placed-status",

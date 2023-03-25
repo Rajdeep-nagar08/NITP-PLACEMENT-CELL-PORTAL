@@ -355,6 +355,8 @@ const { user, logout } = useContext(AuthContext)
                     className='mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md'
                   />
                 </div>
+
+
                 <div className='col-span-6 sm:col-span-2'>
                   <label
                     htmlFor='classification'
@@ -369,9 +371,9 @@ const { user, logout } = useContext(AuthContext)
                     className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                   >
                     <option value='none'>Select Classification</option>
-                    <option value='A1'>A1</option>
-                    <option value='A2'>A2</option>
-                    <option value='X'>X</option>
+                    <option value='tier1'>Tier1</option>
+                    <option value='tier2'>Tier2</option>
+                    <option value='tier3'>Tier3</option>
                     <option value='none'>None (for Internship)</option>
                   </select>
                 </div>
@@ -388,8 +390,9 @@ const { user, logout } = useContext(AuthContext)
                     required
                     className='mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm'
                   >
-                    <option value=''>Select</option>
-                    <option value='Internship'>Internship</option>
+                   <option value=''>Select</option>
+                    <option value='Internship (2 Month)'>Internship (2 Month)</option>
+                    <option value='Internship (6 Month)'>Internship (6 Month)</option>
                     <option value='FTE'>FTE</option>
                   </select>
                 </div>

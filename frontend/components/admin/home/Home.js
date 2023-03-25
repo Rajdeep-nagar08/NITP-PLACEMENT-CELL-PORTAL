@@ -88,18 +88,18 @@ export default function Home({ token = '' }) {
     }
     const res = await axios.get(`${API_URL}/api/student/placed-status`, config)
     const placed = res.data.placed
-    const placed_a1 = placed.placed_a1
-    const placed_a2 = placed.placed_a2
-    const placed_x = placed.placed_x
+    const placed_tier1 = placed.placed_tier1
+    const placed_tier2 = placed.placed_tier2
+    const placed_tier3 = placed.placed_tier3
 
     // Update placed status of students
     const new_row_data = data.map((student) => {
-      if (placed_a1.includes(student.attributes.roll)) {
-        student.attributes.placed = 'A1'
-      } else if (placed_a2.includes(student.attributes.roll)) {
-        student.attributes.placed = 'A2'
-      } else if (placed_x.includes(student.attributes.roll)) {
-        student.attributes.placed = 'X'
+      if (placed_tier1.includes(student.attributes.roll)) {
+        student.attributes.placed = 'Tier1'
+      } else if (placed_tier2.includes(student.attributes.roll)) {
+        student.attributes.placed = 'Tier2'
+      } else if (placed_tier3.includes(student.attributes.roll)) {
+        student.attributes.placed = 'Tier3'
       } else {
         student.attributes.placed = 'Not Placed'
       }

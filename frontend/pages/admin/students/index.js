@@ -79,18 +79,26 @@ export default function Students({ token }) {
       field: 'attributes.admission_year',
     },
 
-    {
-      headerName: 'Approved',
-      field: 'attributes.approved'
-    },
+    // {
+    //   headerName: 'Approved',
+    //   field: 'attributes.approved'
+    // },
 
     {
       headerName: 'Placed Status',
-      field: 'attributes.placed',
+      field: 'attributes.placed_status',
     },
     {
-      headerName: 'Internship Status',
-      field: 'attributes.internship',
+      headerName: 'Internship Status (2 Month)',
+      field: 'attributes.internship_status_2',
+    },
+    {
+      headerName: 'Internship Status (6 Month)',
+      field: 'attributes.internship_status_6',
+    },
+    {
+      headerName: 'FTE Status',
+      field: 'attributes.fte_status',
     },
     {
       headerName: 'Course',
@@ -216,8 +224,6 @@ export default function Students({ token }) {
       headerName: 'Address',
       field: 'attributes.address',
     },
-
-
 
     {
       headerName: 'City',
@@ -423,8 +429,6 @@ export default function Students({ token }) {
       field: 'attributes.disabilty_certificate',
     },
 
-
-
     {
       headerName: 'Gender',
       field: 'attributes.gender',
@@ -451,20 +455,20 @@ export default function Students({ token }) {
     }
     const res = await axios.get(`${API_URL}/api/student/placed-status`, config)
     const placed = res.data.placed
-    const placed_a1 = placed.placed_a1
-    const placed_a2 = placed.placed_a2
-    const placed_x = placed.placed_x
+    const placed_tier1 = placed.placed_tier1
+    const placed_tier2 = placed.placed_tier2
+    const placed_tier3 = placed.placed_tier3
 
     // Update placed status of students
     const new_row_data = data.map((student) => {
-      if (placed_a1.includes(student.attributes.roll)) {
-        student.attributes.placed = 'A1'
-      } else if (placed_a2.includes(student.attributes.roll)) {
-        student.attributes.placed = 'A2'
-      } else if (placed_x.includes(student.attributes.roll)) {
-        student.attributes.placed = 'X'
+      if (placed_tier1.includes(student.attributes.roll)) {
+        student.attributes.placed = 'placed_tier1'
+      } else if (placed_tier2.includes(student.attributes.roll)) {
+        student.attributes.placed = 'placed_tier2'
+      } else if (placed_tier3.includes(student.attributes.roll)) {
+        student.attributes.placed = 'placed_tier3'
       } else {
-        student.attributes.placed = 'Not Placed'
+        student.attributes.placed = 'unplaced'
       }
       return student
     })
@@ -472,11 +476,37 @@ export default function Students({ token }) {
     return new_row_data
   }, [])
 
-  const getInternshipStatus = useCallback(async (data) => {
+
+  const getInternshipStatus_2 = useCallback(async (data) => {
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     }
-    const res = await axios.get(`${API_URL}/api/student/intern-status`, config)
+    const res = await axios.get(`${API_URL}/api/student/intern-status-2`, config)
+    
+    const internship = res.data.internship
+
+    // Update internship status of students
+    const new_row_data = data.map((student) => {
+      if (internship.includes(student.attributes.roll)) {
+        student.attributes.internship = 'Got Internship'
+      } else {
+        student.attributes.internship = 'None'
+      }
+      return student
+    })
+
+    console.log(new_row_data)
+    return new_row_data
+
+  }, [])
+
+
+  
+  const getInternshipStatus_6 = useCallback(async (data) => {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+    const res = await axios.get(`${API_URL}/api/student/intern-status-6`, config)
     const internship = res.data.internship
 
     // Update internship status of students
@@ -491,6 +521,29 @@ export default function Students({ token }) {
     console.log(new_row_data)
     return new_row_data
   }, [])
+
+  
+  const getfteStatus = useCallback(async (data) => {
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+    const res = await axios.get(`${API_URL}/api/student/fte-status`, config)
+    const fte = res.data.fte
+
+    // Update fte status of students
+    const new_row_data = data.map((student) => {
+      if (fte.includes(student.attributes.roll)) {
+        student.attributes.fte = 'Got FTE'
+      } else {
+        student.attributes.fte = 'None'
+      }
+      return student
+    })
+    console.log(new_row_data)
+    return new_row_data
+  }, [])
+
+
 
   useEffect(() => {
     const config = {
@@ -519,8 +572,14 @@ export default function Students({ token }) {
           fetched_data = fetched_data.concat(res.data.data)
           // fetched_data.length += res.data.meta.pagination.pageSize;
         }
+
         fetched_data = await getPlacedStatus(fetched_data)
-        fetched_data = await getInternshipStatus(fetched_data)
+
+        fetched_data = await getInternshipStatus_2(fetched_data)
+
+        fetched_data = await getInternshipStatus_6(fetched_data)
+
+        fetched_data = await getfteStatus(fetched_data)
 
         fetched_data = fetched_data.filter((student) => {
           return student.attributes.approved === 'approved'

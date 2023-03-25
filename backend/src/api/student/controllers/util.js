@@ -87,7 +87,7 @@ module.exports = {
         console.log(7);
 
 
-        const { id, X_marks, XII_marks, cpi, course, placed_status, placed_status_updated, internship_status } = student;
+        const { id, X_marks, XII_marks, cpi, course, placed_status, placed_status_updated, internship_status_2, internship_status_6 } = student;
         if (!id || !X_marks || !XII_marks || !cpi) {
             throw `Some mandatory parameters not passed, or are null: ${student, job}`;
         }
@@ -233,15 +233,26 @@ module.exports = {
         console.log("Atlassian")
 
 
-	if ( job.category == "Internship" ) {
+	if ( job.category == "Internship (2 Month)" ) {
             const existing_internship_selection = selected_applications
-                .find(appl => appl.job.category == "Internship");
+                .find(appl => appl.job.category == "Internship (2 Month)");
 
-            if (existing_internship_selection || (internship_status === true)) {
-                debug_reason("Student already selected in an Internship");
+            if (existing_internship_selection || (internship_status_2 === true)) {
+                debug_reason("Student already selected in an Internship (2 Month)");
                 return false /* Already selected in an Internship */;
             }
 	}
+
+    
+	if ( job.category == "Internship (6 Month)" ) {
+        const existing_internship_selection = selected_applications
+            .find(appl => appl.job.category == "Internship (6 Month)");
+
+        if (existing_internship_selection || (internship_status_6 === true)) {
+            debug_reason("Student already selected in an Internship (6 Month)");
+            return false /* Already selected in an Internship */;
+        }
+}
 
         if ( job.category == "FTE" ) {
             if ( job.classification == "none" ) {
@@ -261,12 +272,12 @@ module.exports = {
             // console.debug({ selected_applications });
 
             // Date at which student was first selected in A2 (if any)
-            const first_A2_application = selected_applications.find(appl => appl.job.classification === "A2") || null;
+            const first_A2_application = selected_applications.find(appl => appl.job.classification === "Tier2") || null;
 
             // When placed in A2 offcampus, we are using the
             // "placed_status_updated" field also
             // NOTE: When Date.parse fails, it returns NaN
-            let offcampus_A2_placed_date = (placed_status === "placed_a2") ? (Date.parse(placed_status_updated) || null) : null;
+            let offcampus_A2_placed_date = (placed_status === "placed_tier2") ? (Date.parse(placed_status_updated) || null) : null;
 
             let oncampus_A2_placed_date = (first_A2_application) ? (Date.parse(first_A2_application.createdAt)): null;
 
@@ -291,7 +302,7 @@ module.exports = {
             const num_new_A1_application = (await strapi.db.query("api::application.application").findMany({
                 where: {
                     student: id,
-                    job: { classification: "A1" }
+                    job: { classification: "Tier1" }
                 },
             })).filter(application => {
                 if (date_A2_selection) {
@@ -301,24 +312,24 @@ module.exports = {
                 return false;
             }).length;
 
-            const already_selected_A1 = placed_status === "placed_a1" || (
+            const already_selected_A1 = placed_status === "placed_tier1" || (
                 selected_applications
-                    .find(appl => appl.job.classification === "A1") !== undefined
+                    .find(appl => appl.job.classification === "Tier1") !== undefined
             );
 
-            const already_selected_X = placed_status === "placed_x" || (
+            const already_selected_X = placed_status === "placed_tier3" || (
                 selected_applications
-                    .find(appl => appl.job.classification === "X") !== undefined
+                    .find(appl => appl.job.classification === "Tier3") !== undefined
             );
 
             // Ensure condition 1 in "More conditions"
-            if (job.classification === "X") {
+            if (job.classification === "Tier3") {
                 return true;
             }
 
             // Ensure condition 2 in "More conditions"
             if (already_selected_A1 || already_selected_X) {
-                debug_reason("Student already selected in an A1 or X job");
+                debug_reason("Student already selected in an A or X job");
                 return false;
             }
 
@@ -326,9 +337,9 @@ module.exports = {
 
 
             // Ensure condition 3 in "More conditions".
-            if (first_A2_application != null || placed_status === "placed_a2") {
+            if (first_A2_application != null || placed_status === "placed_tier2") {
                 // If selected in A2 already, then other A2 jobs not eligible now
-                if (job.classification === "A2") {
+                if (job.classification === "Tier2") {
                     debug_reason("Student already selected in an A2 job");
                     return false;
                 }

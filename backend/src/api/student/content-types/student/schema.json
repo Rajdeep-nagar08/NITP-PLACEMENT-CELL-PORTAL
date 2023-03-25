@@ -156,9 +156,9 @@
       "type": "enumeration",
       "enum": [
         "unplaced",
-        "placed_a1",
-        "placed_a2",
-        "placed_x"
+        "placed_tier1",
+        "placed_tier2",
+        "placed_tier3"
       ],
       "required": true,
       "default": "unplaced"
@@ -171,7 +171,7 @@
     "transcript_link": {
       "type": "string"
     },
-    "internship_status": {
+    "internship_status_2": {
       "type": "boolean",
       "default": false,
       "required": false
@@ -299,6 +299,14 @@
     },
     "cpi": {
       "type": "decimal"
+    },
+    "internship_status_6": {
+      "type": "boolean",
+      "default": false
+    },
+    "fte_status": {
+      "type": "boolean",
+      "default": false
     }
   }
 }

@@ -57,9 +57,9 @@
     "classification": {
       "type": "enumeration",
       "enum": [
-        "A1",
-        "A2",
-        "X",
+        "Tier1",
+        "Tier2",
+        "Tier3",
         "none"
       ],
       "required": true
@@ -79,7 +79,8 @@
     "category": {
       "type": "enumeration",
       "enum": [
-        "Internship",
+        "Internship (2 Month)",
+        "Internship (6 Month)",
         "FTE"
       ],
       "required": true

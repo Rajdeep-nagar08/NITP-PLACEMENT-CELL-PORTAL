@@ -220,6 +220,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
     // for changing password, use forgot password
     // NOTE2: Other approach can be allowing all except some
     const fields_to_modify = {};
+
     for (const field in body) {
       // These fields will only be added to `fields_to_modify` if account is not already approved/rejected
       if (fields_allowed_before_approval.includes(field)) {
@@ -232,6 +233,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
         fields_to_modify[field] = body[field];
       }
     }
+
 
     /** Check if Administrator has allowed changing SPIs and CPIs */
     const setting = await strapi.query("api::setting.setting").findOne({
@@ -349,6 +351,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
    * when 'roll' not given, returns an 'array of roll' for each placed_status
    * except 'unplaced'
    */
+
   async get_placed_status(ctx) {
     const query = ctx.request.query || {};
 
@@ -373,17 +376,20 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
         });
 
       const oncampus_placed = {
-        placed_a1: [],
-        placed_a2: [],
-        placed_x: [],
+        placed_tier1: [],
+        placed_tier2: [],
+        placed_tier3: [],
       };
 
+      console.log("H1")
       applications.forEach((app) => {
-        // Note: Assuming job.classification is one of "A1", "A2", "X"
+        // Note: Assuming job.classification is one of "Tier1", "Tier2", "Tier3"
         oncampus_placed[`placed_${app.job.classification.toLowerCase()}`].push(
           app.student.roll
         );
       });
+
+      console.log("H2")
 
       // Get array of students who are NOT 'unplaced'
       const students = await strapi.db.query("api::student.student").findMany({
@@ -395,35 +401,36 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
         select: ["roll", "placed_status"],
       });
 
-      const offcampus_placed = {
-        placed_a1: [],
-        placed_a2: [],
-        placed_x: [],
-      };
+      // const offcampus_placed = {
+      //   placed_tier1: [],
+      //   placed_tier2: [],
+      //   placed_tier3: [],
+      // };
 
-      students.forEach((student) => {
-        // Note: Assuming student.placed_status is one of "placed_a1", "placed_a2", "placed_x"
-        offcampus_placed[student.placed_status].push(student.roll);
-      });
+      // students.forEach((student) => {
+      //   // Note: Assuming student.placed_status is one of "placed_tier1", "placed_tier2", "placed_tier3"
+      //   offcampus_placed[student.placed_status].push(student.roll);
+      // });
 
-      // merge unique rolls from oncampus_placed and offcampus_placed
+      console.log("H3")
+            // merge unique rolls from oncampus_placed and offcampus_placed
       const placed_rolls = {
-        placed_a1: [
+        placed_tier1: [
           ...new Set([
-            ...oncampus_placed.placed_a1,
-            ...offcampus_placed.placed_a1,
+            ...oncampus_placed.placed_tier1,
+            // ...offcampus_placed.placed_tier1,
           ]),
         ],
-        placed_a2: [
+        placed_tier2: [
           ...new Set([
-            ...oncampus_placed.placed_a2,
-            ...offcampus_placed.placed_a2,
+            ...oncampus_placed.placed_tier2,
+            // ...offcampus_placed.placed_tier2,
           ]),
         ],
-        placed_x: [
+        placed_tier3: [
           ...new Set([
-            ...oncampus_placed.placed_x,
-            ...offcampus_placed.placed_x,
+            ...oncampus_placed.placed_tier3,
+            // ...offcampus_placed.placed_tier3,
           ]),
         ],
       };
@@ -491,12 +498,15 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
    * when 'roll' not given, returns an 'array of strings' representing roll
    * numbers of students who got internships
    */
-  async get_intern_status(ctx) {
+
+
+  async get_intern_status_2(ctx) {
+
     const query = ctx.request.query || {};
 
     const roll = query.roll;
     if (!roll) {
-      // Get all roll numbers where the student is selected in some intern
+      // Get all roll numbers where the student is selected in 2 month intern
       const applications = await strapi.db
         .query("api::application.application")
         .findMany({
@@ -506,11 +516,11 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
               // @ref: OR according to https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/filtering.html#or
               $or: [
                 {
-                  category: "FTE",
+                  category: "Internship (2 Month)",
                   classification: "none",
                 },
                 {
-                  category: "Internship",
+                  category: "Internship (2 Month)",
                 },
               ],
             },
@@ -523,7 +533,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
       // Get array of students who have got an internship
       const students = await strapi.db.query("api::student.student").findMany({
         where: {
-          internship_status: true,
+          internship_status_2: true,
         },
         select: ["roll"],
       });
@@ -543,15 +553,209 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
       where: {
         roll: roll,
       },
-      select: ["id", "internship_status"],
+      select: ["id", "internship_status_2"],
     });
     if (!student) {
       return ctx.notFound(null, [{ messages: [{ id: "Student not found" }] }]);
     }
 
     // If intern selected, no need to query the applications, return
-    if (student.internship_status == true) {
+    if (student.internship_status_2 == true) {
       ctx.body = { internship: true };
+      return;
+    }
+
+    const selected_application = await strapi.db
+      .query("api::application.application")
+      .findOne({
+        where: {
+          student: student.id,
+          status: "selected",
+          job: {
+            // @ref: OR according to https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/filtering.html#or
+            $or: [
+              {
+                category: "Internship (2 Month)",
+                classification: "none",
+              },
+              {
+                category: "Internship (2 Month)",
+              },
+            ],
+          },
+        },
+      });
+
+    if (selected_application) {
+      ctx.body = { internship: true };
+    } else {
+      ctx.body = { internship: false };
+    }
+  },
+
+
+  
+  async get_intern_status_6(ctx) {
+
+    const query = ctx.request.query || {};
+
+    const roll = query.roll;
+    if (!roll) {
+      // Get all roll numbers where the student is selected in 2 month intern
+      const applications = await strapi.db
+        .query("api::application.application")
+        .findMany({
+          where: {
+            status: "selected",
+            job: {
+              // @ref: OR according to https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/filtering.html#or
+              $or: [
+                {
+                  category: "Internship (6 Month)",
+                  classification: "none",
+                },
+                {
+                  category: "Internship (6 Month)",
+                },
+              ],
+            },
+          },
+          populate: ["student"],
+        });
+
+      const oncampus_intern = applications.map((app) => app.student.roll);
+
+      // Get array of students who have got an internship
+      const students = await strapi.db.query("api::student.student").findMany({
+        where: {
+          internship_status_6: true,
+        },
+        select: ["roll"],
+      });
+
+      const offcampus_intern = students.map((student) => student["roll"]);
+
+      // merge unique rolls from oncampus_placed and offcampus_placed
+      const intern_rolls = Array.from(
+        new Set([...oncampus_intern, ...offcampus_intern])
+      );
+
+      ctx.body = { internship: intern_rolls };
+      return;
+    }
+
+    const student = await strapi.db.query("api::student.student").findOne({
+      where: {
+        roll: roll,
+      },
+      select: ["id", "internship_status_6"],
+    });
+    if (!student) {
+      return ctx.notFound(null, [{ messages: [{ id: "Student not found" }] }]);
+    }
+
+    // If intern selected, no need to query the applications, return
+    if (student.internship_status_6 == true) {
+      ctx.body = { internship: true };
+      return;
+    }
+
+    const selected_application = await strapi.db
+      .query("api::application.application")
+      .findOne({
+        where: {
+          student: student.id,
+          status: "selected",
+          job: {
+            // @ref: OR according to https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/filtering.html#or
+            $or: [
+              {
+                category: "Internship (6 Month)",
+                classification: "none",
+              },
+              {
+                category: "Internship (6 Month)",
+              },
+            ],
+          },
+        },
+      });
+
+    if (selected_application) {
+      ctx.body = { internship: true };
+    } else {
+      ctx.body = { internship: false };
+    }
+  },
+
+
+
+
+
+
+
+  async get_fte_status(ctx) {
+
+    const query = ctx.request.query || {};
+
+    const roll = query.roll;
+    if (!roll) {
+      // Get all roll numbers where the student is selected in 2 month intern
+      const applications = await strapi.db
+        .query("api::application.application")
+        .findMany({
+          where: {
+            status: "selected",
+            job: {
+              // @ref: OR according to https://docs.strapi.io/developer-docs/latest/developer-resources/database-apis-reference/query-engine/filtering.html#or
+              $or: [
+                {
+                  category: "FTE",
+                  classification: "none",
+                },
+                {
+                  category: "FTE",
+                },
+              ],
+            },
+          },
+          populate: ["student"],
+        });
+
+      const oncampus_fte = applications.map((app) => app.student.roll);
+
+      // Get array of students who have got an internship
+      const students = await strapi.db.query("api::student.student").findMany({
+        where: {
+          fte_status: true,
+        },
+        select: ["roll"],
+      });
+
+      const offcampus_fte = students.map((student) => student["roll"]);
+
+      // merge unique rolls from oncampus_placed and offcampus_placed
+      const fte_rolls = Array.from(
+        new Set([...oncampus_fte, ...offcampus_fte])
+      );
+
+      ctx.body = { fte: fte_rolls };
+      return;
+    }
+
+    const student = await strapi.db.query("api::student.student").findOne({
+      where: {
+        roll: roll,
+      },
+      select: ["id", "fte_status"],
+    });
+    if (!student) {
+      return ctx.notFound(null, [{ messages: [{ id: "Student not found" }] }]);
+    }
+
+    // If intern selected, no need to query the applications, return
+    if (student.fte_status == true) {
+      ctx.body = { fte: true };
       return;
     }
 
@@ -569,7 +773,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
                 classification: "none",
               },
               {
-                category: "Internship",
+                category: "FTE",
               },
             ],
           },
@@ -577,11 +781,14 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
       });
 
     if (selected_application) {
-      ctx.body = { internship: true };
+      ctx.body = { fte: true };
     } else {
-      ctx.body = { internship: false };
+      ctx.body = { fte: false };
     }
   },
+
+
+
 
   /**
    * @description Set 'placed_status' field for a student (usually when they get
@@ -608,7 +815,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
     const { roll, placed_status } = query;
 
     if (
-      ["placed_a1", "placed_a2", "placed_x", "unplaced"].includes(
+      ["placed_tier1", "placed_tier2", "placed_tier3", "unplaced"].includes(
         placed_status
       ) === false
     ) {

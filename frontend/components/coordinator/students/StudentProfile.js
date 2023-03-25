@@ -79,30 +79,73 @@ export default function StudentProfileEdit({ token = '', student }) {
                     onChange={handleInputChange}
                   >
                     <option value='unplaced'>Not Placed</option>
-                    <option value='placed_a1'>Placed in A1</option>
-                    <option value='placed_a2'>Placed in A2</option>
-                    <option value='placed_x'>Placed in X</option>
+                    <option value='placed_a1'>Placed in Tier1</option>
+                    <option value='placed_a2'>Placed in Tier2</option>
+                    <option value='placed_x'>Placed in Tier3</option>
                   </select>
                 </div>
+
+
                 <div className='col-span-6 sm:col-span-3'>
-                  <label
-                    htmlFor='internship_status'
-                    className='block text-sm font-medium text-gray-700'
-                  >
-                    Internship Status( For Off-Campus )
-                  </label>
-                  <select
-                    disabled
-                    name='internship_status'
-                    id='internship_status'
-                    className='block w-full px-3 py-2 rounded-md text-gray-700 bg-white border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5'
-                    value={values.internship_status}
-                    onChange={handleInputChange}
-                  >
-                    <option value='false'>Not Got Internship</option>
-                    <option value='true'>Got Internship</option>
-                  </select>
-                </div>
+                    <label
+                      htmlFor='internship_status_2'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Internship Status (2 Month)
+                    </label>
+                    <select
+                      name='internship_status_2'
+                      id='internship_status_2'
+                      className='block w-full px-3 py-2 rounded-md text-gray-700 bg-white border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5'
+                      value={values.internship_status_2}
+                      onChange={handleInputChange}
+                    >
+                      <option value='false'>Not Got Internship</option>
+                      <option value='true'>Got Internship</option>
+                    </select>
+                  </div>
+
+
+                  <div className='col-span-6 sm:col-span-3'>
+                    <label
+                      htmlFor='internship_status_6_m'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      Internship Status (6 Month)
+                    </label>
+                    <select
+                      name='internship_status_6_m'
+                      id='internship_status_6_m'
+                      className='block w-full px-3 py-2 rounded-md text-gray-700 bg-white border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5'
+                      value={values.internship_status_6_m}
+                      onChange={handleInputChange}
+                    >
+                      <option value='false'>Not Got Internship</option>
+                      <option value='true'>Got Internship</option>
+                    </select>
+                  </div>
+
+
+                  <div className='col-span-6 sm:col-span-3'>
+                    <label
+                      htmlFor='fte_status'
+                      className='block text-sm font-medium text-gray-700'
+                    >
+                      FTE Status
+                    </label>
+                    <select
+                      name='fte_status'
+                      id='fte_status'
+                      className='block w-full px-3 py-2 rounded-md text-gray-700 bg-white border border-gray-300 focus:outline-none focus:shadow-outline-blue focus:border-blue-300 sm:text-sm sm:leading-5'
+                      value={values.fte_status}
+                      onChange={handleInputChange}
+                    >
+                      <option value='false'>Not Got FTE</option>
+                      <option value='true'>Got FTE</option>
+                    </select>
+                  </div>
+
+
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='name'
