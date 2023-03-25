@@ -1,7 +1,5 @@
 import Head from 'next/head'
 import { ToastContainer } from 'react-toastify'
-import Footer from '@/components/student/Footer'
-import Header from '@/components/student/Header'
 import Sidebar from '@/components/student/Sidebar'
 
 export default function Layout({

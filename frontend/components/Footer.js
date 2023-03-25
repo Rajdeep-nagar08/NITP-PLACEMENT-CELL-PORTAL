@@ -6,7 +6,7 @@ function Footer() {
     <div>
       <div className='grid grid-cols-2 md:grid-cols-6 bg-[#510505] text-stone-400'>
         <div className='col-span-2 p-4'>
-          <h3 className='font-bold p-2 text-xl text-white'>Contact Us</h3>
+          <h3 className='font-extrabold p-2 text-xl text-white'>Get in <span className='text-black'> Touch</span></h3>
           <p>National Institute of Technology Patna</p>
           <p>Patna, Bihar (800005), India</p>
           <p>Phone: +91-0612-237 1715 / 237 2715</p>

@@ -7,7 +7,6 @@ import {
   LogoutIcon,
   ShieldCheckIcon,
   ClipboardCheckIcon,
-  ClipboardListIcon,
   UserIcon,
 } from '@heroicons/react/outline'
 import Image from 'next/image'
@@ -60,7 +59,7 @@ export default function Sidebar({ heading = '', children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const router = useRouter()
   const { user, logout } = useContext(AuthContext)
-
+  if(!loading)
   return (
     <div className='flex '>
       <div className='fixed z-50'>
@@ -164,5 +163,8 @@ export default function Sidebar({ heading = '', children }) {
       </div>
     </div>
   )
+  else {
+    return <h3 className='bg-greeen-600 text-4xl h-screen'>Loading....</h3>
+  }
     
 }
