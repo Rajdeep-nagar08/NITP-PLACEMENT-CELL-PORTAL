@@ -132,32 +132,32 @@ export default function Students({ token }) {
       headerName: 'Personal Email',
       field: 'attributes.personal_email_id',
     },
-    {
-      headerName: 'Registered For',
-      field: 'attributes.registered_for',
-    },
-    {
-      headerName: 'Resume',
-      field: 'attributes.resume',
-      cellRenderer: function (params) {
-        return (
-          <div>
-            {params.value.data ? (
-              <a
-                href={API_URL + params.value.data.attributes.url}
-                target='_blank'
-                rel='noreferrer'
-                className='inline-flex items-center py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-indigo-600 hover:text-indigo-700 focus:text-indigo-800'
-              >
-                Resume
-              </a>
-            ) : (
-              <span>NA</span>
-            )}
-          </div>
-        )
-      },
-    },
+    // {
+    //   headerName: 'Registered For',
+    //   field: 'attributes.registered_for',
+    // },
+    // {
+    //   headerName: 'Resume',
+    //   field: 'attributes.resume',
+    //   cellRenderer: function (params) {
+    //     return (
+    //       <div>
+    //         {params.value.data ? (
+    //           <a
+    //             href={API_URL + params.value.data.attributes.url}
+    //             target='_blank'
+    //             rel='noreferrer'
+    //             className='inline-flex items-center py-1.5 border border-transparent text-xs font-medium rounded-full shadow-sm text-indigo-600 hover:text-indigo-700 focus:text-indigo-800'
+    //           >
+    //             Resume
+    //           </a>
+    //         ) : (
+    //           <span>NA</span>
+    //         )}
+    //       </div>
+    //     )
+    //   },
+    // },
     {
       headerName: 'Resume',
       field: 'attributes.resume_link',

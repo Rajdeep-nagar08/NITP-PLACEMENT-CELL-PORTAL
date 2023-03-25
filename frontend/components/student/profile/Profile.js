@@ -33,6 +33,8 @@ export default function Profile({ student, token }) {
         Sem 6 SPI: ${studentData.spi_6}
         Sem 7 SPI: ${studentData.spi_7}
         Sem 8 SPI: ${studentData.spi_8}
+        Sem 8 SPI: ${studentData.spi_9}
+
         `
       )
     ) {
@@ -47,6 +49,8 @@ export default function Profile({ student, token }) {
       formData.append('spi_6', studentData.spi_6)
       formData.append('spi_7', studentData.spi_7)
       formData.append('spi_8', studentData.spi_8)
+      formData.append('spi_9', studentData.spi_9)
+
 
       const res = await fetch(`${API_URL}/api/student/modify`, {
         method: 'PUT',
@@ -157,6 +161,8 @@ export default function Profile({ student, token }) {
             Personal details and Academic details.
           </p>
         </div>
+
+{/* 
         <div>
           <p className='text-sm font-medium text-gray-500'>
             Registered for:{' '}
@@ -164,7 +170,9 @@ export default function Profile({ student, token }) {
               {student.registered_for}
             </span>
           </p>
-        </div>
+        </div> */}
+
+
       </div>
       <div className='border-t border-gray-200 px-4 py-5 sm:p-0'>
         <dl className='sm:divide-y sm:divide-gray-200'>
@@ -270,6 +278,37 @@ export default function Profile({ student, token }) {
           </div>
 
           <div className='py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6'>
+            <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
+              Father's Name
+            </dt>
+            <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1'>
+              {student.father_name}
+            </dd>
+            <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
+              Father Occupation
+            </dt>
+            <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1'>
+              {student.father_occupation}
+            </dd>
+          </div>
+
+          <div className='py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6'>
+            <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
+              Mother's Name
+            </dt>
+            <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1'>
+              {student.mother_name}
+            </dd>
+            <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
+              Mother Occupation
+            </dt>
+            <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1'>
+              {student.mother_occupation}
+            </dd>
+          </div>
+
+
+          <div className='py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6'>
             <dt className='text-sm font-medium text-gray-500'>
               Personal Email
             </dt>
@@ -306,19 +345,19 @@ export default function Profile({ student, token }) {
               {student.gender}
             </dd>
             <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
-              Program
+              Category
             </dt>
             <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1'>
-              {student.program.program_name}
+              {student.category}
             </dd>
           </div>
           <div className='py-4 sm:py-5 sm:grid sm:grid-cols-4 sm:gap-4 sm:px-6'>
-            {/* <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
-              Department
+            <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
+              Program
             </dt>
             <dd className='mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-1 capitalize'>
-              {student.department}
-            </dd> */}
+              {student.program.program_name}
+            </dd>
             <dt className='text-sm font-medium text-gray-500 sm:col-span-1'>
               Course
             </dt>
