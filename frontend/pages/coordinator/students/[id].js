@@ -7,7 +7,7 @@ import qs from 'qs'
 import { useEffect, useState } from 'react'
 import ApplicationDetails from '@/components/coordinator/students/ApplicationDetails'
 import Eligiblejobs from '@/components/coordinator/students/EligibleJobs'
-import StudentProfileEdit from '@/components/coordinator/students/StudentProfileEdit'
+import StudentProfileEdit from '@/components/coordinator/students/StudentProfile'
 
 export default function StudentProfilePage({
   token = '',

@@ -56,7 +56,7 @@ module.exports = {
             return ctx.notFound(null, [{ messages: [{ id: "Student not found" }] }]);
         }
 
-        const { id, approved, X_marks, XII_marks, cpi, registered_for } = student_self;
+        const { id, approved, X_marks, XII_marks, cpi} = student_self;
 
         if (approved !== "approved") {
             return ctx.badRequest(null, [{ messages: [{ id: "Account not approved yet" }] }]);
@@ -73,7 +73,7 @@ module.exports = {
                 min_cpi: { $lte: cpi },
                 approval_status: "approved",
                 job_status: "open",
-                category: registered_for,
+                // category: registered_for,
             },
             populate: ["company", "jaf"]
         });
@@ -113,7 +113,7 @@ module.exports = {
     },
 
     /**
- * @description Searches all jobs according to registered_for current student
+//  @description Searches all jobs according to registered_for current student
  *
  * @notes
  * - Both RESUME & RESUME_LINK must be NOT null
@@ -130,13 +130,13 @@ module.exports = {
             where: {
                 roll: user.username,
             },
-            select: ["approved", "registered_for"]
+            select: ["approved"]
         });
         if (!student_self) {
             return ctx.badRequest(null, [{ messages: [{ id: "No student found" }] }]);
         }
 
-        const { approved, registered_for } = student_self;
+        const { approved} = student_self;
 
         if (approved !== "approved") {
             return ctx.badRequest(null, [{ messages: [{ id: "Account not approved yet" }] }]);
@@ -144,7 +144,7 @@ module.exports = {
 
         const all_jobs = await strapi.db.query("api::job.job").findMany({
             where: {
-                category: registered_for,
+                // category: registered_for,
                 approval_status: "approved",
             },
             populate: ["company", "jaf"]

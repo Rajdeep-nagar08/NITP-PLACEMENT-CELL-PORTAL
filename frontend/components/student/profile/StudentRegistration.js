@@ -32,7 +32,7 @@ export default function StudentRegistration({ token = '' }) {
     date_of_birth: '',
     rank: '',
     categoryRank: '',
-    registered_for: '',
+    // registered_for: '',
     program: '',
     pwd: false,
     department: '',
@@ -859,6 +859,8 @@ export default function StudentRegistration({ token = '' }) {
                   ))}
                 </select>
               </div>
+
+{/* 
               <div className='col-span-5 sm:col-span-2'>
                 <label
                   htmlFor='registered_for'
@@ -879,7 +881,10 @@ export default function StudentRegistration({ token = '' }) {
                   <option value='Internship'>Internship</option>
                   <option value='FTE'>FTE</option>
                 </select>
-              </div>
+              </div> */}
+
+
+
 
               <div className='col-span-5 sm:col-span-2'>
                 <label
@@ -1448,7 +1453,7 @@ export default function StudentRegistration({ token = '' }) {
                     value={values.current_status}
                     onChange={handleInputChange}
                     type='text'
-                    name=''
+                    name='current_status'
                     id='current_status'
                     autoComplete='current_status'
                     placeholder='Ex: P/F'

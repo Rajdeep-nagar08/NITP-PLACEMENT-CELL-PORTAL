@@ -74,7 +74,7 @@ module.exports = {
             return ctx.notFound(null, [{ messages: [{ id: "Student not found" }] }]);
         }
 
-        const { id, approved, X_marks, XII_marks, cpi, registered_for } = student_self;
+        const { id, approved, X_marks, XII_marks, cpi} = student_self;
 
         if (approved !== "approved") {
             return ctx.badRequest(null, [{ messages: [{ id: "Account not approved yet" }] }]);
@@ -90,7 +90,7 @@ module.exports = {
                 min_XII_marks: { $lte: XII_marks },
                 min_cpi: { $lte: cpi },
                 approval_status: "approved",
-                category: registered_for,
+                // category: registered_for,
             },
             populate: ["company", "jaf"]
         });

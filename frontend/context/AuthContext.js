@@ -112,7 +112,9 @@ export const AuthProvider = ({ children }) => {
       setUser(data.user)
 
       if(data.role!=role){
+
         console.log(data)
+        
         console.log(data.role)
 
         console.log(role)

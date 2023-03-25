@@ -895,6 +895,7 @@ export default function StudentProfileEdit({ token = '', student }) {
                     />
                   </div>
 
+{/* 
                   <div className='col-span-6 sm:col-span-3'>
                     <label
                       htmlFor='registered_for'
@@ -916,7 +917,7 @@ export default function StudentProfileEdit({ token = '', student }) {
                       <option>FTE</option>
                     </select>
                   </div>
-
+ */}
 
               
                   <div className='col-span-6 sm:col-span-3'>

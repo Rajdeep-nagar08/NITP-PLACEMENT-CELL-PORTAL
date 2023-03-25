@@ -31,10 +31,14 @@ If the user role is not provided or the role is admin, the code will throw a val
 'use strict';
 
 const _ = require('lodash');
+
 const jwt = require('jsonwebtoken');
+
 const utils = require('@strapi/utils');
 
+
 const { sanitize } = utils;
+
 const { ApplicationError, ValidationError } = utils.errors;
 
 // const emailRegExp =
@@ -43,48 +47,73 @@ const { ApplicationError, ValidationError } = utils.errors;
 const emailRegExp = /.*/;
 
 async function sanitizeUser(user, ctx) {
+
   // NOTE: @adig Returning role too, with the user
+
   const { role } = user;
+
   const { auth } = ctx.state;
+
   const userSchema = strapi.getModel('plugin::users-permissions.user');
 
-  return { role, ...(await sanitize.contentAPI.output(user, userSchema, { auth })) };
+  return { role, ...(await sanitize.contentAPI.output(user, userSchema, { auth }))
+
+   };
+
 };
 
 // validation
 const { yup, validateYupSchema } = require('@strapi/utils');
+
 const registerBodySchema = yup.object().shape({
+
   email: yup.string().email().required(),
+
   password: yup.string().required(),
+
 });
 
 const validateRegisterBody = validateYupSchema(registerBodySchema);
 
 // JWT issuer
+
 function issueJWT(payload, jwtOptions = {}) {
+
   _.defaults(jwtOptions, strapi.config.get('plugin.users-permissions.jwt'));
+
   return jwt.sign(
+
     _.clone(payload.toJSON ? payload.toJSON() : payload),
+
     strapi.config.get('plugin.users-permissions.jwtSecret'),
+
     jwtOptions
   );
 };
 
 // @adig Reference: node_modules/@strapi/plugin-users-permissions/server/utils/index.js
+
 const getService = name => {
   return strapi.plugin('users-permissions').service(name);
 };
 
 module.exports = {
   //   Register controller override
+
   register_with_role: async (ctx) => {
+
     const pluginStore = strapi.store({
+
       type: 'plugin',
+
       name: 'users-permissions',
+
     });
 
     const settings = await pluginStore.get({
+
       key: 'advanced',
+
     });
 
     if (!settings.allow_register) {
@@ -112,7 +141,8 @@ module.exports = {
       );
     }
 
-    /** NOTE: @adig: possible value for `role` are "student", "coordinator" */
+    /** NOTE: @adig: possible value for `role` are "student", "coordinator", "company" */
+
     const role = params.role;
 
     if (!role) {
@@ -128,7 +158,7 @@ module.exports = {
       .findOne({ where: { type: role }, select: ["id"] });
 
     if (!role_entry) {
-      /** role is not "student" nor "coordinator", ie. the role doesn't exist in user-permissions collection */
+      /** role is not "student" nor "coordinator" nor "company", ie. the role doesn't exist in user-permissions collection */
       throw new ValidationError("Please provide a valid role");
     }
 

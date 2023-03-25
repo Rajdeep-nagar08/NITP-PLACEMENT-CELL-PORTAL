@@ -126,7 +126,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"data\": {\n        \"name\": \"I am NoOne plus 2\",\n        \"roll\": \"200002\",\n        \"gender\": \"female\",\n        \"category\": \"obc\",\n        \"institute_email_id\": \"a1ds4ad@afd.cin\",\n        \"personal_email_id\": \"d24sfd@asd.con\",\n        \"resume_link\": \"resume_link_is_here\",\n        \"program\": \"B.Tech\",\n        \"approved\": \"approved\",\n        \"createdAt\": \"2022-06-01T08:10:40.805Z\",\n        \"updatedAt\": \"2022-06-06T19:10:11.269Z\",\n        \"department\": \"mathematics\",\n        \"course\": \"Mathematics & Computing\",\n        \"cpi\": \"sdfdsf\",\n        \"address\": \"asd\",\n        \"X_marks\": 60,\n        \"XII_marks\": 76.5,\n        \"registered_for\": \"Internship\"\n    }\n}",
+							"raw": "{\n    \"data\": {\n        \"name\": \"I am NoOne plus 2\",\n        \"roll\": \"200002\",\n        \"gender\": \"female\",\n        \"category\": \"obc\",\n        \"institute_email_id\": \"a1ds4ad@afd.cin\",\n        \"personal_email_id\": \"d24sfd@asd.con\",\n        \"resume_link\": \"resume_link_is_here\",\n        \"program\": \"B.Tech\",\n        \"approved\": \"approved\",\n        \"createdAt\": \"2022-06-01T08:10:40.805Z\",\n        \"updatedAt\": \"2022-06-06T19:10:11.269Z\",\n        \"department\": \"mathematics\",\n        \"course\": \"Mathematics & Computing\",\n        \"cpi\": \"sdfdsf\",\n        \"address\": \"asd\",\n        \"X_marks\": 60,\n        \"XII_marks\": 76.5,\n    }\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -222,11 +222,7 @@
 									"value": "80.1",
 									"type": "text"
 								},
-								{
-									"key": "registered_for",
-									"value": "Internship",
-									"type": "text"
-								},
+						
 								{
 									"key": "department",
 									"value": "mathematics",

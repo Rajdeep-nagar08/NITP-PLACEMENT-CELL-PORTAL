@@ -42,20 +42,21 @@ export default function PlacedGraph({ student = [] }) {
     unplacedoccurences = {}
 
   useEffect(() => {
-    const ftestudent = student.filter(
-      (item) => item.attributes.registered_for === 'FTE'
-    )
-    //set label for x axis
-    const label = ftestudent.map(
-      (item) => item.attributes.program.data.attributes.program_name
-    )
+    // const ftestudent = student.filter(
+    //   (item) => item.attributes.registered_for === 'FTE'
+    // )
+    // //set label for x axis
+    // const label = ftestudent.map(
+    //   (item) => item.attributes.program.data.attributes.program_name
+    // )
     const labelSet = new Set(label)
     setLabel(Array.from(labelSet))
     // Create dataset for placed a1, a2, x, unplaced
-    const a1 = ftestudent.filter((item) => item.attributes.placed === 'A1')
-    const a2 = ftestudent.filter((item) => item.attributes.placed === 'A2')
-    const x = ftestudent.filter((item) => item.attributes.placed === 'X')
-    const unplaced = ftestudent.filter(
+    const a1 = student.filter((item) => item.attributes.placed === 'A1')
+    const a2 = student.filter((item) => item.attributes.placed === 'A2')
+    const x = student.filter((item) => item.attributes.placed === 'X')
+
+    const unplaced = student.filter(
       (item) => item.attributes.placed === 'Not Placed'
     )
     // Count occurences of each program

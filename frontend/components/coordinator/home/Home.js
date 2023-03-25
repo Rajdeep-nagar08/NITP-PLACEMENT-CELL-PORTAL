@@ -9,8 +9,10 @@ export default function Home({ token = '' }) {
   const [student, setStudent] = useState([])
   const [job, setJob] = useState([])
   const [company, setCompany] = useState([])
-  const [ftestudent, setFtestudent] = useState([])
-  const [internstudent, setInternstudent] = useState([])
+
+
+  // const [ftestudent, setFtestudent] = useState([])
+  // const [internstudent, setInternstudent] = useState([])
 
   useEffect(() => {
     axios
@@ -19,20 +21,21 @@ export default function Home({ token = '' }) {
           Authorization: `Bearer ${token}`,
         },
       })
+
       .then(async (res) => {
         let fetched_data = res.data.data
         fetched_data = await getPlacedStatus(fetched_data)
         // Get fte students
-        const fte_students = fetched_data.filter(
-          (student) => student.attributes.registered_for === 'FTE'
-        )
-        // Get intern students
-        const intern_students = fetched_data.filter(
-          (student) => student.attributes.registered_for === 'Internship'
-        )
+        // const fte_students = fetched_data.filter(
+        //   (student) => student.attributes.registered_for === 'FTE'
+        // )
+        // // Get intern students
+        // const intern_students = fetched_data.filter(
+        //   (student) => student.attributes.registered_for === 'Internship'
+        // )
 
-        setFtestudent(fte_students)
-        setInternstudent(intern_students)
+        // setFtestudent(fte_students)
+        // setInternstudent(intern_students)
         setStudent(fetched_data)
       })
       .catch((err) => {
@@ -118,12 +121,12 @@ export default function Home({ token = '' }) {
         <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
           <RegisteredGraph student={student} title='Registered Students' />
         </li>
-        <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
+        {/* <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
           <RegisteredGraph student={ftestudent} title='FTE students' />
         </li>
         <li className='md:col-span-1 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
           <RegisteredGraph student={internstudent} title='Intern students' />
-        </li>
+        </li> */}
         <li className='md:col-span-2 flex flex-col text-center bg-white rounded-lg shadow divide-y divide-gray-200 p-4'>
           <PlacedGraph student={student} />
         </li>

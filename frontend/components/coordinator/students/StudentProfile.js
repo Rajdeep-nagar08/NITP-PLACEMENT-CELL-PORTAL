@@ -812,7 +812,7 @@ export default function StudentProfileEdit({ token = '', student }) {
                     className='mt-1 focus:ring-green-500 focus:border-green-500 block w-full shadow-sm sm:text-sm border-red-300 rounded-md'
                   />
                 </div>
-
+{/* 
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='registered_for'
@@ -835,6 +835,9 @@ export default function StudentProfileEdit({ token = '', student }) {
                     <option>FTE</option>
                   </select>
                 </div>
+ */}
+
+
                 <div className='col-span-6 sm:col-span-3'>
                   <label
                     htmlFor='program'

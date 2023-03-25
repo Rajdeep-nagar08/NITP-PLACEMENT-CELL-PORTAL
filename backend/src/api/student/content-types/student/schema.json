@@ -117,14 +117,6 @@
       "relation": "oneToOne",
       "target": "plugin::users-permissions.user"
     },
-    "registered_for": {
-      "type": "enumeration",
-      "enum": [
-        "FTE",
-        "Internship"
-      ],
-      "required": true
-    },
     "profile_pic": {
       "type": "media",
       "multiple": false,

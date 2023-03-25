@@ -7,17 +7,21 @@ import Footer from './Footer';
 import WhyUS from './WhyUS';
 
 const corousalImage = [
+
     "/images/img1.jpg",
     "/images/bg.jpg",
     "/images/img2.jpg",
     "/images/img3.jpg",
+
 ]
 
 function CoverPage() {
     let i = 0;
 
     const [currentIndex, setCurrentIndex] = useState(0);
+
     const slideRef = useRef()
+
     const removeAnimation = () => {
         slideRef.current.classList.remove("fade-anim");
     }
@@ -35,7 +39,8 @@ function CoverPage() {
     const handleOnNextClick = () => {
         i = (i + 1) % (corousalImage.length);
         setCurrentIndex(i);
-        slideRef.current.classList.add('fade-anim');
+        // slideRef.current.classList.add('fade-anim');
+        slideRef.current?.classList.add('fade-anim');
     }
     const handleOnPrevClick = () => {
         i = (currentIndex + corousalImage.length - 1) % (corousalImage.length);

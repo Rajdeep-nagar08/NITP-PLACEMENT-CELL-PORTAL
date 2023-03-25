@@ -33,13 +33,10 @@ The get_applied_students function is commented out and not implemented in this c
 
 
 module.exports = {
+
 	async get_eligible_students(ctx) {
 
 		console.log("Backend file working")
-
-		// const { jobId } = { 1 };
-
-	//	const jobId = 1;
 
 		const { jobId } = ctx.query;
 
@@ -62,8 +59,6 @@ module.exports = {
          populate: ["company"]
 		});
 
-		//console.log("Fuck off")
-
 		console.log(4);
 
 		console.log("JOB =>" +job_self);
@@ -75,7 +70,7 @@ module.exports = {
 		console.log(5);
 
 		const {job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female, company_category, industry_sector} = job_self;
-		
+
 		console.log(job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female, company_category, industry_sector)
 
 		if (approval_status !== "approved") {

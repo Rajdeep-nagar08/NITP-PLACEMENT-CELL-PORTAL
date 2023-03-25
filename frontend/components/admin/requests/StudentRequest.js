@@ -108,10 +108,10 @@ export default function StudentRequest({ token = '' }) {
       headerName: 'Course',
       field: 'attributes.course.data.attributes.course_name',
     },
-    {
-      headerName: 'Registered For',
-      field: 'attributes.registered_for',
-    },
+    // {
+    //   headerName: 'Registered For',
+    //   field: 'attributes.registered_for',
+    // },
     {
       headerName: 'Approve',
       field: 'id',

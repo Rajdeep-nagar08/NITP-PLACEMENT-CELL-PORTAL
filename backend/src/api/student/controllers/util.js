@@ -55,7 +55,9 @@ module.exports = {
      * - If job.only_for_pwd, then only PWD students are eligible
      * - If job.only_for_female, then only Female students are eligible
      * - If already selected in an "Internship" then ineligible for other "Internships"
-     *
+
+
+
      * More conditions for "FTE" Jobs based on past applications:
      * - 1. If job.classification is "X", then the 'below' 3 conditions will be null and void
      * - 2. If selected in X or A1 => out of placement, not eligible (clarification: any number of times, because the below conditions don't apply)
@@ -64,25 +66,35 @@ module.exports = {
      *
      * Note: The above checks will also include considering the "placed_status" in student
      *
+     * 
+     * 
+     * 
+     * 
+     * 
+     * 
      * @returns {boolean} If the student is eligible, this will return true
      */
+
+
     async helper_is_job_eligible(student, job, selected_applications) {
+
         // Instead of silently returning false, I am throwing an error, this may
+
         // cause some 500s initially, but will likely reduce silent eligibility
+
         // bugs in the long run
 
         console.log(7);
 
 
-        const { id, X_marks, XII_marks, cpi, registered_for, course, placed_status, placed_status_updated, internship_status } = student;
-        if (!id || !X_marks || !XII_marks || !cpi || !registered_for) {
+        const { id, X_marks, XII_marks, cpi, course, placed_status, placed_status_updated, internship_status } = student;
+        if (!id || !X_marks || !XII_marks || !cpi) {
             throw `Some mandatory parameters not passed, or are null: ${student, job}`;
         }
 
         console.log("checking student id=>"+id);
 
         console.log("checking student X_marks=>"+X_marks);
-
 
         console.log(8);
 
@@ -124,10 +136,10 @@ module.exports = {
                 return false /* CPI less than minimum required */;
             }
 
-            if (job.category != registered_for) {
-                debug_reason("Job category does not match student's registered_for");
-                return false /* Job's category is not the one student registered for */;
-            }
+            // if (job.category != registered_for) {
+            //     debug_reason("Job category does not match student's registered_for");
+            //     return false /* Job's category is not the one student registered for */;
+            // }
 
             if(job.only_for_ews) {
                 if(student.category != "ews") {

@@ -184,7 +184,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
       "date_of_birth",
       "category",
       "rank",
-      "registered_for",
+      // "registered_for",
       "course",
       "address",
       "X_marks",
@@ -212,6 +212,7 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
       "spi_6",
       "spi_7",
       "spi_8",
+      "spi_9",
       "cpi",
     ];
 
