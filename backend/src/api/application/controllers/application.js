@@ -10,8 +10,6 @@ module.exports = createCoreController("api::application.application");
 
 /*
 
-@rajdeep
-
 This code is defining a Strapi application controller, which is an intermediary between the client and 
 the database for the application.
 

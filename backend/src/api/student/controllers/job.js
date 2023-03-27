@@ -7,7 +7,6 @@ module.exports = {
 
     /*
 
-    @rajdeep
 
     This code exports two functions as an API in a Strapi 
     (a Node.js headless CMS) application. The first function, 

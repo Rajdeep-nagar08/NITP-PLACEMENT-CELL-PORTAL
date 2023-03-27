@@ -26,8 +26,6 @@ module.exports = ({ env }) => ({
 
 /*
 
-@rajdeep
-
 This code exports a configuration object for an email service in a Strapi app. 
 The configuration is generated based on the environment variables passed in via the env argument.
 

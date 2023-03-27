@@ -34,8 +34,6 @@ module.exports = createCoreController("api::job.job", ({ strapi }) => ({
 
     /*
 
-    @rajdeep
-
 
     This code exports a Strapi core controller for a job API endpoint. 
     The controller handles the logic for two endpoints:

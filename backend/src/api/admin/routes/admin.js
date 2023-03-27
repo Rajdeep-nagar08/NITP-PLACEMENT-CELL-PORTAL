@@ -47,8 +47,6 @@ module.exports = {
 
 /*
 
-@rajdeep
-
 This is a Node.js code snippet that exports an object with five different routes for an API endpoint.
 
 The first route is a POST request to the path "/admin/register-with-role".

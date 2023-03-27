@@ -7,8 +7,6 @@
 
 /*
 
-@rajdeep
-
 This is a Node.js code written in the Strapi framework. 
 It defines a custom controller for the 'company' entity 
 that performs additional operations before saving a new company 

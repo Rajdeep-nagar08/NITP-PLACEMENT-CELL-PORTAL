@@ -37,8 +37,6 @@ export default {
 
 /*
 
-@rajdeep
-
 
 The code exports an object with two properties, config and bootstrap.
 

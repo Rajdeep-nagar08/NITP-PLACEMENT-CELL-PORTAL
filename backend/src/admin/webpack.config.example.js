@@ -11,7 +11,6 @@ module.exports = (config, webpack) => {
 
 /*
 
-@rajdeep
 
 This code exports a function that takes in config and webpack as parameters. 
 It performs customizations on the webpack configuration (config) and returns the modified version. 

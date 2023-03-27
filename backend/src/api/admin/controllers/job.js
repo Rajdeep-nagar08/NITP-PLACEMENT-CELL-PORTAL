@@ -7,8 +7,6 @@ const student = require("./student");
 
 /*
 
-@rajdeep
-
 This code exports an object with two functions, get_eligible_students and get_applied_students.
 
 The get_eligible_students function is used to get the list of eligible students for a particular job. It takes in the context object ctx as an argument.

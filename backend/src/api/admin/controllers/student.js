@@ -7,8 +7,6 @@ const process = require("process");
 
 /*
 
-@rajdeep
-
 This code exports three asynchronous functions get_eligible_jobs, get_applied_jobs and download_selected_resumes 
 as part of a Strapi (a Node.js based CMS) API for the "Admin" role.
 

@@ -9,7 +9,6 @@ module.exports = () => ({});
 
 /*
 
-@rajdeep
 
 This code exports a function that returns an empty object when invoked.
 

@@ -16,7 +16,6 @@ const { ApplicationError, ValidationError } = utils.errors;
 
 
 /*
-@rajdeep
 
 The code is a Node.js script for a Strapi (a headless CMS) plugin for user registration, 
 modified to add extra functionality for student registration. 

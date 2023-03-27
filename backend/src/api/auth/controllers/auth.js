@@ -19,7 +19,6 @@ module.exports = {
 
   /*
 
-  @rajdeep
    
   This code is for a Strapi application and exports an object with two functions, reset_password and get_userid.
 

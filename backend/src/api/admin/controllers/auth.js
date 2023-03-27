@@ -8,9 +8,6 @@
 
 /*
 
-
-@rajdeep
-
 This is a code for a Strapi controller that overrides the default Strapi register function. 
 The purpose of this code is to add a custom validation for the user role while creating a user. 
 The code uses yup library to validate the user inputs and make sure that the email 
@@ -22,8 +19,6 @@ If the user role is not provided or the role is admin, the code will throw a val
  to interact with Strapi's data and strapi.getModel() to retrieve the 
  schema of a specific model. The code then signs a JSON web token with 
  the user information and issues it to the user.
-
- 
 
 */
 
@@ -97,7 +92,11 @@ const getService = name => {
   return strapi.plugin('users-permissions').service(name);
 };
 
+
+
+
 module.exports = {
+
   //   Register controller override
 
   register_with_role: async (ctx) => {

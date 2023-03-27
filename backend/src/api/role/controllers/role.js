@@ -8,8 +8,6 @@
 
 /*
 
-@rajdeep
-
 This code is a Strapi action for the "role" model. It exports a single function, get_role, 
 which is used to retrieve a user's role information.
 

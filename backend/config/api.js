@@ -15,8 +15,6 @@ module.exports = {
 
 /*
 
-@rajdeep
-
 This code is a configuration file for a Strapi (an open-source headless content management system) application. 
 It exports an object that sets the REST API limits for the application.
 
