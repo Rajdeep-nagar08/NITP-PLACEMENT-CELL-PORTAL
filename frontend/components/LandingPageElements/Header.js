@@ -114,7 +114,7 @@ function Header() {
                 >
                     {MENU_LIST.map((menu) => (
                         <div key={menu.idx} className="lg:hidden bg-[#510505]" id="mobile-menu">
-                            <div ref={menu} className=" w-auto flex flex-row-reverse">
+                            <div ref={el => {menu.ref = el}} className=" w-auto flex flex-row-reverse">
                                 <Link href={menu.href} >
                                     <a className="hover:bg-[#67101075] text-center hover:text-yellow-200 font-bold p-1 text-[#9d9a9a] w-screen rounded-md text-sm ">{menu.text}</a>
                                 </Link>
