@@ -1,17 +1,16 @@
 
 import { React, useState, useEffect, useRef } from 'react'
 import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, DocumentDownloadIcon, PaperAirplaneIcon, LightBulbIcon, PencilAltIcon } from '@heroicons/react/outline';
-import Header from './Header';
-import About from './About';
+import Header from './LandingPageElements/Header';
+import About from './LandingPageElements/About';
 import Link from 'next/link';
-import Footer from './Footer';
-import Process from './Process';
-import WhyUS from './WhyUS';
+import Footer from './LandingPageElements/Footer';
+import Process from './LandingPageElements/Process';
+import WhyUS from './LandingPageElements/WhyUS';
 
 const corousalImage = [
 
     "/images/img1.jpg",
-    "/images/bg.jpg",
     "/images/img2.jpg",
     "/images/img3.jpg",
 
@@ -57,6 +56,13 @@ function CoverPage() {
                 <div ref={slideRef} className='w-full select-none relative'>
                     <div className='aspect-w-16 aspect-h-7'>
                         <img src={corousalImage[currentIndex]} alt='' />
+                        <div className='absolute top-3/4 '>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150"><path fill="#820000" fillOpacity="1" d="M0,64L1440,140L1440,320L0,320Z"></path></svg>
+                        </div>
+                        <div className='absolute top-3/4'>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 150"><path fill="#ffff" fillOpacity="1" d="M0,64L1445,150L1440,320L0,320Z"></path></svg>
+                        </div>
+                        {/* <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#2c0707" fill-opacity="1" d="M0,96L1440,0L1440,0L0,0Z"></path></svg> */}
                     </div>
                     <div className='absolute top-1/4 flex w-full justify-between items-center'>
 
@@ -77,6 +83,7 @@ function CoverPage() {
                         <a className='' href='/Brochure2022_NIT-Patna.pdf ' download>Download Brochure and Proforma </a>
                         <DocumentDownloadIcon className='h-7 w-7 p-1 ' />
                     </div>
+
                 </div>
             </main>
             <About />

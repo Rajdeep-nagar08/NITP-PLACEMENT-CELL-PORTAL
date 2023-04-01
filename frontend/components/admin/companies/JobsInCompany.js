@@ -87,12 +87,11 @@ export default function JobsInCompany({ id, token = '' }) {
           </Link>
         </div>
       </div>
-      <div className='ag-theme-alpine mt-4' style={{height:100}}>
+      <div className='ag-theme-alpine mt-4' style={{height:400}}>
         <AgGridReact
           rowData={jobs}
           columnDefs={columnDefs}
           defaultColDef={{ sortable: true }}
-          domLayout= 'autoHeight'
           headerClass="my-header-class"
         ></AgGridReact>
       </div>
