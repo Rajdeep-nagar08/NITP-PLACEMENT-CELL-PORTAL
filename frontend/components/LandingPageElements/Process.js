@@ -1,59 +1,86 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import AOS from 'aos';
+import 'aos/dist/aos.css'
+
+import { ArrowDownIcon } from '@heroicons/react/outline'
 const steps = [
     {
         index: 1,
-        title: 'Step 1',
-        discription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
+        title: 'REGISTRATION',
+        discription: 'Recruiter share these details on ',
+        links:'localhost:3000/account/RecruiterSignUp:',
+        st1:'Companys Full Name',
+        st2:'Name of Recruiter',
+        st3:'Recruiter Contact No.',	
+        st4:'Recruiter Official email address',
     },
 
     {
         index: 2,
         title: 'Step 2',
-        discription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
+        discription: 'Within 24-hrs, Recruiter will get an Invitation via E-Mail that consist the Username and Password along with a link to the placement portal of NITP.',
     },
 
     {
         index: 3,
         title: 'Step 3',
-        discription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
+        discription: 'With the credentials received via mail, the company representative are expected to select Account Type as “Company” on ',
+        links:'localhost:3000/loginPage',
     },
 
     {
         index: 4,
         title: 'Step 4',
-        discription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
+        discription: 'After login, company representative are expected to fill the Job Application Form (JNF).',
     },
 
     {
         index: 5,
         title: 'Step 5',
-        discription: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. ',
+        discription: 'For further requirements like arrangement of Pre-Placement Talk or anything else one of our placement coordinator will be in touch with you.',
     },
 ]
 function Process() {
+    useEffect(() => {
+AOS.init({duration: 1000})
+    },[])
     return (
-        <div className='pt-4 h-fit'>
+        <div className='mt-8 h-fit'>
             <div className='text-4xl underline font-bold text-center text-red-900'> Welcome!!</div>
-            <div className='w-1.2 text-center text-xl font-serif m-3'>Recuiter should follow following steps to register on <span className='font-bold'>Training and placement cell, NITP</span></div>
-            <div className='flex justify-items-center'>
+            <div className='text-center text-xl font-serif m-3'>Recuiter should follow following steps to register on <span className='font-bold'>Training and placement cell, NITP</span></div>
+            <div className='grid justify-items-center'>
                 <div className='p-5 grid justify-items-center'>
                     {steps.map((item) => (
-                        <div className='m-3 flex w-1/4 mt-10' key={item.index}>
-                            {/* <div className='px-3 rounded-full font-semibold text-yellow-400 bg-red-900 h-8 pt-1'>
-                                {item.index}
-                            </div> */}
-                            <div className='border-red-900 border-dashed shadow-2xl border-2 rounded-lg '>
-                                <div className='bg-gray-300 p-3 text-center text-yellow-500 font-bold'>
+                        <div className='grid justify-items-center md:w-1/2' key={item.index}>
+                            <div className='p-5 grid justify-items-center' data-aos={`${item.index%2 ? 'slide-left' :'slide-right'}`}>
+                            <div className='shadow-2xl rounded-lg '>
+                                <div className='bg-yellow-300 p-3 text-center text-red-900 font-bold'>
                                     {item.title}
                                 </div>
                                 <div className='p-4 m-1'>
                                     {item.discription}
+                                    {item.links && < a href={item.links}  className="hover:underline text-blue-500 after:content-['_↗']">{item.links}</a>}
+                                    {item.index===1 && (
+                                        <ol className='pl-3'>
+                                            <li>1.{item.st1}</li>
+                                            <li>2.{item.st2}</li>
+                                            <li>3.{item.st3}</li>
+                                            <li>4.{item.st4}</li>
+                                        </ol>
+                                    )}
                                 </div>
                             </div>
-                            {/* <div className=' border-2 absolute'>
-                                <div className='relative -bottom-4 left-1/2 border-2 border-dotted border-black h-8'></div>
-                            </div> */}
+                            </div>
+                            {
+                            item.index!==5 && (
+                                <div className='flex justify-center -space-x-8' data-aos='slide-down'>
+                            <ArrowDownIcon className='h-20 w-11 text-stone-300 '/>
+                            <ArrowDownIcon className='h-20 w-10 text-red-900 font-bold'/>
+                            </div>
+                            )
+                            }
                         </div>
+
                         )
                     )}
                 </div>
