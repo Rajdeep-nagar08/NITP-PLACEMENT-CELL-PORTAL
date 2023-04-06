@@ -221,6 +221,7 @@ module.exports = {
    *
    * @note Just taking both email and roll, to prevent anyone from creating too many requests for other roll numbers
    */
+
   async request_password_change(ctx) {
     const { institute_email_id, roll } = ctx.request.body;
 

@@ -56,7 +56,7 @@ module.exports = {
     async get_eligible_jobs(ctx) {
         const { roll } = ctx.query;
 
-        console.log("done")
+        // console.log("done")
 
         if (!roll) {
             return ctx.badRequest(null, [{ messages: [{ id: "Missing roll number", received_roll: roll || null }] }]);
@@ -117,7 +117,7 @@ module.exports = {
 
         eligible_jobs = eligible_jobs.filter((_, index) => is_eligible[index]);
 
-        console.log("pp"+eligible_jobs)
+        // console.log("pp"+eligible_jobs)
 
         ctx.body = eligible_jobs;
 
@@ -138,6 +138,7 @@ module.exports = {
      */
 
     async get_applied_jobs(ctx) {
+
         const { roll } = ctx.query;
 
         if (!roll) {
