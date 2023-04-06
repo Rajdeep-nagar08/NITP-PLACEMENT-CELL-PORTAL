@@ -10,7 +10,7 @@ import { API_URL } from "../config";
 export default function SignIn() {
 
   const notificationMethods = [
-    { id: "company", title: "Company"},
+    { id: "company", title: "Company" },
     { id: "student", title: "Student" },
     { id: "coordinator", title: "Coordinator" },
     { id: "admin", title: "Admin" },
@@ -24,7 +24,7 @@ export default function SignIn() {
   // Initialize a boolean state
   const [passwordShown, setPasswordShown] = useState(false);
 
-  const [newReg, allowNewReg] = useState(false);
+  const [newReg, allowNewReg] = useState(true);
 
 
   // Password toggle handler
@@ -34,7 +34,7 @@ export default function SignIn() {
     setPasswordShown(!passwordShown);
   };
 
-  
+
   useEffect(() => {
 
     fetch(`${API_URL}/api/setting`, {
@@ -46,7 +46,7 @@ export default function SignIn() {
       .then((res) => res.json())
       .then((data) => {
 
-       console.log("hello",data)
+        console.log("hello", data)
 
         allowNewReg(data.data.attributes.registrations_allowed)
 
@@ -62,7 +62,7 @@ export default function SignIn() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login({ username, password, role});
+    login({ username, password, role });
   };
 
   return (
@@ -99,10 +99,10 @@ export default function SignIn() {
           </div>
         </div>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md h-screen backdrop-opacity-60 bg-white/30 ">
-          <div className="  py-8 mt-5 shadow sm:rounded-lg sm:px-10 g-blur-md h-[35rem] p-7">
+          <div className="py-8 mt-5 shadow sm:rounded-lg sm:px-10 g-blur-md h-[35rem] p-7">
             <div>
               <p className="mt-2 text-center text-3xl font-bold font-sans pb-7 text-black ">
-              Login 
+                Login
                 {/* Login Or{" "}
                 <Link href="/account/studentRegistration">
                   <a className="font-medium text-yellow-500 hover:text-orange-500 font-bold">
@@ -130,7 +130,7 @@ export default function SignIn() {
               </select>
             </div>
             <form
-              className="space-y-6"
+              className="space-y-5"
               action="#"
               method="POST"
               onSubmit={handleSubmit}
@@ -211,7 +211,7 @@ export default function SignIn() {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                  className="w-full flex justify-center py-2 px-4  border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                 >
                   Sign in
                 </button>
@@ -220,15 +220,15 @@ export default function SignIn() {
 
             <div>
               {newReg ? (
-            <p className="p-3 text-white">
+                <p className="p-3 text-white">
 
-            Or{" "}
+                  Or{" "}
                   <Link href="/account/studentRegistration">
                     <a className=" text-yellow-500 hover:text-orange-500 font-bold">
                       Student Registration
                     </a>
                   </Link>
-            </p>
+                </p>
               ) : (
                 ''
               )}
@@ -237,15 +237,15 @@ export default function SignIn() {
 
             <div>
               {newReg ? (
-            <p className="p-3 text-white">
+                <p className="p-3">
 
-            Or{" "}
+                  Or{" "}
                   <Link href="/account/RecruiterSignUp">
                     <a className=" text-yellow-500 hover:text-orange-500 font-bold">
                       Company Registration
                     </a>
                   </Link>
-            </p>
+                </p>
               ) : (
                 ''
               )}
@@ -253,8 +253,8 @@ export default function SignIn() {
             </div>
 
 
-        </div>
           </div>
+        </div>
       </div>
     </div>
   );
