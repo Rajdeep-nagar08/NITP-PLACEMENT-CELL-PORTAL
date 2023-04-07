@@ -92,11 +92,11 @@ module.exports = {
             throw `Some mandatory parameters not passed, or are null: ${student, job}`;
         }
 
-        console.log("checking student id=>"+id);
+        // console.log("checking student id=>"+id);
 
-        console.log("checking student X_marks=>"+X_marks);
+        // console.log("checking student X_marks=>"+X_marks);
 
-        console.log(8);
+        // console.log(8);
 
         {
             // Basic job status checks
@@ -114,7 +114,7 @@ module.exports = {
             */
         }
 
-        console.log(9);
+        // console.log(9);
 
 
         {
@@ -141,29 +141,29 @@ module.exports = {
             //     return false /* Job's category is not the one student registered for */;
             // }
 
-            if(job.only_for_ews) {
-                if(student.category != "ews") {
+            if (job.only_for_ews) {
+                if (student.category != "ews") {
                     debug_reason("Job only for EWS");
                     return false /* Job only for EWS */;
                 }
             }
 
-            if(job.only_for_pwd) {
-                if(student.pwd == false) {
+            if (job.only_for_pwd) {
+                if (student.pwd == false) {
                     debug_reason("Job only for PWD");
                     return false /* Job only for PWD */;
                 }
             }
 
-            if(job.only_for_female) {
-                if(student.gender != "female") {
+            if (job.only_for_female) {
+                if (student.gender != "female") {
                     debug_reason("Job only for Female");
                     return false /* Job only for Female */;
                 }
             }
-       }
+        }
 
-       console.log(11);
+        //    console.log(11);
 
 
         {
@@ -177,7 +177,7 @@ module.exports = {
             }
         }
 
-        console.log(12);
+        // console.log(12);
 
 
         {
@@ -209,7 +209,7 @@ module.exports = {
         }
 
 
-        console.log(13);
+        // console.log(13);
 
         {
             // Check if student has already applied to this job
@@ -221,7 +221,7 @@ module.exports = {
                     },
                 });
 
-        console.log(131);
+            // console.log(131);
 
 
             if (existing_application) {
@@ -230,10 +230,10 @@ module.exports = {
             }
         }
 
-        console.log("Atlassian")
+        // console.log("Atlassian")
 
 
-	if ( job.category == "Internship (2 Month)" ) {
+        if (job.category == "Internship (2 Month)") {
             const existing_internship_selection = selected_applications
                 .find(appl => appl.job.category == "Internship (2 Month)");
 
@@ -241,123 +241,128 @@ module.exports = {
                 debug_reason("Student already selected in an Internship (2 Month)");
                 return false /* Already selected in an Internship */;
             }
-	}
-
-    
-	if ( job.category == "Internship (6 Month)" ) {
-        const existing_internship_selection = selected_applications
-            .find(appl => appl.job.category == "Internship (6 Month)");
-
-        if (existing_internship_selection || (internship_status_6 === true)) {
-            debug_reason("Student already selected in an Internship (6 Month)");
-            return false /* Already selected in an Internship */;
         }
-}
-
-        if ( job.category == "FTE" ) {
-            if ( job.classification == "none" ) {
-                const existing_internship_selection = selected_applications
-                    .find(appl => (appl.job.category == "FTE" && appl.job.classication == "none"));
-
-                if (existing_internship_selection || (internship_status === true)) {
-                    debug_reason("Student already selected in an Internship");
-                    return false /* Already selected in an Internship */;
-                }
-            }
-
-        console.log(15);
 
 
-            // Check the extra conditions, based on already selected applications
-            // console.debug({ selected_applications });
+        if (job.category == "Internship (6 Month)") {
+            const existing_internship_selection = selected_applications
+                .find(appl => appl.job.category == "Internship (6 Month)");
 
-            // Date at which student was first selected in A2 (if any)
-            const first_A2_application = selected_applications.find(appl => appl.job.classification === "Tier2") || null;
-
-            // When placed in A2 offcampus, we are using the
-            // "placed_status_updated" field also
-            // NOTE: When Date.parse fails, it returns NaN
-            let offcampus_A2_placed_date = (placed_status === "placed_tier2") ? (Date.parse(placed_status_updated) || null) : null;
-
-            let oncampus_A2_placed_date = (first_A2_application) ? (Date.parse(first_A2_application.createdAt)): null;
-
-            let date_A2_selection = null;
-
-            // Taking the first out of both dates
-            if ( oncampus_A2_placed_date && offcampus_A2_placed_date && (offcampus_A2_placed_date < oncampus_A2_placed_date) ) {
-                date_A2_selection = offcampus_A2_placed_date;
-            } else {
-                // Since, either one or both are null, or
-                // oncampus_A2_placed_date is earlier, either way, it has higher
-                // precedence, but if null, use offcampus_A2_placed_date
-                date_A2_selection = oncampus_A2_placed_date || offcampus_A2_placed_date;
-            }
-
-        console.log(16);
-
-
-            // Number of applications to A1 jobs created by student, AFTER being selected in an A2 job
-            // FUTURE: This calculation will get repeated for all jobs, see if it can be optimised
-
-            const num_new_A1_application = (await strapi.db.query("api::application.application").findMany({
-                where: {
-                    student: id,
-                    job: { classification: "Tier1" }
-                },
-            })).filter(application => {
-                if (date_A2_selection) {
-                    return Date.parse(application.createdAt) > date_A2_selection;
-                }
-                // returning false by default, since this application is BEFORE selection in A2, not new (after)
-                return false;
-            }).length;
-
-            const already_selected_A1 = placed_status === "placed_tier1" || (
-                selected_applications
-                    .find(appl => appl.job.classification === "Tier1") !== undefined
-            );
-
-            const already_selected_X = placed_status === "placed_tier3" || (
-                selected_applications
-                    .find(appl => appl.job.classification === "Tier3") !== undefined
-            );
-
-            // Ensure condition 1 in "More conditions"
-            if (job.classification === "Tier3") {
-                return true;
-            }
-
-            // Ensure condition 2 in "More conditions"
-            if (already_selected_A1 || already_selected_X) {
-                debug_reason("Student already selected in an A or X job");
-                return false;
-            }
-
-        console.log(17);
-
-
-            // Ensure condition 3 in "More conditions".
-            if (first_A2_application != null || placed_status === "placed_tier2") {
-                // If selected in A2 already, then other A2 jobs not eligible now
-                if (job.classification === "Tier2") {
-                    debug_reason("Student already selected in an A2 job");
-                    return false;
-                }
-
-                // Checking for 3 A1 applications condition
-                if (num_new_A1_application >= 3) {
-                    debug_reason("Student has already selected 3 A1 jobs");
-                    return false;
-                }
-            }
-
-            // Ensures condition 4 in "More conditions"
-            if (selected_applications.length >= 2) {
-                // Not eligible in any jobs
-                debug_reason("Student has already been selected in 2 jobs");
-                return false;
+            if (existing_internship_selection || (internship_status_6 === true)) {
+                debug_reason("Student already selected in an Internship (6 Month)");
+                return false /* Already selected in an Internship */;
             }
         }
+
+        // if (job.category == "FTE") {
+        //     if (job.classification == "none") {
+        //         // not Tier1, Tier2, Tier3
+        //         // No filter on the basis of Tier
+
+        //         const existing_internship_selection = selected_applications
+        //             .find(appl => (appl.job.category == "FTE" && appl.job.classication == "none"));
+
+        //         if (existing_internship_selection || (internship_status === true)) {
+        //             debug_reason("Student already selected in an Internship");
+        //             return false /* Already selected in an Internship */;
+        //         }
+        //     }
+
+        //     // console.log(15);
+
+
+        //     // Check the extra conditions, based on already selected applications
+        //     // console.debug({ selected_applications });
+
+        //     // Date at which student was first selected in A2 (if any)
+        //     const first_A2_application = selected_applications.find(appl => appl.job.classification === "Tier2") || null;
+
+        //     // When placed in A2 offcampus, we are using the
+        //     // "placed_status_updated" field also
+        //     // NOTE: When Date.parse fails, it returns NaN
+
+        //     let offcampus_A2_placed_date = (placed_status === "placed_tier2") ? (Date.parse(placed_status_updated) || null) : null;
+
+        //     let oncampus_A2_placed_date = (first_A2_application) ? (Date.parse(first_A2_application.createdAt)) : null;
+
+        //     let date_A2_selection = null;
+
+        //     // Taking the first out of both dates
+        //     if (oncampus_A2_placed_date && offcampus_A2_placed_date && (offcampus_A2_placed_date < oncampus_A2_placed_date)) {
+        //         date_A2_selection = offcampus_A2_placed_date;
+        //     } else {
+        //         // Since, either one or both are null, or
+        //         // oncampus_A2_placed_date is earlier, either way, it has higher
+        //         // precedence, but if null, use offcampus_A2_placed_date
+        //         date_A2_selection = oncampus_A2_placed_date || offcampus_A2_placed_date;
+        //     }
+
+        //     // console.log(16);
+
+        //     // Number of applications to A1 jobs created by student, AFTER being selected in an A2 job
+        //     // FUTURE: This calculation will get repeated for all jobs, see if it can be optimised
+
+        //     const num_new_A1_application = (await strapi.db.query("api::application.application").findMany({
+        //         where: {
+        //             student: id,
+        //             job: { classification: "Tier1" }
+        //         },
+        //     })).filter(application => {
+        //         if (date_A2_selection) {
+        //             return Date.parse(application.createdAt) > date_A2_selection;
+        //         }
+        //         // returning false by default, since this application is BEFORE selection in A2, not new (after)
+        //         return false;
+        //     }).length;
+
+        //     const already_selected_A1 = placed_status === "placed_tier1" || (
+        //         selected_applications
+        //             .find(appl => appl.job.classification === "Tier1") !== undefined
+        //     );
+
+        //     const already_selected_X = placed_status === "placed_tier3" || (
+        //         selected_applications
+        //             .find(appl => appl.job.classification === "Tier3") !== undefined
+        //     );
+
+        //     // Ensure condition 1 in "More conditions"
+        //     if (job.classification === "Tier3") {
+        //         return true;
+        //     }
+
+        //     // Ensure condition 2 in "More conditions"
+        //     if (already_selected_A1 || already_selected_X) {
+        //         debug_reason("Student already selected in an A or X job");
+        //         return false;
+        //     }
+
+        //     console.log(17);
+
+
+        //     // Ensure condition 3 in "More conditions".
+        //     if (first_A2_application != null || placed_status === "placed_tier2") {
+        //         // If selected in A2 already, then other A2 jobs not eligible now
+        //         if (job.classification === "Tier2") {
+        //             debug_reason("Student already selected in an A2 job");
+        //             return false;
+        //         }
+
+        //         // Checking for 3 A1 applications condition
+        //         if (num_new_A1_application >= 3) {
+        //             debug_reason("Student has already selected 3 A1 jobs");
+        //             return false;
+        //         }
+        //     }
+
+        //     // Ensures condition 4 in "More conditions"
+        //     if (selected_applications.length >= 2) {
+        //         // Not eligible in any jobs
+        //         debug_reason("Student has already been selected in 2 jobs");
+        //         return false;
+        //     }
+        // }
+
+
 
         return true /* All above conditions have passed */;
     },
@@ -404,8 +409,8 @@ module.exports = {
     },
 
 
-    
-	
+
+
     // async helper_get_applications1(jobId) {
     //     const job_self = await strapi.db.query("api::job.job").findOne({
     //         where: {

@@ -34,21 +34,21 @@ module.exports = {
 
 	async get_eligible_students(ctx) {
 
-		console.log("Backend file working")
+		// console.log("Backend file working")
 
 		const { jobId } = ctx.query;
 
-		console.log(1);
+		// console.log(1);
 
-		console.log("JOB ID= "+jobId)
+		// console.log("JOB ID= "+jobId)
 
-		console.log(2);
+		// console.log(2);
 
 		if (!jobId) {
 			return ctx.badRequest(null, [{ messages: [{ id: "Missing job id", received_jobId: jobId || null }] }]);
 		}
 
-		console.log(3);
+		// console.log(3);
 
 		const job_self = await strapi.db.query("api::job.job").findOne({
 			where: {
@@ -57,25 +57,25 @@ module.exports = {
          populate: ["company"]
 		});
 
-		console.log(4);
+		// console.log(4);
 
-		console.log("JOB =>" +job_self);
+		// console.log("JOB =>" +job_self);
 
 		if (!job_self) {
 			return ctx.notFound(null, [{ messages: [{ id: "Job not found" }] }]);
 		}
 
-		console.log(5);
+		// console.log(5);
 
 		const {job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female, company_category, industry_sector} = job_self;
 
-		console.log(job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female, company_category, industry_sector)
+		// console.log(job_title, approval_status, job_status, classification, min_X_marks, min_XII_marks, category, start_date, min_cpi, only_for_pwd, only_for_ews, eligible_courses, only_for_female, company_category, industry_sector)
 
 		if (approval_status !== "approved") {
             return ctx.badRequest(null, [{ messages: [{ id: "Job not approved yet" }] }]);
         }
 
-		console.log(6);
+		// console.log(6);
 
 		let eligible_students = await strapi.db.query("api::student.student").findMany({
 			where: {
@@ -92,7 +92,7 @@ module.exports = {
             return ctx.internalServerError(null, [{ messages: [{ id: "Could not get eligible students" }] }]);
         }
 
-		console.log(eligible_students)
+		// console.log(eligible_students)
 
 		selected_applications=[];
 

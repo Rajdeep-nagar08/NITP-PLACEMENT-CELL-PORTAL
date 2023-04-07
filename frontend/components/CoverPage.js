@@ -1,12 +1,40 @@
-
 import { React, useState, useEffect, useRef } from 'react'
-import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, DocumentDownloadIcon, PaperAirplaneIcon, LightBulbIcon, PencilAltIcon } from '@heroicons/react/outline';
-import Header from './LandingPageElements/Header';
+import { ChevronDoubleLeftIcon, ChevronDoubleRightIcon, DocumentDownloadIcon, } from '@heroicons/react/outline';
 import About from './LandingPageElements/About';
-import Link from 'next/link';
 import Footer from './LandingPageElements/Footer';
 import Process from './LandingPageElements/Process';
 import WhyUS from './LandingPageElements/WhyUS';
+import { Typewriter } from 'react-simple-typewriter';
+import Image from 'next/image';
+import Link from 'next/link';
+
+const MENU_LIST = [
+    {
+        idx: 1,
+        text: "About",
+        href: "#about",
+    },
+    {
+        idx: 2,
+        text: "Login",
+        href: "/loginPage",
+    },
+    {
+        idx: 3,
+        text: "Why Recruit us?",
+        href: "#WhyUS",
+    },
+    {
+        idx: 4,
+        text: "Process",
+        href: "#process",
+    },
+    {
+        idx: 5,
+        text: "Contact Us",
+        href: "/",
+    },
+]
 
 const corousalImage = [
 
@@ -26,7 +54,7 @@ function CoverPage() {
     const removeAnimation = () => {
         slideRef.current.classList.remove("fade-anim");
     }
-
+    const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
         slideRef.current.addEventListener('animationend', removeAnimation)
         startSlider();
@@ -37,12 +65,14 @@ function CoverPage() {
             handleOnNextClick();
         }, 5000);
     };
+
     const handleOnNextClick = () => {
         i = (i + 1) % (corousalImage.length);
         setCurrentIndex(i);
         // slideRef.current.classList.add('fade-anim');
         slideRef.current?.classList.add('fade-anim');
     }
+
     const handleOnPrevClick = () => {
         i = (currentIndex + corousalImage.length - 1) % (corousalImage.length);
         setCurrentIndex(i);
@@ -50,7 +80,77 @@ function CoverPage() {
     }
     return (
         <>
-            <Header />
+            <div className='fixed top-0 z-50'>
+                <div className="">
+                    <div className=" mx-auto z-50 bg-[#2c0707]  p-3 flex justify-between w-screen">
+                        <div className='flex'>
+                            <Image
+                                width={50}
+                                height={50}
+                                alt='NIT Patna'
+                                src='/images/logo.png'
+                            />
+                            <div className=" font-serif font-extrabold text-2xl p-2 min-h-14 text-white ">
+                                Training and Placement Cell
+                            </div>
+                        </div>
+
+                        <div className="hidden lg:block h-10">
+                            <div className="flex flex-row-reverse items-center my-2">
+                                {MENU_LIST.map((menu) => (
+                                    <a href={menu.href} key={menu.idx}>
+                                        <a className='text-[#858383] hover:bg-[#67101075] self-center p-3 rounded-md text-sm font-medium hover:text-yellow-200'>{menu.text}</a>
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                        <div className="flex lg:hidden ">
+                            <button
+                                onClick={() => setIsOpen(!isOpen)}
+                                type="button"
+                                className=" inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white"
+                                aria-controls="mobile-menu"
+                                aria-expanded="false"
+                            >
+                                <span className="sr-only">Open main menu</span>
+                                {!isOpen ? (
+                                    <svg
+                                        className="block h-6 w-6"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M4 6h16M4 12h16M4 18h16"
+                                        />
+                                    </svg>
+                                ) : (
+                                    <svg
+                                        className="block h-6 w-6"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        stroke="currentColor"
+                                        aria-hidden="true"
+                                    >
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            strokeWidth="2"
+                                            d="M6 18L18 6M6 6l12 12"
+                                        />
+                                    </svg>
+                                )}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <main>
                 {/* Corousal start */}
                 <div ref={slideRef} className='w-full select-none relative'>
@@ -67,7 +167,13 @@ function CoverPage() {
                     <div className='absolute top-1/4 flex w-full justify-between items-center'>
 
                         <div className=' bg-black/50 md:p-10 w-1/3 h-1/2 md:h-1/4'>
-                            <p className='text-white font-bold text-md md:text-4xl'>Lorem ipsum dolor sit amet</p>
+                            <h1 className='text-white font-bold text-md md:text-4xl'>
+                                <Typewriter
+                                    words={['Placement idhar hi karwayenge :D']} cursor={true} cursorColor="#F9F54B" loop={5} typeSpeed={70}
+                                    deleteSpeed={50}
+                                />
+
+                            </h1>
                         </div>
                         {/* <div className='md:mr-10 w-1/3 md:w-1/6'>
                         <div className='rounded-lg bg-amber-400 m-2 p-3 border-2 border-white font-semibold text-sm' ><Link href='/'>Login</Link></div>
@@ -86,9 +192,17 @@ function CoverPage() {
 
                 </div>
             </main>
+            <div id='about'>
+
             <About />
-            <Process />
-            <WhyUS />
+            </div>
+            <div id="process">
+                <Process />
+            </div>
+            <div id="WhyUS">
+
+            <WhyUS  />
+            </div>
             <Footer />
         </>
     );

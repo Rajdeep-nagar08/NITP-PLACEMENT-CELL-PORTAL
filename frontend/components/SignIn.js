@@ -24,6 +24,8 @@ export default function SignIn() {
   const [passwordShown, setPasswordShown] = useState(false);
 
   const [allowNewReg, setAllowNewReg] = useState(false);
+  // const [newReg, allowNewReg] = useState(true);
+
 
   // Password toggle handler
   const togglePassword = () => {
@@ -206,20 +208,26 @@ export default function SignIn() {
               <div>
                 <button
                   type="submit"
-                  className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
+                  className="w-full flex justify-center py-2 px-4  border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500"
                 >
                   Sign in
                 </button>
               </div>
             </form>
 
-            <div>
+            <div className="bg-yellow-500">
+              {allowNewReg ? (
+                
               <p
                 onClick={showBothRegisteration}
                 className="w-full flex justify-center my-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 font-bold"
               >
                 Registration
-              </p>
+             </p>
+             ):(
+              ""
+             )
+             }
             </div>
 
             <div>
@@ -257,3 +265,4 @@ export default function SignIn() {
     </div>
   );
 }
+

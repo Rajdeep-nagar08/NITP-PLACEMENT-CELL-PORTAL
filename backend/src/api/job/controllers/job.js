@@ -126,7 +126,7 @@ The upload_jaf function checks if the request has a valid bearer token and verif
 
     const role_type = role.role.type;
 
-    if (role_type != "coordinator" && role_type != "admin") {
+    if (role_type != "coordinator" && role_type != "admin" && role_type != "company") {
       return ctx.unauthorized(null, [{ messages: [{ id: "You are not authorized to upload JAF" }] }]);
     }
 

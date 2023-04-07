@@ -381,7 +381,8 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
         placed_tier3: [],
       };
 
-      console.log("H1")
+      // console.log("H1")
+    
       applications.forEach((app) => {
         // Note: Assuming job.classification is one of "Tier1", "Tier2", "Tier3"
         oncampus_placed[`placed_${app.job.classification.toLowerCase()}`].push(
@@ -389,9 +390,10 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
         );
       });
 
-      console.log("H2")
+      // console.log("H2")
 
       // Get array of students who are NOT 'unplaced'
+  
       const students = await strapi.db.query("api::student.student").findMany({
         where: {
           $not: {
@@ -412,7 +414,8 @@ module.exports = createCoreController("api::student.student", ({ strapi }) => ({
       //   offcampus_placed[student.placed_status].push(student.roll);
       // });
 
-      console.log("H3")
+      // console.log("H3")
+
             // merge unique rolls from oncampus_placed and offcampus_placed
       const placed_rolls = {
         placed_tier1: [
