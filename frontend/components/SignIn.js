@@ -24,7 +24,7 @@ export default function SignIn() {
   // Initialize a boolean state
   const [passwordShown, setPasswordShown] = useState(false);
 
-  const [newReg, allowNewReg] = useState(false);
+  const [allowNewReg, setAllowNewReg] = useState(false);
 
 
   // Password toggle handler
@@ -59,6 +59,10 @@ export default function SignIn() {
       })
   }, [])
 
+const showBothRegisteration =()=>{
+  setAllowNewReg(!allowNewReg)
+}
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -70,36 +74,35 @@ export default function SignIn() {
       <Nav />
 
       <div className="min-h-full flex md:flex-row cm:flex-col sm:px-6 lg:px-8 m-5">
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md ">
-          <div className="sm:mx-auto sm:w-full sm:max-w-md backdrop-blur rounded-md p-7 mt-5 h-[35rem]">
+        <div className="mt-3 shadow sm:mx-auto sm:w-full sm:max-w-md ">
+          <div className="sm:mx-auto  sm:w-full sm:max-w-md backdrop-blur rounded-md p-2 mt-5 h-[15rem]">
             <div className=" text-center ">
               <Image
-                className="mx-auto"
-                width={100}
-                height={100}
+                className="mx-auto mt-12"
+                width={120}
+                height={120}
                 alt="NIT Patna"
                 src="/images/logo.png"
               />
             </div>
 
-            <h2 className="mt-6 text-center text-3xl font-extrabold font-serif text-stone-800">
+            <h2 className=" mt-2 text-center text-3xl font-extrabold text-gray-900">
               Training and Placement Cell
             </h2>
-            <h2 className="text-center font-extrabold text-3xl uppercase text-Black my-5">
+            <h2 className="text-center font-extrabold text-3xl uppercase text-Black my-2">
               NIT Patna
             </h2>
-            <p className="m-3 text-gray-900 font-serif">
+            {/* <p className="m-3 text-gray-900 font-serif">
               The Training and Placement cell of NIT PATNA forms an integral
               part in shaping the careers of the students of the institute. It
               organizes and coordinates campus placement program to fulfill its
               commitment of a job to every aspirant. Not only that it also
               encourages and works towards the continuing education for the
               college employees.
-            </p>
+            </p> */}
           </div>
-        </div>
-        <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md h-screen backdrop-opacity-60 bg-white/30 ">
-          <div className="  py-8 mt-5 shadow sm:rounded-lg sm:px-10 g-blur-md h-[35rem] p-7">
+          {/* {adding the div of the login to here} */}
+          <div className="  py-2 mt-2  sm:rounded-lg sm:px-10 g-blur-md h-[37rem] p-7">
             <div>
               <p className="mt-2 text-center text-3xl font-bold font-sans pb-7 text-black ">
               Login 
@@ -130,7 +133,7 @@ export default function SignIn() {
               </select>
             </div>
             <form
-              className="space-y-6"
+              className="space-y-6 "
               action="#"
               method="POST"
               onSubmit={handleSubmit}
@@ -142,7 +145,7 @@ export default function SignIn() {
                 >
                   Username
                 </label>
-                <div className="mt-1">
+                <div className="mt-2">
                   <input
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -218,13 +221,20 @@ export default function SignIn() {
               </div>
             </form>
 
+            
+            <div>
+              <p onClick={showBothRegisteration} className="w-full flex justify-center my-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 font-bold" >         
+                Registration
+                </p>
+            </div>
+            
             <div>
               {newReg ? (
             <p className="p-3 text-white">
 
             Or{" "}
                   <Link href="/account/studentRegistration">
-                    <a className=" text-yellow-500 hover:text-orange-500 font-bold">
+                    <a className=" text-yellow-500 hover:text-orange-500 font-bold ">
                       Student Registration
                     </a>
                   </Link>
@@ -241,22 +251,26 @@ export default function SignIn() {
 
             Or{" "}
                   <Link href="/account/RecruiterSignUp">
-                    <a className=" text-yellow-500 hover:text-orange-500 font-bold">
+                    <a className=" text-yellow-500 hover:text-orange-500 font-bold my--4">
                       Company Registration
                     </a>
                   </Link>
             </p>
               ) : (
                 ''
-              )}
+                )} 
+              
 
             </div>
+  
 
 
         </div>
-          </div>
+
+        </div>
+       
       </div>
     </div>
   );
 
-}
+              }
