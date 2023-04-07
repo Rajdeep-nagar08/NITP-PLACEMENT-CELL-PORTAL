@@ -4,13 +4,12 @@ import { useContext, useState, useEffect } from "react";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import { BaseGridSerializingSession } from "ag-grid-community";
-import axios from 'axios'
+import axios from "axios";
 import { API_URL } from "../config";
 
 export default function SignIn() {
-
   const notificationMethods = [
-    { id: "company", title: "Company"},
+    { id: "company", title: "Company" },
     { id: "student", title: "Student" },
     { id: "coordinator", title: "Coordinator" },
     { id: "admin", title: "Admin" },
@@ -26,7 +25,6 @@ export default function SignIn() {
 
   const [allowNewReg, setAllowNewReg] = useState(false);
 
-
   // Password toggle handler
   const togglePassword = () => {
     // When the handler is invoked
@@ -34,39 +32,33 @@ export default function SignIn() {
     setPasswordShown(!passwordShown);
   };
 
-  
   useEffect(() => {
-
     fetch(`${API_URL}/api/setting`, {
-      method: 'GET',
+      method: "GET",
       headers: {
-        'Content-Type': 'application/json',
+        "Content-Type": "application/json",
       },
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log("hello", data);
 
-       console.log("hello",data)
-
-        allowNewReg(data.data.attributes.registrations_allowed)
-
+        allowNewReg(data.data.attributes.registrations_allowed);
       })
-
 
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         // toast.error('Unable to fetch tpc_guidelines')
-      })
-  }, [])
+      });
+  }, []);
 
-const showBothRegisteration =()=>{
-  setAllowNewReg(!allowNewReg)
-}
-
+  const showBothRegisteration = () => {
+    setAllowNewReg(!allowNewReg);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    login({ username, password, role});
+    login({ username, password, role });
   };
 
   return (
@@ -105,7 +97,7 @@ const showBothRegisteration =()=>{
           <div className="  py-2 mt-2  sm:rounded-lg sm:px-10 g-blur-md h-[37rem] p-7">
             <div>
               <p className="mt-2 text-center text-3xl font-bold font-sans pb-7 text-black ">
-              Login 
+                Login
                 {/* Login Or{" "}
                 <Link href="/account/studentRegistration">
                   <a className="font-medium text-yellow-500 hover:text-orange-500 font-bold">
@@ -221,56 +213,47 @@ const showBothRegisteration =()=>{
               </div>
             </form>
 
-            
             <div>
-              <p onClick={showBothRegisteration} className="w-full flex justify-center my-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 font-bold" >         
+              <p
+                onClick={showBothRegisteration}
+                className="w-full flex justify-center my-2 py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-yellow-600 hover:bg-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500 font-bold"
+              >
                 Registration
-                </p>
+              </p>
             </div>
-            
-            <div>
-              {newReg ? (
-            <p className="p-3 text-white">
 
-            Or{" "}
+            <div>
+              {allowNewReg ? (
+                <p className="p-3 text-white">
+                  Or{" "}
                   <Link href="/account/studentRegistration">
                     <a className=" text-yellow-500 hover:text-orange-500 font-bold ">
                       Student Registration
                     </a>
                   </Link>
-            </p>
+                </p>
               ) : (
-                ''
+                ""
               )}
-
             </div>
 
             <div>
-              {newReg ? (
-            <p className="p-3 text-white">
-
-            Or{" "}
+              {allowNewReg ? (
+                <p className="p-3 text-white">
+                  Or{" "}
                   <Link href="/account/RecruiterSignUp">
                     <a className=" text-yellow-500 hover:text-orange-500 font-bold my--4">
                       Company Registration
                     </a>
                   </Link>
-            </p>
+                </p>
               ) : (
-                ''
-                )} 
-              
-
+                ""
+              )}
             </div>
-  
-
-
+          </div>
         </div>
-
-        </div>
-       
       </div>
     </div>
   );
-
-              }
+}
