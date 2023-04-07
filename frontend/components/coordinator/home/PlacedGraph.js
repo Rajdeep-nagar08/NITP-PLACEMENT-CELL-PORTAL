@@ -43,42 +43,42 @@ export default function PlacedGraph({ student = [] }) {
 
   useEffect(() => {
     // const ftestudent = student.filter(
-    //   (item) => item.attributes.registered_for === 'FTE'
+    //   (item) => item?.attributes.registered_for === 'FTE'
     // )
     // //set label for x axis
     // const label = ftestudent.map(
-    //   (item) => item.attributes.program.data.attributes.program_name
+    //   (item) => item?.attributes.program.data?.attributes.program_name
     // )
     const labelSet = new Set(label)
     setLabel(Array.from(labelSet))
     // Create dataset for placed a1, a2, x, unplaced
-    const a1 = student.filter((item) => item.attributes.placed === 'A1')
-    const a2 = student.filter((item) => item.attributes.placed === 'A2')
-    const x = student.filter((item) => item.attributes.placed === 'X')
+    const a1 = student.filter((item) => item?.attributes.placed === 'A1')
+    const a2 = student.filter((item) => item?.attributes.placed === 'A2')
+    const x = student.filter((item) => item?.attributes.placed === 'X')
 
     const unplaced = student.filter(
-      (item) => item.attributes.placed === 'Not Placed'
+      (item) => item?.attributes.placed === 'Not Placed'
     )
     // Count occurences of each program
     a1.forEach((item) => {
-      a1occurences[item.attributes.program.data.attributes.program_name] =
-        (a1occurences[item.attributes.program.data.attributes.program_name] ||
+      a1occurences[item?.attributes.program.data?.attributes.program_name] =
+        (a1occurences[item?.attributes.program.data?.attributes.program_name] ||
           0) + 1
     })
     a2.forEach((item) => {
-      a2occurences[item.attributes.program.data.attributes.program_name] =
-        (a2occurences[item.attributes.program.data.attributes.program_name] ||
+      a2occurences[item?.attributes.program.data?.attributes.program_name] =
+        (a2occurences[item?.attributes.program.data?.attributes.program_name] ||
           0) + 1
     })
     x.forEach((item) => {
-      xoccurences[item.attributes.program.data.attributes.program_name] =
-        (xoccurences[item.attributes.program.data.attributes.program_name] ||
+      xoccurences[item?.attributes.program.data?.attributes.program_name] =
+        (xoccurences[item?.attributes.program.data?.attributes.program_name] ||
           0) + 1
     })
     unplaced.forEach((item) => {
-      unplacedoccurences[item.attributes.program.data.attributes.program_name] =
+      unplacedoccurences[item?.attributes.program.data?.attributes.program_name] =
         (unplacedoccurences[
-          item.attributes.program.data.attributes.program_name
+          item?.attributes.program.data?.attributes.program_name
         ] || 0) + 1
     })
     setA1(a1occurences)
