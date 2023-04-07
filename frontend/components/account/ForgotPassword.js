@@ -46,7 +46,7 @@ export default function ForgotPassword() {
               width={100}
               height={100}
               alt='NIT Patna'
-              src='/images/logo.svg'
+              src='/images/logo.png'
             />
           </div>
 
