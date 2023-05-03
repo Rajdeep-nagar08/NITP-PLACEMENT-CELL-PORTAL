@@ -20,6 +20,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import AuthContext from '@/context/AuthContext'
+import { FaBell } from 'react-icons/fa';
 
 const navigation = [
   {
@@ -68,6 +69,12 @@ const navigation = [
     name: 'Settings',
     href: '/admin/settings',
     icon: CogIcon,
+  },
+
+  {
+    name: 'Notifications',
+    href: '/admin/notifications',
+    icon: FaBell,
   },
 
 
