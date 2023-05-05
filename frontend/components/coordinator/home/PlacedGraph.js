@@ -52,12 +52,14 @@ export default function PlacedGraph({ student = [] }) {
     const labelSet = new Set(label)
     setLabel(Array.from(labelSet))
     // Create dataset for placed a1, a2, x, unplaced
-    const a1 = student.filter((item) => item.attributes.placed === 'A1')
-    const a2 = student.filter((item) => item.attributes.placed === 'A2')
-    const x = student.filter((item) => item.attributes.placed === 'X')
+    const a1 = student.filter((item) => item.attributes.placed_status === 'placed_tier1')
+
+    const a2 = student.filter((item) => item.attributes.placed_status === 'placed_tier2')
+
+    const x = student.filter((item) => item.attributes.placed_status === 'placed_tier3')
 
     const unplaced = student.filter(
-      (item) => item.attributes.placed === 'Not Placed'
+      (item) => item.attributes.placed_status === 'unplaced'
     )
     // Count occurences of each program
     a1.forEach((item) => {

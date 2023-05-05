@@ -15,6 +15,8 @@ export default function StudentApplied({ token = '', id = ''}) {
 
   const [students, setStudents] = useState([])
   const gridRef = useRef()
+
+
   const onBtExport = useCallback(() => {
 
     // See comment in pages/admin/students/index.js for logic behind this
@@ -155,6 +157,7 @@ export default function StudentApplied({ token = '', id = ''}) {
             },
           }),
         })
+
           .then((res) => res.json())
           .then((data) => {
             toast.success(
