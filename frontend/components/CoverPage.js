@@ -4,7 +4,7 @@ import About from './LandingPageElements/About';
 import Footer from './LandingPageElements/Footer';
 import Process from './LandingPageElements/Process';
 import WhyUS from './LandingPageElements/WhyUS';
-import { Typewriter } from 'react-simple-typewriter';
+import { Typewriter } from "react-simple-typewriter";
 import Image from 'next/image';
 import Link from 'next/link';
 
