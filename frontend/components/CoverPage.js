@@ -82,15 +82,18 @@ function CoverPage() {
         <>
             <div className='fixed top-0 z-50'>
                 <div className="">
-                    <div className=" mx-auto z-50 bg-[#2c0707]  p-3 flex justify-between w-screen">
+                    <div className=" mx-auto z-50 bg-[#2c0707]  p-1 flex justify-between w-screen">
                         <div className='flex'>
-                            <Image
-                                width={50}
-                                height={50}
-                                alt='NIT Patna'
-                                src='/images/logo.png'
-                            />
-                            <div className=" font-serif font-extrabold text-2xl p-2 min-h-14 text-white ">
+                            <div className="w-fit h-fit pt-2 mx-1 sm:m-0 sm:pt-0 sm:w-18 sm:h-12">
+                <Image
+                  width={50}
+                  height={50}
+                  alt="NIT Patna"
+                  src="/images/logo.png"
+                  className="sm:pb-1"
+                />
+                </div>
+                            <div className=" font-serif font-extrabold text-lg sm:text-2xl p-1 sm:p-2 flex items-center min-h-14 text-white ">
                                 Training and Placement Cell
                             </div>
                         </div>

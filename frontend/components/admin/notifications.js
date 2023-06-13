@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { FaTrash } from "react-icons/fa";
+// import { Console } from "console";
 
 const Notifications = () => {
   const [title, setTitle] = useState("");
@@ -8,28 +9,46 @@ const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
 
   useEffect(() => {
-    axios.get("/api/notifications").then((res) => {
+
+    try{
+      axios.get("/api/notifications").then((res) => {
       setNotifications(res.data);
-    });
+      
+    }) }
+    catch (err) {
+      console.log("this is error = ", err);
+    }
+     
   }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const config = {
+
+      method: "post",
+
+      Headers: {
+        "Content-Type": "application/json"
+      }
+    }
     axios
       .post("/api/notifications", {
-        title,
-        description,
-      })
+        "title":title,
+        "description":description,
+      }, config)
       .then((res) => {
+
+        console.log("this is the posted data = "+res.data)// here the response is a html code that's why not able to parse it
         setNotifications([...notifications, res.data]);
         setTitle("");
         setDescription("");
+        console.log("notifications just created")
       });
   };
 
   const handleDelete = (id) => {
-    axios.delete(`/api/notifications/${id}`).then(() => {
+    axios.delete(`/admin/notifications/${id}`).then(() => {
       setNotifications(notifications.filter((n) => n.id !== id));
     });
   };
@@ -48,7 +67,7 @@ const Notifications = () => {
               type="text"
               id="title"
               value={title}
-              onChange={(e) => setTitle(e.target.value)}
+              onChange={(e) => {setTitle(e.target.value)}}
             />
           </div>
           <div className="mb-4">
@@ -59,7 +78,7 @@ const Notifications = () => {
               className="border rounded-lg py-2 px-3 w-full"
               id="description"
               value={description}
-              onChange={(e) => setDescription(e.target.value)}
+              onChange={(e) => {setDescription(e.target.value);}}
             />
           </div>
           <button

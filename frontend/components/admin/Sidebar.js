@@ -40,26 +40,26 @@ const navigation = [
 
   },
 
-  {
-    name: 'Recruiters',
-    href: '/admin/recruiters',
-    icon: CollectionIcon,
+  // {
+  //   name: 'Recruiters',
+  //   href: '/admin/recruiters',
+  //   icon: CollectionIcon,
 
-  },
+  // },
 
 
-  {
-    name: 'Companies',
-    href: '/admin/companies',
-    icon: FolderIcon,
+  // {
+  //   name: 'Companies',
+  //   href: '/admin/companies',
+  //   icon: FolderIcon,
 
-  },
+  // },
 
-  {
-    name: 'Jobs/Internship',
-    href: '/admin/jobs',
-    icon: BriefcaseIcon,
-  },
+  // {
+  //   name: 'Jobs/Internship',
+  //   href: '/admin/jobs',
+  //   icon: BriefcaseIcon,
+  // },
   {
     name: 'Requests',
     href: '/admin/requests',
