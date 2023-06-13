@@ -10,17 +10,17 @@
     "build": "strapi build",
     "strapi": "strapi"
   },
-
   "dependencies": {
     "@strapi/plugin-i18n": "4.1.11",
     "@strapi/plugin-users-permissions": "4.1.11",
     "@strapi/provider-email-nodemailer": "^4.3.0",
     "@strapi/strapi": "4.1.11",
     "adm-zip": "^0.5.9",
-    "better-sqlite3": "7.4.6",
+    "better-sqlite3": "^7.6.2",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
     "mysql": "^2.18.1",
+    "sharp": "^0.32.1",
     "strapi": "^3.6.11"
   },
   "author": {
