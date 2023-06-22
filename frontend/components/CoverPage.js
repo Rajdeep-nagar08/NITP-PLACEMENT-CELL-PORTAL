@@ -83,8 +83,8 @@ function CoverPage() {
             <div className='fixed top-0 z-50'>
                 <div className="">
                     <div className=" mx-auto z-50 bg-[#2c0707]  p-1 flex justify-between w-screen">
-                        <div className='flex'>
-                            <div className="w-fit h-fit pt-2 mx-1 sm:m-0 sm:pt-0 sm:w-18 sm:h-12">
+                        <div className='flex pb-2 pt-2'>
+                            <div className="w-fit h-fit pt-2 mx-1 sm:m-0 sm:pt-0 sm:w-18 sm:h-12 pl-6 pr-1">
                 <Image
                   width={50}
                   height={50}
@@ -93,16 +93,16 @@ function CoverPage() {
                   className="sm:pb-1"
                 />
                 </div>
-                            <div className=" font-serif font-extrabold text-lg sm:text-2xl p-1 sm:p-2 flex items-center min-h-14 text-white ">
+                            <div className="font-serif font-extrabold text-lg sm:text-2xl p-1 sm:p-2 flex items-center min-h-14 text-white">
                                 Training and Placement Cell
                             </div>
                         </div>
 
-                        <div className="hidden lg:block h-10">
-                            <div className="flex flex-row-reverse items-center my-2">
+                        <div className="hidden lg:block h-10 pr-10">
+                            <div className="flex flex-row-reverse items-center pt-4 ">
                                 {MENU_LIST.map((menu) => (
                                     <a href={menu.href} key={menu.idx}>
-                                        <a className='text-[#858383] hover:bg-[#67101075] self-center p-3 rounded-md text-sm font-medium hover:text-yellow-200'>{menu.text}</a>
+                                        <a className='text-[#858383] hover:bg-[#67101075] self-center p-3 rounded-md text-l font-medium hover:text-yellow-200'>{menu.text}</a>
                                     </a>
                                 ))}
                             </div>
@@ -169,7 +169,7 @@ function CoverPage() {
                     </div>
                     <div className='absolute top-1/4 flex w-full justify-between items-center'>
 
-                        <div className=' bg-black/50 md:p-10 w-1/3 h-1/2 md:h-1/4'>
+                        {/* <div className=' bg-black/50 md:p-10 w-1/3 h-1/2 md:h-1/4'>
                             <h1 className='text-white font-bold text-md md:text-4xl'>
                                 <Typewriter
                                     words={['Placement idhar hi karwayenge :D']} cursor={true} cursorColor="#F9F54B" loop={5} typeSpeed={70}
@@ -177,7 +177,7 @@ function CoverPage() {
                                 />
 
                             </h1>
-                        </div>
+                        </div> */}
                         {/* <div className='md:mr-10 w-1/3 md:w-1/6'>
                         <div className='rounded-lg bg-amber-400 m-2 p-3 border-2 border-white font-semibold text-sm' ><Link href='/'>Login</Link></div>
                         <div className='rounded-lg bg-amber-400 m-2 p-3 border-2 border-white font-semibold text-sm' ><Link href='/'>Student Registration</Link></div>

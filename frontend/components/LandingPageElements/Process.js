@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import AOS from 'aos';
 import 'aos/dist/aos.css'
+import {ReactComponent as BackgroundImage} from './prosSvg';
 
 import { ArrowDownIcon } from '@heroicons/react/outline'
 const steps = [
@@ -40,15 +41,16 @@ const steps = [
         discription: 'For further requirements like arrangement of Pre-Placement Talk or anything else one of our placement coordinator will be in touch with you.',
     },
 ]
+
 function Process() {
     useEffect(() => {
 AOS.init({duration: 1000})
     },[])
     return (
-        <div className='mt-8 h-fit'>
-            <div className='text-4xl underline font-bold text-center text-red-900'> Welcome!!</div>
+        <>
+            <div className='text-4xl underline font-bold text-center text-red-900 py-4'> Welcome!!</div>
             <div className='text-center text-xl font-serif m-3'>Recuiter should follow following steps to register on <span className='font-bold'>Training and placement cell, NITP</span></div>
-            <div className='grid justify-items-center'>
+            <div className='grid justify-items-center py-4'>
                 <div className='p-5 grid justify-items-center'>
                     {steps.map((item) => (
                         <div className='grid justify-items-center md:w-1/2' key={item.index}>
@@ -57,7 +59,7 @@ AOS.init({duration: 1000})
                                 <div className='bg-yellow-300 p-3 text-center text-red-900 font-bold'>
                                     {item.title}
                                 </div>
-                                <div className='p-4 m-1'>
+                                <div className='p-4 m-1 space-x-1'>
                                     {item.discription}
                                     {item.links && < a href={item.links}  className="hover:underline text-blue-500 after:content-['_↗']">{item.links}</a>}
                                     {item.index===1 && (
@@ -74,7 +76,7 @@ AOS.init({duration: 1000})
                             {
                             item.index!==5 && (
                                 <div className='flex justify-center -space-x-8' data-aos='slide-down'>
-                            <ArrowDownIcon className='h-20 w-11 text-stone-300 '/>
+                            {/* <ArrowDownIcon className='h-20 w-11 text-stone-300 '/> */}
                             <ArrowDownIcon className='h-20 w-10 text-red-900 font-bold'/>
                             </div>
                             )
@@ -87,7 +89,7 @@ AOS.init({duration: 1000})
                 
 
             </div>
-        </div>
+        </>
     )
 }
 

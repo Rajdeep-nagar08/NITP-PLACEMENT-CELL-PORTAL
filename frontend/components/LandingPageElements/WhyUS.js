@@ -60,23 +60,23 @@ function WhyUS() {
   return (
     <>
       <div className='text-center py-10 bg-yellow-100 '>
-        <h5 className=' text-red-900 m-6 text-sm' data-aos='fade-in'> Why Recruit at NIT Patna?</h5>
-        <h1 className='text-4xl w-96 mx-auto leading-normal  font-bold mb-12' data-aos='zoom-in-up'> Benefit and Cuture of our Institute</h1>
+        <h2 className=' text-red-900 m-6 text-2xl' data-aos='fade-in'> Why Recruit at NIT Patna?</h2>
+        <h1 className='text-4xl w-96 mx-auto leading-normal  font-bold mt-15' data-aos='zoom-in-up'> Benefit and Cuture of our Institute</h1>
       </div>
-      <div className='flex items-center p-10 mb-8 bg-yellow-100 '>
+      <div className='flex items-center pb-8 bg-yellow-100'>
         <ChevronLeftIcon className='w-10 opacity-50 hover:opacity-100 cursor-pointer' onClick={sliderLeft} />
-        <div id='slider' className="overflow-x-scroll whitespace-nowrap scroll flex w-screen py-2">
+        <div id='slider' className="overflow-x-scroll whitespace-nowrap scroll flex flex-row w-screen py-4">
           {data.map((item) => (
-            <div className='bg-white grid m-2 mx-4 cursor-pointer hover:scale-105 ease-in-out duration-300 justify-items-center rounded-md shadow-2xl ' data-aos='zoom-in' key={item.title}>
+            <div className='bg-white mx-4 grid my-2 cursor-pointer hover:scale-105 ease-in-out duration-300 justify-items-center rounded-md shadow-2xl'style={{ gridTemplateColumns: 'repeat(1, 400px)', gridTemplateRows: 'repeat(5, 100px)'  }} data-aos='zoom-in' key={item.title}>
 
-              <item.icon className=' h-24 w-24 inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 text-red-900' />
+              <item.icon className='h-24 w-24 inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 text-red-900 ' />
               <h2 className='font-bold text-2xl p-4'>{item.title}</h2>
               <div className='inline-block p-4 whitespace-normal text-sm'>{item.desc}</div>
             </div>
           ))
           }
         </div>
-
+        
         <ChevronRightIcon className='h-10 w-10 opacity-50 hover:opacity-100 cursor-pointer' onClick={sliderRight} />
       </div>
     </>

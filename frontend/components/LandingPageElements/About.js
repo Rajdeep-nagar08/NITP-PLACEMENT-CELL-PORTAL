@@ -15,8 +15,7 @@ function About() {
 
                         <p className='p-5 py-28 indent-5'>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-                            The Training and Placement cell of NIT PATNA forms an integral part in shaping the careers of the students of the institute. It organizes and coordinates campus placement program to fulfill its commitment of a job to every aspirant. Not only that it also encourages and works towards the continuing education for the college employees.
+                    The Training and Placement cell of NIT PATNA forms an integral part in shaping the careers of the students of the institute. It organizes and coordinates campus placement program to fulfill its commitment of a job to every aspirant. Not only that it also encourages and works towards the continuing education for the college employees.
                         </p>
                     </div>
                 </div>
@@ -25,8 +24,8 @@ function About() {
 
             <div className='bg-[#510505] text-white pb-20' >
                 <div className='text-center py-10'>
-                    <h5 className=' text-yellow-100 m-6 '> Our Values</h5>
-                    <h1 className='text-4xl w-96 mx-auto leading-normal  font-bold mb-12'> Our Aim, Mission and Vision</h1>
+                    <h3 className=' text-yellow-100 text-xl mb-4'> Our Values</h3>
+                    <h1 className='text-4xl w-96 mx-auto leading-normal  font-bold mb-4'> Our Aim, Mission and Vision</h1>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto gap-10 group place-items-center'>
                     <div className='bg-white/10 group-hover:blur-sm hover:!blur-none mx-5 md:mx-0 cursor-pointer p-8 rounded-sm  grid place-items-center  group-hover:scale-[0.85] hover:!scale-100'>
