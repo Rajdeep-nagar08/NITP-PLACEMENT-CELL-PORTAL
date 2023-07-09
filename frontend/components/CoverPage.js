@@ -99,10 +99,10 @@ function CoverPage() {
                         </div>
 
                         <div className="hidden lg:block h-10 pr-10">
-                            <div className="flex flex-row-reverse items-center pt-4 ">
+                            <div className="flex flex-row items-center pt-4 ">
                                 {MENU_LIST.map((menu) => (
                                     <a href={menu.href} key={menu.idx}>
-                                        <a className='text-[#858383] hover:bg-[#67101075] self-center p-3 rounded-md text-l font-medium hover:text-yellow-200'>{menu.text}</a>
+                                        <a className='text-white hover:bg-[#67101075] self-center p-3 rounded-md text-l font-semibold hover:text-yellow-200'>{menu.text}</a>
                                     </a>
                                 ))}
                             </div>
@@ -199,12 +199,13 @@ function CoverPage() {
 
             <About />
             </div>
-            <div id="process">
-                <Process />
-            </div>
+            
             <div id="WhyUS">
 
             <WhyUS  />
+            </div>
+            <div id="process" className='pt-4'>
+                <Process />
             </div>
             <Footer />
         </>

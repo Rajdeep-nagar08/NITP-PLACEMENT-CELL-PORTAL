@@ -28,7 +28,7 @@ function About() {
                     <h1 className='text-4xl w-96 mx-auto leading-normal  font-bold mb-4'> Our Aim, Mission and Vision</h1>
                 </div>
                 <div className='grid grid-cols-1 md:grid-cols-3 max-w-5xl mx-auto gap-10 group place-items-center'>
-                    <div className='bg-white/10 group-hover:blur-sm hover:!blur-none mx-5 md:mx-0 cursor-pointer p-8 rounded-sm  grid place-items-center  group-hover:scale-[0.85] hover:!scale-100'>
+                    <div className='bg-white/10 group-hover:blur-sm hover:!blur-none mx-5 md:mx-0 cursor-pointer p-8 rounded-sm  flex flex-col place-items-center  group-hover:scale-[0.85] hover:!scale-100'>
                         <div className='rounded-full border-2 w-[7rem] border-yellow-400 '>
                             <PencilAltIcon className='h-20 w-20 rotate-45 m-4 text-yellow-300' />
                         </div>

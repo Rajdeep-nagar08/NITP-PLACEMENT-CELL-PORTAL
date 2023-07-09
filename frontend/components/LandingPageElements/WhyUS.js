@@ -1,4 +1,4 @@
-import {React, useEffect} from 'react'
+import {React, useEffect,useState} from 'react'
 import {
   ChevronLeftIcon, ChevronRightIcon,
   AcademicCapIcon,
@@ -10,6 +10,9 @@ import {
 } from '@heroicons/react/solid'
 import AOS from 'aos';
 import 'aos/dist/aos.css'
+
+
+
 const data = [
   {
     icon: AcademicCapIcon,
@@ -45,6 +48,12 @@ const data = [
 ]
 
 function WhyUS() {
+  const [showMore, setShowMore] = useState(false);
+
+  const handleKnowMoreClick = () => {
+    setShowMore(true);
+  };
+
   useEffect(() => {
     AOS.init({ duration: 1000 })
   }, [])
@@ -58,20 +67,25 @@ function WhyUS() {
   }
 
   return (
-    <>
-      <div className='text-center py-10 bg-yellow-100 '>
-        <h2 className=' text-red-900 m-6 text-2xl' data-aos='fade-in'> Why Recruit at NIT Patna?</h2>
-        <h1 className='text-4xl w-96 mx-auto leading-normal  font-bold mt-15' data-aos='zoom-in-up'> Benefit and Cuture of our Institute</h1>
+    <div style={{
+      backgroundImage: `url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTB4y2XjdmM7nHiCnxJcZD-OByRosxZ9GfAqA&usqp=CAU")`,  
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',zIndex:'3',position:'relative',margin:'-20px 20px -20px',boxShadow:'0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)',borderRadius:'6px'
+   }} className='h-7/12 w-auto' >
+      <div className='text-center py-10'>
+        <h2 className=' text-blue-900 m-6 text-2xl font-medium' data-aos='fade-in'> Why Recruit at NIT Patna?</h2>
+        <p className='w-1/2 md:w-8/12  mx-auto leading-normal font-bold text-black text-m' data-aos='zoom-in-up'>National Institute of Technology Patna aims at setting out very high education standards and holds long record of academic excellence. The pedagogical aspects have been formulated to suit not only the needs of the contemporary industrial requirements but also to develop human potential to its fullest extent in a range of professions. Extra curricular activities are planed through games and sports, cultural programmes and NSS activities. Cultural activities provide a platform to know about the culture of various states and regions of the country and opportunity for national integration.Ever since its rechristening, NIT Patna has been on the fast track of development and has undergone numerous facelifts because of which placement records have witnessed unprecedented growth and is touching new heights as the graph of placement is increasing remarkably.</p>
       </div>
-      <div className='flex items-center pb-8 bg-yellow-100'>
+      <div className='flex items-center pb-8'>
         <ChevronLeftIcon className='w-10 opacity-50 hover:opacity-100 cursor-pointer' onClick={sliderLeft} />
-        <div id='slider' className="overflow-x-scroll whitespace-nowrap scroll flex flex-row w-screen py-4">
+        <div id='slider' className="overflow-x-scroll whitespace-nowrap scroll flex flex-row w-screen py-4 px-6">
           {data.map((item) => (
-            <div className='bg-white mx-4 grid my-2 cursor-pointer hover:scale-105 ease-in-out duration-300 justify-items-center rounded-md shadow-2xl'style={{ gridTemplateColumns: 'repeat(1, 400px)', gridTemplateRows: 'repeat(5, 100px)'  }} data-aos='zoom-in' key={item.title}>
+            <div className='mx-4  flex flex-col lg:grid my-2 cursor-pointer hover:scale-105 ease-in-out duration-300 justify-items-center rounded-md ' style={{ gridTemplateColumns: 'repeat(1, 400px)', gridTemplateRows: 'repeat(4, 100px)', '@media (max-width: 767px)': { gridTemplateColumns: '1fr', gridTemplateRows: 'repeat(3,100)' } }}>
 
               <item.icon className='h-24 w-24 inline-block p-2 cursor-pointer hover:scale-105 ease-in-out duration-300 text-red-900 ' />
               <h2 className='font-bold text-2xl p-4'>{item.title}</h2>
               <div className='inline-block p-4 whitespace-normal text-sm'>{item.desc}</div>
+             
             </div>
           ))
           }
@@ -79,7 +93,7 @@ function WhyUS() {
         
         <ChevronRightIcon className='h-10 w-10 opacity-50 hover:opacity-100 cursor-pointer' onClick={sliderRight} />
       </div>
-    </>
+    </div>
   )
 }
 
